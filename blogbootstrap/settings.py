@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blogbs',
-        'USER': 'undead',
+        'USER': 'cpuloader',
         'PASSWORD':'volosatiy0',
         'HOST': 'cpuloader.mysql.pythonanywhere-services.com', 
         'OPTIONS': {
