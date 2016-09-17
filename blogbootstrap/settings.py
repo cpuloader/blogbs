@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'blogbs',
         'USER': 'undead',
         'PASSWORD':'volosatiy0',
-        'HOST': 'http://cpuloader.pythonanywhere.com', 
+        'HOST': 'cpuloader.mysql.pythonanywhere-services.com', 
         'OPTIONS': {
           'autocommit': True,
         },
