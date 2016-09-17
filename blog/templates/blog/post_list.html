@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in object_list %}
+        <div class="blogpost">
+          <div class="blogpost-border">
+            <p>{{ post.datetime }}</p>
+            <h2 class="post-title" id="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+            <p>{{ post.content }}</p>
+            <span class="post-title"><a href="{{ post.get_absolute_url }}#disqus_thread"></a></span>
+            
+          </div>
+        </div>
+    {% empty %}
+        <p>Нет постов</p>
+    {% endfor %}
+    {% include "blog/post_add.html" with form=post_form %}
+{% endblock %}
