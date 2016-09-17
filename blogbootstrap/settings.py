@@ -83,7 +83,6 @@ DATABASES = {
         'USER': 'cpuloader',
         'PASSWORD':'volosatiy0',
         'HOST': 'cpuloader.mysql.pythonanywhere-services.com', 
-        },
     }
 }
 
