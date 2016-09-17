@@ -79,12 +79,10 @@ WSGI_APPLICATION = 'blogbootstrap.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blogbs',
+        'NAME': 'cpuloader$blogbs',
         'USER': 'cpuloader',
         'PASSWORD':'volosatiy0',
         'HOST': 'cpuloader.mysql.pythonanywhere-services.com', 
-        'OPTIONS': {
-          'autocommit': True,
         },
     }
 }
