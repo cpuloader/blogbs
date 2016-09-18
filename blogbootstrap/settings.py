@@ -86,6 +86,9 @@ DATABASES = {
         'USER': 'cpuloader',
         'PASSWORD':'volosatiy0',
         'HOST': 'cpuloader.mysql.pythonanywhere-services.com', 
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        },
     }
 }
 

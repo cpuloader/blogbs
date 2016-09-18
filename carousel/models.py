@@ -16,6 +16,7 @@ class Picture(models.Model):
         super(Picture, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        storage, path = self.picture.storage, self.picture.path
         super(Picture, self).delete(*args,**kwargs)
-        storage.delete(path)
+        if self.picture:
+            storage, path = self.picture.storage, self.picture.path
+            storage.delete(path)
