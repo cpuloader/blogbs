@@ -1,11 +1,19 @@
 body {
-    padding-top: 40px;
     background-color: #5F9EA0;
 }
 
+.container-fluid {
+
+}
 .container {
     margin-left: 200px;
 }
+
+.carousel-container, 
+.blog-container {
+    margin-top: -20px;
+}
+
 .blog-container {
     background-color: white; 
     margin-left: 200px;
@@ -41,14 +49,9 @@ body {
     width: 50%;
 }
 
-/*#submit_btn {
-    padding-right: 500px;
-} */
-
 .blogpost {
     background-color: #BFDFDF; 
     border-radius: 5px;
-    /*border: 2px solid #AFDCAF;*/
 }
 
 .blogpost-border {
@@ -56,4 +59,9 @@ body {
     margin-bottom: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.car-pic {
+    width: 70%;
+    margin: auto;
 }

@@ -2,8 +2,8 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
-import json
-from django.http import HttpResponse
+#import json
+#from django.http import HttpResponse
 
 from .models import Post
 from .forms import PostForm

@@ -30,8 +30,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{% url 'carousel_name' %}">Картинки</a></li>
-        <li class="active"><a href="{% url 'list' %}">Список постов<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{% url 'carousel_name' %}">Картинки<span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'list' %}">Список постов</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -46,9 +46,8 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="blog-container">
-    {% block content %}Empty page{% endblock %}
+<div class="carousel-container">
+    {% block carousel %}Empty page{% endblock %}
 </div> <!-- container -->
-<script id="dsq-count-scr" src="//blog-kz8i2cpqvz.disqus.com/count.js" async></script>
 </body>
 </html>

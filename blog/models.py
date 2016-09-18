@@ -11,7 +11,7 @@ class Post(models.Model):
     class Meta:
         ordering = ["-datetime"]
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
     def get_absolute_url(self):

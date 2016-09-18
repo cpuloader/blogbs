@@ -1,0 +1,35 @@
+{% extends 'carousel/base.html' %}
+
+{% block carousel %}
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      {% for picture in pictures %}
+      <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+      {% endfor %}
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+    {% for picture in pictures %}
+      <div class="{% if forloop.first %}item active{% else %}item{% endif %}">
+        <img class="car-pic" src="{{ picture.picture.url }}" alt="{{ picture.title }}">
+        <div class="carousel-caption">
+          <h3>{{ picture.title }}</h3>
+          <p>{{ picture.text }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    </div>  
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">&lt;</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">&gt;</span>
+    </a>
+ 
+  </div>
+{% endblock %}
