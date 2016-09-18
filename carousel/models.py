@@ -12,3 +12,10 @@ class Picture(models.Model):
     def __unicode__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        super(Picture, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        storage, path = self.picture.storage, self.picture.path
+        super(Picture, self).delete(*args,**kwargs)
+        storage.delete(path)

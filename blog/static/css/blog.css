@@ -5,9 +5,6 @@ body {
 .container-fluid {
 
 }
-.container {
-    margin-left: 200px;
-}
 
 .carousel-container, 
 .blog-container {
@@ -16,9 +13,9 @@ body {
 
 .blog-container {
     background-color: white; 
-    margin-left: 200px;
-    margin-right: 200px;
-    margin-bottom: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
