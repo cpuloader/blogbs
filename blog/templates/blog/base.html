@@ -42,13 +42,18 @@
           </ul>
         </li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Выйти</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Войти</a></li>
+        {% endif %}
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="blog-container">
-    {% block content %}Empty page{% endblock %}
-</div> <!-- container -->
-<script id="dsq-count-scr" src="//blog-kz8i2cpqvz.disqus.com/count.js" async></script>
+{% block content %}Empty page{% endblock %}
+
 </body>
 </html>

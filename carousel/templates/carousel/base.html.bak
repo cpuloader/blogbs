@@ -46,8 +46,6 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div class="carousel-container">
-    {% block carousel %}Empty page{% endblock %}
-</div> <!-- container -->
+{% block carousel %}Empty page{% endblock %}
 </body>
 </html>
