@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.cpuloader.pythonanywhere.com']
 
