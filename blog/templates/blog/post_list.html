@@ -17,6 +17,7 @@
     {% endfor %}
     {% if user.is_authenticated %}
       {% include "blog/post_add.html" with form=post_form %}
+      <br>
     {% endif %}
     <script id="dsq-count-scr" src="//blog-kz8i2cpqvz.disqus.com/count.js" async></script>
 </div>
