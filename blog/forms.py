@@ -26,6 +26,6 @@ class MyRegistrationForm(UserCreationForm):
             user.save()
             permission = Permission.objects.get(name='Can add post')
             user.user_permissions.add(permission)
-            UserExtraFields.objects.create(user=user, text=user.text)
+            UserExtraFields.objects.create(user=user, text=unicode(user.text, 'utf-8'))
         return user
 
