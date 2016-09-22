@@ -19,13 +19,14 @@ class Picture(models.Model):
         #if self.picture is not None:
         #    storage, path = self.picture.storage, self.picture.path
         #    storage.delete(path, save = False)
-        self.picture.delete(save = False)
+        #self.picture.delete(save = False)
         super(Picture, self).delete(*args,**kwargs)
 
 
 @receiver(post_delete, sender=Picture)
 def photo_post_delete_handler(sender, **kwargs):
     picture = kwargs['instance']
+    instance.picture.delete(save = False)
     storage, path = picture.picture.storage, picture.picture.path
     storage.delete(path)
         
