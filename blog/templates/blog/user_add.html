@@ -1,4 +1,4 @@
-<form class="post-form" method="post" action="{% url 'post_add' %}">
+<form class="post-form" method="post" action="{% url 'user_add' %}">
 {% csrf_token %}
 {% for field in form.hidden_fields %}
   {{ field }}

@@ -8,16 +8,19 @@
             <p>{{ post.datetime }}</p>
             <h2 class="post-title" id="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
             <p>{{ post.content }}</p>
+            <p class="blog-author">{{ post.author.username }}</p>
+            <p class="blog-author">{{ post.author.userextrafields.text }}</p>
             <span class="post-title"><a href="{{ post.get_absolute_url }}#disqus_thread"></a></span>
-            
           </div>
         </div>
     {% empty %}
         <p>Нет постов</p>
     {% endfor %}
-    {% if user.is_authenticated %}
+    {% if perms.blog.add_post %}
+      <div class="postform">
       {% include "blog/post_add.html" with form=post_form %}
       <br>
+      </div>
     {% endif %}
     <script id="dsq-count-scr" src="//blog-kz8i2cpqvz.disqus.com/count.js" async></script>
 </div>

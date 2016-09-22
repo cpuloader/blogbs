@@ -22,8 +22,11 @@
     <div class="submit-button">
       <input class="submit-button-inner" type="submit" value="Войти" />
       <input type="hidden" name="next" value="{{ next }}" />
+      <a href="{% url 'user_add' %}">Регистрация</a>
     </div>
     </form>
+    <div style="clear:both;"></div>
   </div>
+  <div style="clear:both;"></div> 
 </div>
 {% endblock %}
