@@ -21,7 +21,6 @@ class MyRegistrationForm(UserCreationForm):
     def save(self, commit = True):
         user = super(MyRegistrationForm, self).save(commit = False)
         user.text = self.cleaned_data['text']
-        print(user.text)
         if commit:
             user.save()
             permission = Permission.objects.get(name='Can add post')
