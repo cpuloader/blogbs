@@ -26,7 +26,7 @@ class Picture(models.Model):
 @receiver(post_delete, sender=Picture)
 def photo_post_delete_handler(sender, **kwargs):
     picture = kwargs['instance']
-    instance.picture.delete(save = False)
+    picture.picture.delete(save = False)
     storage, path = picture.picture.storage, picture.picture.path
     storage.delete(path)
         
