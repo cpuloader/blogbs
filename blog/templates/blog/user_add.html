@@ -1,3 +1,8 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="user-add-form">
+<div class="user-add-form-inner">
 <form class="post-form" method="post" action="{% url 'user_add' %}">
 {% csrf_token %}
 {% for field in form.hidden_fields %}
@@ -25,3 +30,8 @@
 {% endfor %}
 <input id="submit-btn" type="submit" value='Отправить'>
 </form>
+<div style="clear:both;"></div>
+</div>
+<div style="clear:both;"></div>
+</div>
+{% endblock %}

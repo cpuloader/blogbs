@@ -1,8 +1,10 @@
+#coding: utf-8
 #from __future__ import unicode_literals
 #from django.utils.translation import ugettext_lazy as _
 from django import forms
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import ugettext_lazy as _
 
 from .models import Post, UserExtraFields
 
@@ -13,6 +15,7 @@ class PostForm(forms.ModelForm):
 
 class MyRegistrationForm(UserCreationForm):
     text = forms.CharField(required = False)
+    text.label = u'Немного о себе'.encode('utf-8')
 
     class Meta:
         model = User
