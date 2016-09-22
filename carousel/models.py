@@ -19,7 +19,7 @@ class Picture(models.Model):
         #if self.picture is not None:
         #    storage, path = self.picture.storage, self.picture.path
         #    storage.delete(path, save = False)
-        self.picture.delete(save = False)
+        #self.picture.delete(save = False)
         super(Picture, self).delete(*args,**kwargs)
 
 
