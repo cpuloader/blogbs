@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% block addplayerjs %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
+        <script src="{% url 'player_script' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+  {% for track in object_list %}
+    <div class="track"> 
+        <div class="blog-author">
+            <p>{{ track.author }}</p>
+            <p>{{ track.created_date }}</p>
+        </div>
+        <h1>{{ track.title }}</h1>
+        <p>Debug: {{ track.soundtrack.path }}</p>
+        {% if track.soundtrack %}
+            <div class="audiotracks-list-entry">   
+              <div class="player-container" id="player-container{{ track.pk }}" src="{{ track.soundtrack.url }}">
+                <div class="controls">
+                  <button class="btn btn-primary" id="play{{ track.pk }}">
+                    <span class="glyphicon glyphicon-play"></span>
+                      <strong>/</strong>
+                    <span class="glyphicon glyphicon-pause"></span>
+                      
+                  </button>
+                </div>
+              </div>
+            </div>          
+        {% endif %} 
+        <p>{{ track.text|linebreaksbr }}</p>
+    </div>
+  {% empty %}
+    <p>Нет треков</p>
+  {% endfor %}
+  <br>
+</div>
+{% endblock %}

@@ -15,11 +15,16 @@ class Picture(models.Model):
     def __unicode__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        try:
+            this_record = Picture.objects.get(pk = self.pk)
+            if this_record.picture != self.picture:
+                this_record.picture.delete(save = False)
+        except:
+            pass
+        super(Picture, self).save(*args, **kwargs)
+
     def delete(self, *args, **kwargs):
-        #if self.picture is not None:
-        #    storage, path = self.picture.storage, self.picture.path
-        #    storage.delete(path, save = False)
-        #self.picture.delete(save = False)
         super(Picture, self).delete(*args,**kwargs)
 
 

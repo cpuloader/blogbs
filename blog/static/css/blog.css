@@ -81,6 +81,10 @@ body {
     margin: auto;
 }
 
+.player-container {
+    margin-right: 10px;
+}
+
 .loginform {
     width:300px;
     height:auto;
