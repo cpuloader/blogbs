@@ -1,35 +1,66 @@
 $(document).ready(function() {
-var ctx = document.createElement('canvas').getContext('2d');
-    var linGrad = ctx.createLinearGradient(0, 64, 0, 200);
-    linGrad.addColorStop(0.5, 'rgba(255, 255, 255, 1.000)');
-    linGrad.addColorStop(0.5, 'rgba(183, 183, 183, 1.000)');
 var KEYSTRING = "player-container";
 var allAudioDivs = $("div").filter("." + KEYSTRING);
 var wavesurfers = {};
 var id = [];
-    console.log(typeof KEYSTRING.length);
 var j=0;
 
-for (var i=0; i < 100; i++) {
+var slider = $('#slider');
+ 
+slider.slider({
+    range: "min",
+    min: 1,
+    value: 36,
+    step: 5 
+});
+
+for (var i=0; i < 100; i++) {          //counting player objects
     if (typeof allAudioDivs[i] !== "object" ) { break; }
     j++;
     }
 
 for (i = 0; i < j; i++) {
     id[i] = allAudioDivs[i].id;
-    var pk = id[i].slice(KEYSTRING.length);
+    let pk = id[i].slice(KEYSTRING.length);
     wavesurfers[pk] = WaveSurfer.create({
-    container: ("#" + id[i])
-    });
+        container: ("#" + id[i]),
+        hideScrollbar: true
+        });
 
     var play = "#play" + pk;
-    $(play).bind("click", {currentIndex: pk}, 
+    $(play).on("click", 
         function (event) {
-            wavesurfers[event.data.currentIndex].playPause();
+            wavesurfers[pk].playPause();
+            play = "#play" + pk;
+            console.log(wavesurfers[pk].isPlaying());
+            if (wavesurfers[pk].isPlaying() == true) {
+                $(play + " span").attr("class", "glyphicon glyphicon-pause");
+            } else {
+                $(play + " span").attr("class", "glyphicon glyphicon-play");
+            }
+        }
+    );
+
+    wavesurfers[pk].on("finish",
+        function (event) {
+            wavesurfers[pk].stop();
+            play = "#play" + pk;
+            $(play + " span").attr("class", "glyphicon glyphicon-play");
+        }
+    );    
+
+    $("#slider").on("slidechange", 
+        function(event, ui) {
+            wavesurfers[pk].setVolume(slider.slider('value') / 100);
+            //$("#debug").text(slider.slider('value'));
         }
     );
 
     url = $("#" + id[i]).attr("src");
     wavesurfers[pk].load(url);
+    wavesurfers[pk].setVolume(slider.slider('value') / 100);
     }
+    //$("#debug").text(slider.slider('value'));
+
+
 });

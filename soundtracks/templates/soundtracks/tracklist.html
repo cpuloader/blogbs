@@ -1,12 +1,26 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
 
 {% block addplayerjs %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
         <script src="{% url 'player_script' %}"></script>
+        <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">-->
+        <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+        <!--<style>
+           .ui-slider-handle {
+               background: url({% static 'css/knob.png' %}) no-repeat 50% 50%;
+           }
+        </style>-->
 {% endblock %}
 
 {% block content %}
 <div class="blog-container">
+<section> 
+  <span class="tooltip"></span> 
+  <div id="slider"></div>
+</section>  
+<!--<p id="debug">test</p>-->
   {% for track in object_list %}
     <div class="track"> 
         <div class="blog-author">
@@ -14,20 +28,19 @@
             <p>{{ track.created_date }}</p>
         </div>
         <h1>{{ track.title }}</h1>
-        <p>Debug: {{ track.soundtrack.path }}</p>
+        <!--<p>Debug: {{ track.soundtrack.path }}</p>-->
         {% if track.soundtrack %}
             <div class="audiotracks-list-entry">   
-              <div class="player-container" id="player-container{{ track.pk }}" src="{{ track.soundtrack.url }}">
-                <div class="controls">
-                  <button class="btn btn-primary" id="play{{ track.pk }}">
+              <div class="player-sizing">
+                <div class="player-controls">
+                  <button class="btn btn-primary" id="play{{ track.pk }}" style="width:60px;height:128px;">
                     <span class="glyphicon glyphicon-play"></span>
-                      <strong>/</strong>
-                    <span class="glyphicon glyphicon-pause"></span>
-                      
                   </button>
                 </div>
+                <div class="player-container" id="player-container{{ track.pk }}" src="{{ track.soundtrack.url }}">	
+                </div>
               </div>
-            </div>          
+            </div>
         {% endif %} 
         <p>{{ track.text|linebreaksbr }}</p>
     </div>
