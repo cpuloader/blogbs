@@ -90,6 +90,17 @@ body {
     margin-right: 10px;
 }
 
+progress {
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    color: rgb(0, 116, 217);
+    width:100%;
+    top:50%;
+    vertical-align:baseline;
+}
+
 .loginform {
     width:300px;
     height:auto;

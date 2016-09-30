@@ -38,6 +38,7 @@
                   </button>
                 </div>
                 <div class="player-container" id="player-container{{ track.pk }}" src="{{ track.soundtrack.url }}">	
+                  <progress id="progress{{ track.pk }}" class="progress progress-striped" value="0" max="100"></progress>
                 </div>
               </div>
             </div>
