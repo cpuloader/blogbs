@@ -24,6 +24,8 @@ for (i = 0; i < j; i++) {
     let pk = id[i].slice(KEYSTRING.length);
     wavesurfers[pk] = WaveSurfer.create({
         container: ("#" + id[i]),
+        //backend: 'MediaElement',
+        //barWidth: 3,
         progressColor: "hsla(200, 100%, 30%, 0.5)",
         hideScrollbar: true
         });
@@ -50,13 +52,16 @@ for (i = 0; i < j; i++) {
     );    
 
     wavesurfers[pk].on("loading", function (percents) {
-        progress = "progress" + pk;
-        document.getElementById(progress).value = percents;
+        progress = "#progress" + pk;
+        //document.getElementById(progress).value = percents;
+        $(progress).css("width", percents*11.5).attr('aria-valuenow', percents*11.5).text(percents);
     });
 
     wavesurfers[pk].on("ready", function (percents) {
-        progress = "progress" + pk;
-        document.getElementById(progress).style.display = 'none';
+        progress = "#progress" + pk;
+        //document.getElementById(progress).style.display = 'none';
+        $(progress).css("display", "none");
+        $(progress).parent().css("display", "none");
     });
 
     $("#slider").on("slidechange", 
