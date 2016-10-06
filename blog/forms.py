@@ -12,9 +12,11 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
+        #fields = ('author', 'title', 'content',)
+        #widgets = {'author': forms.HiddenInput(),}
 
 class MyRegistrationForm(UserCreationForm):
-    text = forms.CharField(required = False)
+    text = forms.CharField(required = False, widget=forms.Textarea)
     text.label = u'Немного о себе'.encode('utf-8')
 
     class Meta:

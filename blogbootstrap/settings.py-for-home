@@ -27,7 +27,7 @@ SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1:8000']
 
 # Application definition
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'disqus',
     'carousel',
     'soundtracks',
+    'tempurls',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -119,5 +120,16 @@ MEDIA_URL = '/media/'
 
 SITE_ID = 1
 
-#DISQUS_API_KEY = 'kz8i2cpqvz'
+
+ADMINS = (("bols", "bols@mail.ru"),)
+MANAGERS = (("bols", "bols@mail.ru"),)
+
+EMAIL_HOST = "smtp.mail.ru"
+EMAIL_HOST_USER = "bols@mail.ru"
+EMAIL_HOST_PASSWORD = "neebivola"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Bols <bols@mail.ru>"
+
+
 DISQUS_WEBSITE_SHORTNAME = 'blog-kz8i2cpqvz'

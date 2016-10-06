@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="blog-container">
+  <p>{{ user.email }}</p>
+  <p>Вот ваш секрет: {{ secret }}</p>
+  <p>{{ error }}</p>
+</div>
+{% endblock %}
+

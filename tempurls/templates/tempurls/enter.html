@@ -1,4 +1,10 @@
-<form class="post-form" method="post" action="{% url 'post_add' %}">
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="blog-container">
+{% if user.is_authenticated %}
+  <p>Секрет будет вам отправлен на этот адрес: {{ user.email }}</p>
+<form class="post-form" method="post" action="{% url 'secret' %}">
 {% csrf_token %}
 {% for field in form.hidden_fields %}
   {{ field }}
@@ -25,4 +31,7 @@
 {% endfor %}
 <input id="submit-btn" type="submit" value='Отправить'>
 </form>
+{% endif %}
+</div>
+{% endblock %}
 

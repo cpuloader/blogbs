@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="blog-container">
+{% if user.is_authenticated %}
+  <p>Временную ссылку вам отправили, вот сюда {{ user.email }}.</p>
+{% endif %}
+</div>
+{% endblock %}
+

@@ -12,7 +12,7 @@ class UserExtraFields(models.Model):
         return self.user.username
 
 class Post(models.Model):
-    author = models.ForeignKey(User, editable=False)
+    author = models.ForeignKey(User,editable=False)
     title = models.CharField(max_length=255, verbose_name=unicode('Заголовок', 'utf-8')) # заголовок поста
     datetime = models.DateTimeField(default = datetime.now, db_index = True, editable=False, verbose_name=unicode('Дата публикации', 'utf-8')) # дата публикации
     content = models.TextField(max_length=10000, verbose_name=unicode('Основной текст', 'utf-8')) # текст поста

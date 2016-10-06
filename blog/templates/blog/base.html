@@ -34,7 +34,8 @@
       <ul class="nav navbar-nav">
         <li id="menu1" class=""><a id="link1" href="{% url 'carousel_name' %}">Картинки</a></li>
         <li id="menu2" class=""><a id="link2" href="{% url 'tracks_list' %}">Звуки</a></li>
-        <li id="menu3" class=""><a id="link2" href="{% url 'list' %}">Блог</a></li>
+        <li id="menu3" class=""><a id="link3" href="{% url 'list' %}">Блог</a></li>
+        <li id="menu4" class=""><a id="link4" href="{% url 'secret' %}">Секрет</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
