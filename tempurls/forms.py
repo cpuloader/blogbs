@@ -23,4 +23,4 @@ class TempUrlForm(forms.ModelForm):
         message = link + '   User: ' + data["username"] + '   Link expires: ' + data["expires"]
         #print unicode(message).encode('utf8')
         send_mail("Secret link", message, sender, 
-                            [data['email']], fail_silently=True)
+                            [data['email']], fail_silently=False)
