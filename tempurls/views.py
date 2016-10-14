@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
-from wsgiref.util import FileWrapper
+from wsgiref.util import FileWrapper as myFileWrapper
 
 import blogbootstrap.settings as settings
 from .models import TempUrl
@@ -86,7 +86,7 @@ def your_file(request, key):
     else:
         error = 'Нужно войти под своим аккаунтом, чтобы скачать файл!'
         return render(request, 'tempurls/show.html', {'error' : error})
-    wrapper = FileWrapper(open(yourfile, 'rb'))
+    wrapper = myFileWrapper(open(yourfile, 'rb'))
     response = HttpResponse(wrapper, content_type='application/zip')
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(yourfile)
     response['Content-Length'] = os.path.getsize(yourfile)
