@@ -18,7 +18,7 @@ from .forms import TempUrlForm
 
 
 #BASEFILE = 'c:/sites/blogbs/bin/filetocopy.zip'
-BASEFILE = '/user/cpuloader/files/home/cpuloader/blogbs/bin/filetocopy.zip'
+BASEFILE = 'http://cpuloader.pythonanywhere.com/bin/filetocopy.zip'
 
 class EnterTextView(CreateView): 
     model = TempUrl
