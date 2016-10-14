@@ -134,10 +134,10 @@ SITE_ID = 1
 ANYMAIL = {
     # (exact settings here depend on your ESP...)
     "MAILGUN_API_KEY": "key-8668f638ba7f7229bbc457863d303ca2",
-    "MAILGUN_SENDER_DOMAIN": 'https://api.mailgun.net/v3/sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages',
+    "MAILGUN_SENDER_DOMAIN": 'sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages',
 }
 
-DEFAULT_FROM_EMAIL = "Mailgun Sandbox <postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org>"
+DEFAULT_FROM_EMAIL = "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org"
 EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 
 
