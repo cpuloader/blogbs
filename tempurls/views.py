@@ -10,11 +10,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+if blogbootstrap.settings.DEBUG:
+    from wsgiref.util import FileWrapper
 
 import blogbootstrap.settings as settings
 from .models import TempUrl
 from .forms import TempUrlForm
-if blogbootstrap.settings.DEBUG from wsgiref.util import FileWrapper
+
 
 #BASEFILE = 'c:/sites/blogbs/bin/filetocopy.zip'
 BASEFILE = '/user/cpuloader/files/home/cpuloader/blogbs/bin/filetocopy.zip'
