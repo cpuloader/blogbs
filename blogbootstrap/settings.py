@@ -123,12 +123,15 @@ SITE_ID = 1
 ADMINS = (("bols", "bols@mail.ru"), ("Mailgun Sandbox", "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org"), )
 MANAGERS = (("bols", "bols@mail.ru"), ("Mailgun Sandbox", "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org"), )
 
-EMAIL_HOST = "smtp.mail.ru"
-EMAIL_HOST_USER = "bols@mail.ru"
-EMAIL_HOST_PASSWORD = "neebivola"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "Bols <bols@mail.ru>"
+#EMAIL_HOST = "smtp.mail.ru"
+#EMAIL_HOST_USER = "bols@mail.ru"
+#EMAIL_HOST_PASSWORD = "neebivola"
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#DEFAULT_FROM_EMAIL = "Bols <bols@mail.ru>"
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = '8668f638ba7f7229bbc457863d303ca2'
+MAILGUN_SERVER_NAME = 'https://api.mailgun.net/v3/sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages'
 
 
 DISQUS_WEBSITE_SHORTNAME = 'blog-kz8i2cpqvz'
