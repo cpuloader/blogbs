@@ -71,7 +71,7 @@ def your_file(request, key):
     yourfile = os.path.join(basedir, temp_url.text + '.zip')
     copyfile(BASEFILE, yourfile)
     if timezone.now() > temp_url.expires:
-        error = 'Ссылка просрочена!' + os.path.dirname(__file__)
+        error = 'Ссылка просрочена!' #+ os.path.dirname(__file__)
         try:
             os.remove(yourfile)
         except EnvironmentError:
