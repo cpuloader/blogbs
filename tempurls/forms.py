@@ -25,7 +25,7 @@ class TempUrlForm(forms.ModelForm):
         link = "http://" + sitelink + "/tempurls/temp/" + datas['url_hash'] 
         html_content = start + link + "'>Link</a>" + '\n<p>User: ' + datas["username"] + '</p>\n<p>Link expires: ' + datas["expires"] + "</p>" + end
         text_content = link + '\nUser: ' + datas["username"] + '\nLink expires: ' + datas["expires"]
-        msg = EmailMultiAlternatives("Secret link", text_content, sender, [data['email']])
+        msg = EmailMultiAlternatives("Secret link", text_content, sender, [datas['email']])
         msg.attach_alternative(html_content, "text/html")
         msg.send(fail_silently=True)
         send_mail("Secret link", message, sender, [data['email']], fail_silently=False)
