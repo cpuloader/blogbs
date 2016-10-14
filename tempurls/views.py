@@ -5,12 +5,12 @@ from shutil import copyfile
 
 from django.utils import timezone
 from django.http import HttpResponse
-from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from wsgiref.util import FileWrapper as myFileWrapper
+#from django.core.servers.basehttp import FileWrapper
 
 import blogbootstrap.settings as settings
 from .models import TempUrl
