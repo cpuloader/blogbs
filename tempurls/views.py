@@ -69,12 +69,12 @@ def your_file(request, key):
     temp_url = get_object_or_404(TempUrl, url_hash = key)
     basedir = os.path.split(BASEFILE)[0]
     yourfile = os.path.join(basedir, temp_url.text + '.zip')
-    print(os.path.dirname(__file__))
     #copyfile(BASEFILE, yourfile)
     if timezone.now() > temp_url.expires:
         error = 'Ссылка просрочена!' + os.path.dirname(__file__)
         try:
             #os.remove(yourfile)
+            print(os.path.dirname(__file__))
         except EnvironmentError:
             pass
         return render(request, 'tempurls/show.html', {'error' : error})
