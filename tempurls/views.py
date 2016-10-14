@@ -14,6 +14,7 @@ from django.views.generic.edit import CreateView
 import blogbootstrap.settings as settings
 from .models import TempUrl
 from .forms import TempUrlForm
+if blogbootstrap.settings.DEBUG from wsgiref.util import FileWrapper
 
 #BASEFILE = 'c:/sites/blogbs/bin/filetocopy.zip'
 BASEFILE = '/user/cpuloader/files/home/cpuloader/blogbs/bin/filetocopy.zip'
