@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'carousel',
     'soundtracks',
     'tempurls',
+    'anymail',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -129,10 +130,15 @@ SITE_ID = 1
 #EMAIL_PORT = 587
 #EMAIL_USE_TLS = True
 #DEFAULT_FROM_EMAIL = "Bols <bols@mail.ru>"
+
+ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    "MAILGUN_API_KEY": "key-8668f638ba7f7229bbc457863d303ca2",
+    "MAILGUN_SENDER_DOMAIN": 'sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages',
+}
+
 DEFAULT_FROM_EMAIL = "Mailgun Sandbox <postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org>"
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-MAILGUN_ACCESS_KEY = 'key-8668f638ba7f7229bbc457863d303ca2'
-MAILGUN_SERVER_NAME = 'sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages'
+EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 
 
 DISQUS_WEBSITE_SHORTNAME = 'blog-kz8i2cpqvz'
