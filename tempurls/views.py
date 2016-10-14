@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
-if blogbootstrap.settings.DEBUG:
+if not blogbootstrap.settings.DEBUG:
     from wsgiref.util import FileWrapper
 
 import blogbootstrap.settings as settings
