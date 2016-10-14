@@ -21,10 +21,8 @@ class PostsListView(ListView):
         initial = None
         if self.request.session.pop('tupo', None):
             title = self.request.session.pop('post_form_title','')
-            title_error = self.request.session.pop('post_form_title_error','')
             content = self.request.session.pop('post_form_content','')
-            initial = {'title': title, 'title.errors': title_error, 
-                                         'content': content }
+            initial = {'title': title, 'content': content }
         context["post_form"] = PostForm(initial)
 
         return context
@@ -47,7 +45,6 @@ class PostCreateView(CreateView):
     def form_invalid(self, form):
         self.request.session['tupo'] = 'yes'
         self.request.session['post_form_title'] = form.instance.title
-        self.request.session['post_form_title_error'] = form.errors
         self.request.session['post_form_content'] = form.instance.content
         return redirect(reverse('list'))
     
