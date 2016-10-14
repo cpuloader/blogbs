@@ -27,7 +27,7 @@ class TempUrlForm(forms.ModelForm):
         text_content = link + '\nUser: ' + datas["username"] + '\nLink expires: ' + datas["expires"]
         msg = EmailMultiAlternatives("Secret link", text_content, sender, [datas['email']])
         msg.attach_alternative(html_content, "text/html")
-        msg.send(fail_silently=True)
+        msg.send(fail_silently=False)
         # TUPO send_mail("Secret link", message, sender, [datas['email']], fail_silently=False)
         #return requests.post(
         #"https://api.mailgun.net/v3/sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages",
