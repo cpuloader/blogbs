@@ -121,7 +121,7 @@ MEDIA_URL = '/media/'
 SITE_ID = 1
 
 ADMINS = (("bols", "bols@mail.ru"), ("Mailgun Sandbox", "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org"), )
-MANAGERS = (("bols", "bols@mail.ru"),)
+MANAGERS = (("bols", "bols@mail.ru"), ("Mailgun Sandbox", "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org"), )
 
 EMAIL_HOST = "smtp.mail.ru"
 EMAIL_HOST_USER = "bols@mail.ru"
