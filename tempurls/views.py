@@ -69,12 +69,12 @@ def your_file(request, key):
     temp_url = get_object_or_404(TempUrl, url_hash = key)
     basedir = os.path.split(BASEFILE)[0]
     yourfile = os.path.join(basedir, temp_url.text + '.zip')
-    print(os.path.basename(os.path.basename(__file__)))
-    copyfile(BASEFILE, yourfile)
+    print(os.path.dirname(__file__))
+    #copyfile(BASEFILE, yourfile)
     if timezone.now() > temp_url.expires:
-        error = 'Ссылка просрочена!'
+        error = 'Ссылка просрочена!' + os.path.dirname(__file__)
         try:
-            os.remove(yourfile)
+            #os.remove(yourfile)
         except EnvironmentError:
             pass
         return render(request, 'tempurls/show.html', {'error' : error})
@@ -87,8 +87,8 @@ def your_file(request, key):
     else:
         error = 'Нужно войти под своим аккаунтом, чтобы скачать файл!'
         return render(request, 'tempurls/show.html', {'error' : error})
-    wrapper = myFileWrapper(open(yourfile, 'rb'))
-    response = HttpResponse(wrapper, content_type='application/zip')
-    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(yourfile)
-    response['Content-Length'] = os.path.getsize(yourfile)
+    #wrapper = myFileWrapper(open(yourfile, 'rb'))
+    #response = HttpResponse(wrapper, content_type='application/zip')
+    #response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(yourfile)
+    #response['Content-Length'] = os.path.getsize(yourfile)
     return response
