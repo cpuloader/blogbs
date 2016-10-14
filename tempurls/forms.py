@@ -2,6 +2,7 @@
 import pip._vendor.requests as requests
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.core.mail import send_mail, EmailMultiAlternatives
 
 from .models import TempUrl
 import blogbootstrap.settings as settings
@@ -24,11 +25,15 @@ class TempUrlForm(forms.ModelForm):
         link = "http://" + sitelink + "/tempurls/temp/" + datas['url_hash'] 
         html_content = start + link + "'>Link</a>" + '\n<p>User: ' + datas["username"] + '</p>\n<p>Link expires: ' + datas["expires"] + "</p>" + end
         text_content = link + '\nUser: ' + datas["username"] + '\nLink expires: ' + datas["expires"]
-        return requests.post(
-        "https://api.mailgun.net/v3/sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages",
-        auth=("api", "key-8668f638ba7f7229bbc457863d303ca2"),
-        data={"from": "Mailgun Sandbox <postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org>",
-              "to": datas['email'],
-              "subject": "Secret link",
-              "text": text_content })
+        msg = EmailMultiAlternatives("Secret link", text_content, sender, [data['email']])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send(fail_silently=True)
+        send_mail("Secret link", message, sender, [data['email']], fail_silently=False)
+        #return requests.post(
+        #"https://api.mailgun.net/v3/sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages",
+        #auth=("api", "key-8668f638ba7f7229bbc457863d303ca2"),
+        #data={"from": "Mailgun Sandbox <postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org>",
+        #      "to": datas['email'],
+        #      "subject": "Secret link",
+        #      "text": text_content })
     
