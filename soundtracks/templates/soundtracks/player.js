@@ -26,7 +26,7 @@ for (i = 0; i < j; i++) {
         container: ("#" + id[i]),
         //backend: 'MediaElement',
         //barWidth: 3,
-        progressColor: "hsla(200, 100%, 30%, 0.5)",
+        progressColor: "hsla(177, 82%, 30%, 0.5)",
         hideScrollbar: true
         });
 
@@ -54,7 +54,7 @@ for (i = 0; i < j; i++) {
     wavesurfers[pk].on("loading", function (percents) {
         progress = "#progress" + pk;
         //document.getElementById(progress).value = percents;
-        $(progress).css("width", percents*11.5).attr('aria-valuenow', percents*11.5).text(percents);
+        $(progress).css("width", percents + '%').attr('aria-valuenow', percents + '%').text(percents);
     });
 
     wavesurfers[pk].on("ready", function (percents) {

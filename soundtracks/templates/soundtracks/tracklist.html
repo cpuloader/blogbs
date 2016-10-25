@@ -24,8 +24,8 @@
   {% for track in object_list %}
     <div class="track"> 
         <div class="blog-author">
-            <p>{{ track.author }}</p>
-            <p>{{ track.created_date }}</p>
+            <p class="author">{{ track.author }}</p>
+            <p class="created-date">{{ track.created_date }}</p>
         </div>
         <h1>{{ track.title }}</h1>
         <!--<p>Debug: {{ track.soundtrack.path }}</p>-->
@@ -34,7 +34,7 @@
               <div class="player-sizing">
                 <div class="player-controls">
                   <button class="btn btn-primary" id="play{{ track.pk }}" style="width:60px;height:128px;position:absolute;">
-                    <span class="glyphicon glyphicon-play"></span>
+                    <span class="glyphicon glyphicon-play" style="font-size:30px;"></span>
                   </button>
                 </div>
                 <div class="player-container" id="player-container{{ track.pk }}" src="{{ track.soundtrack.url }}">	

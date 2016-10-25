@@ -13,12 +13,11 @@ from wsgiref.util import FileWrapper as myFileWrapper
 #from django.core.servers.basehttp import FileWrapper
 
 import blogbootstrap.settings as settings
+
 from .models import TempUrl
 from .forms import TempUrlForm
 
 
-#BASEFILE = 'c:/sites/blogbs/bin/filetocopy.zip'
-BASEFILE = '/home/cpuloader/blogbs/bin/filetocopy.zip'
 
 class EnterTextView(CreateView): 
     model = TempUrl
@@ -31,7 +30,7 @@ class EnterTextView(CreateView):
     def get(self, request, *args, **kwargs):
         alltempurls = TempUrl.objects.all()
         if alltempurls:
-            basedir = os.path.split(BASEFILE)[0]
+            basedir = os.path.split(settings.BASEFILE)[0]
             for temp_url in alltempurls:
                 if timezone.now() > temp_url.expires:
                     temp_url.delete()
@@ -67,11 +66,11 @@ class ShowLinkView(TemplateView):
 def your_file(request, key):
     url_hash = key
     temp_url = get_object_or_404(TempUrl, url_hash = key)
-    basedir = os.path.split(BASEFILE)[0]
+    basedir = os.path.split(settings.BASEFILE)[0]
     yourfile = os.path.join(basedir, temp_url.text + '.zip')
-    copyfile(BASEFILE, yourfile)
+    copyfile(settings.BASEFILE, yourfile)
     if timezone.now() > temp_url.expires:
-        error = 'Ссылка просрочена!' #+ os.path.dirname(__file__)
+        error = 'Ссылка просрочена!'
         try:
             os.remove(yourfile)
         except EnvironmentError:

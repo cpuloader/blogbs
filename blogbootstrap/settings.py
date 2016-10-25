@@ -16,6 +16,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+BASEFILE = '/home/cpuloader/blogbs/bin/filetocopy.zip'
+
 LOGIN_REDIRECT_URL = '/'
 
 # Quick-start development settings - unsuitable for production

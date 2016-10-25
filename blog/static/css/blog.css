@@ -1,5 +1,14 @@
 body {
-    background-color: #5F9EA0;
+    background-color: #20B2AA;
+    font-family:Fira Sans;
+}
+
+.btn-primary {
+    background: #20B2AA;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary:visited {
+    background: #17827d !important;
 }
 
 .carousel-container {
@@ -26,11 +35,12 @@ body {
 }
 
 .label {
-    background-color: #aFcFcF;
+    background-color: #e9fbfa;
+    font-size:12px;
 }
 
-#title a {
-    font-family: Garamond, sans-serif;
+.post-title, .post-title a {
+    font-family:Comfortaa;
 }
 
 .post-title a, .post-title a:visited {
@@ -38,14 +48,34 @@ body {
     text-decoration-color: #000000;
     color: #404040;
 }
+
 .post-title a:hover {
     text-decoration: none;
     text-decoration-color: #202020;
     color: #606060;
 }
+
+.blog-content {
+    text-indent:50px;
+}
+
 .blog-author {
     text-align:right;
     padding-right:20px;
+}
+
+.created-date {
+    font-style:italic;
+    font-size:12px;
+}
+
+.author {
+    font-size:14px;
+}
+
+.author-extra {
+    font-size:12px;
+    font-style:italic;
 }
 
 .form-field .label {
@@ -66,7 +96,7 @@ body {
 }
 
 .blogpost {
-    background-color: #BFDFDF; 
+    background-color: #e9fbfa; 
     border-radius: 5px;
 }
 
@@ -100,7 +130,7 @@ div.progress div {
 .loginform {
     width:300px;
     height:auto;
-    padding:10px 10px 10px 10px;
+    padding:0px 0px 0px 0px;
     margin:auto;
     margin-top:50px;
     background-color: white;
@@ -109,8 +139,8 @@ div.progress div {
 }
 
 .loginform-inner {
-    background-color: #BFDFDF; 
-    padding:10px 10px 10px 10px;
+    background-color: #e9fbfa; 
+    padding:20px 10px 20px 10px;
     border-radius: 5px;
     float:left;
 }
@@ -132,7 +162,7 @@ div.progress div {
 .user-add-form {
     width:300px;
     height:auto;
-    padding:10px 10px 10px 10px;
+    padding:0px 0px 0px 0px;
     margin:auto;
     margin-top:50px;
     background-color: white;
@@ -141,8 +171,16 @@ div.progress div {
 }
 
 .user-add-form-inner {
-    background-color: #BFDFDF; 
+    background-color: #e9fbfa; 
     padding:10px 10px 10px 10px;
     border-radius: 5px;
     float:left;
+}
+
+.error-list {
+    color:red;
+}
+
+.help {
+    font-size:12px;
 }
