@@ -28,7 +28,7 @@ class TempUrlForm(forms.ModelForm):
         #msg = EmailMultiAlternatives("Secret link", text_content, sender, [datas['email']])
         #msg.attach_alternative(html_content, "text/html")
         #msg.send(fail_silently=False)
-        send_mail("Secret link", text_content, sender, [datas['email']], fail_silently=False)
+        send_mail("Secret link", text_content, sender, [datas['email']], fail_silently=True)
         #return requests.post(
         #"https://api.mailgun.net/v3/sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org/messages",
         #auth=("api", "key-8668f638ba7f7229bbc457863d303ca2"),

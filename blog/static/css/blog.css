@@ -35,7 +35,7 @@ body {
 }
 
 .label {
-    background-color: #e9fbfa;
+    background-color: #F2F2F2;
     font-size:12px;
 }
 
@@ -80,12 +80,6 @@ body {
 
 .form-field .label {
     color:black;
-}
-
-.user-add-form-inner #id_text {
-    width:100%;
-    height:50px;
-    margin-bottom:10px;
 }
 
 #id_title, #id_content {
@@ -155,7 +149,7 @@ div.progress div {
     margin-top:10px;
 }
 
-.submit-button-inner {
+#submit-button-inner {
     width:200px;
 }
 
@@ -177,10 +171,43 @@ div.progress div {
     float:left;
 }
 
+.user-add-form-inner #id_text {
+    width:100%;
+    height:50px;
+    margin-bottom:10px;
+}
+
 .error-list {
     color:red;
 }
 
 .help {
     font-size:12px;
+}
+
+.second-menu-list {
+    position:absolute;
+    top:10em;
+    margin-left:35%;
+    z-index:10;
+}
+
+.second-menu {
+    font-family:Comfortaa;
+    font-size:5em;
+}
+.second-menu a {
+    color:white;
+}
+.second-menu a:hover {
+    text-decoration:none;
+    color:#444444;
+}
+.enter-text-to-say label {
+
+}
+
+#id_text_to_say {
+    width: 500px;
+    height: 200px;
 }

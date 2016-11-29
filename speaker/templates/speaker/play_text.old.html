@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="blog-container">
+    <div class="post">
+      {% if text %}
+        <p>{{ post.text.text_to_say|linebreaksbr }}</p>
+        {% if text.file_to_play %}
+            <div class="audiotracks-list-entry">
+              <div class="track-details">
+                <p>{{ text.file_to_play.path }}</p>
+              </div>
+              <div class="player-container" style="width:300px;height:50px;display:block;">
+                <audio preload="none">
+                  <source src="{{ text.file_to_play.url }}" type="{{ text.mimetype }}">
+                </audio>
+              </div>
+            </div>    
+        {% endif %} 
+      {% else %} 
+        <p>Введите текст и я его вам скажу</p>
+      {% endif %} 
+      <a class="btn btn-default" href="{% url 'speaker' %}">Новый текст</a>
+    </div>
+    <br>
+</div>
+<hr>
+<script src="{{ STATIC_URL }}mediaelement-2.8.2/mediaelement-and-player.min.js"></script>
+<link href="{{ STATIC_URL }}mediaelement-2.8.2/mediaelementplayer.min.css" type="text/css" rel="stylesheet"/>
+<script src="{% url 'tplayer_script' %}"></script>
+{% endblock %}

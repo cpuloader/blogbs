@@ -1,9 +1,16 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<div class="blog-container" style="background-color:#bef4f1;">
+<div class="blog-container" style="">
+    {% if perms.blog.add_post %}
+      <div class="postform">
+      {% include "blog/post_add.html" with form=post_form %}
+      <br>
+      </div>
+    {% endif %}
     {% for post in object_list %}
         <div class="blogpost">
+          <hr>
           <div class="blogpost-border">
             <p class="created-date">{{ post.datetime }}</p>
             <h2 class="post-title" id="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
@@ -18,12 +25,6 @@
     {% empty %}
         <p>Нет постов</p>
     {% endfor %}
-    {% if perms.blog.add_post %}
-      <div class="postform">
-      {% include "blog/post_add.html" with form=post_form %}
-      <br>
-      </div>
-    {% endif %}
     <script id="dsq-count-scr" src="//blog-kz8i2cpqvz.disqus.com/count.js" async></script>
 </div>
 {% endblock %}

@@ -20,9 +20,9 @@
     </tr>
     </table>
     <div class="submit-button">
-      <input class="submit-button-inner" type="submit" value="Войти" />
+      <input id="submit-button-inner" class="btn btn-default" type="submit" value="Войти" /> <!--submit-button-inner-->
       <input type="hidden" name="next" value="{{ next }}" />
-      <a href="{% url 'user_add' %}">Регистрация</a>
+      <a href="{% url 'user_add' %}" style="position:relative;top:10px;" >Регистрация</a>
     </div>
     </form>
     <div style="clear:both;"></div>

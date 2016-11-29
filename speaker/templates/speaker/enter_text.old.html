@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="blog-container">
+  <div class="enter-text-to-say">
+    <h3>Введите текст и я его вам скажу.</h2>
+    <form enctype="multipart/form-data" method='POST' class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class"save btn btn-default">Сказать</button>
+    </form>
+  </div>
+  <br>
+</div>
+{% endblock %}

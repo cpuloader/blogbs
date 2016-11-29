@@ -5,8 +5,6 @@ var wavesurfers = {};
 var id = [];
 var j=0;
 
-"use strict";
-
 var slider = $('#slider');
  
 slider.slider({

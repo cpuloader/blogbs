@@ -5,8 +5,6 @@ var wavesurfers = {};
 var id = [];
 var j=0;
 
-"use strict";
-
 var slider = $('#slider');
  
 slider.slider({
@@ -33,29 +31,11 @@ for (i = 0; i < j; i++) {
         });
 
     var play = "#play" + pk;
-    $(play).on("click", function (e) {
-        wavesurfers[pk].playPause();
-        play = "#play" + pk;
-        console.log(wavesurfers[pk].isPlaying());
-        if (wavesurfers[pk].isPlaying() == true) {
-            $(play + " span").attr("class", "glyphicon glyphicon-pause");
-        } else {
-            $(play + " span").attr("class", "glyphicon glyphicon-play");
-        }
-    });
+    $(play).on("click", onClick);
         
-    wavesurfers[pk].on("finish", function (event) {
-        wavesurfers[pk].stop();
-        play = "#play" + pk;
-        $(play + " span").attr("class", "glyphicon glyphicon-play");
-        }
-    );    
+    wavesurfers[pk].on("finish", onFinish);    
 
-    wavesurfers[pk].on("loading", function (percents) {
-        progress = "#progress" + pk;
-        //document.getElementById(progress).value = percents;
-        $(progress).css("width", percents + '%').attr('aria-valuenow', percents + '%').text(percents);
-    });
+    wavesurfers[pk].on("loading", onLoading);
 
     wavesurfers[pk].on("ready", function (percents) {
         progress = "#progress" + pk;
@@ -75,6 +55,33 @@ for (i = 0; i < j; i++) {
     wavesurfers[pk].load(url);
     wavesurfers[pk].setVolume(slider.slider('value') / 100);
 } //end of main for
+
+function onLoading(e, percents) {
+    console.log(e, percents);
+    progress = "#progress" + pk;
+    //document.getElementById(progress).value = percents;
+    $(progress).css("width", percents + '%').attr('aria-valuenow', percents + '%').text(percents);
+}
+
+function onClick(e) {
+    var pkx = e.target.id.slice(4);
+    wavesurfers[pkx].playPause();
+    play = "#play" + pkx;
+    console.log(wavesurfers[pkx].isPlaying());
+    if (wavesurfers[pkx].isPlaying() == true) {
+        $(play + " span").attr("class", "glyphicon glyphicon-pause");
+    } else {
+        $(play + " span").attr("class", "glyphicon glyphicon-play");
+    }
+}
+
+function onFinish(e) {
+    console.log(e.target.id);
+    var pkx = e.target.id.slice(4);
+    wavesurfers[pkx].stop();
+    play = "#play" + pkx;
+    $(play + " span").attr("class", "glyphicon glyphicon-play");
+}
 
 
 });
