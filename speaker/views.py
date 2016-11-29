@@ -44,7 +44,9 @@ def enter_new_text(request):
             fullpath = os.path.join(dirpath, filename)
             tts.save(fullpath)
             f = open(fullpath, 'rb')
-            text.file_to_play = DjangoFile(f)
+            django_file = DjangoFile(f)
+            #text.file_to_play = DjangoFile(f)
+            text.file_to_play.save(filename, django_file, save=True)
             #text.file_to_play = filename
             text.expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(seconds=100), "%Y-%m-%d %H:%M:%S")
             text.save()
