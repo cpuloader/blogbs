@@ -39,16 +39,18 @@ def enter_new_text(request):
         if form.is_valid():
             text = form.save(commit=False)
             tts = gTTS(text=text.text_to_say, lang='ru')
-            filename = settings.MEDIA_ROOT + '/speaker_mp3s/' + hashlib.sha1(str(random.random())).hexdigest()[:5] + '.mp3'
-            tts.save(filename)
-            f = open(filename, 'rb')
+            dirpath = os.path.join(settings.MEDIA_ROOT, 'speaker_mp3s')
+            filename = hashlib.sha1(str(random.random())).hexdigest()[:5] + '.mp3'
+            fullpath = os.path.join(dirpath, filename)
+            tts.save(fullpath)
+            f = open(fullpath, 'rb')
             text.file_to_play = DjangoFile(f)
             #text.file_to_play = filename
             text.expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(seconds=100), "%Y-%m-%d %H:%M:%S")
             text.save()
             print(text.expires)
             f.close()
-            os.remove(filename)
+            os.remove(fullpath)
             return redirect('play_text', pk=text.pk)
     else:
         form = SpeakForm()
