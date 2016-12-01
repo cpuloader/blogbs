@@ -111,6 +111,11 @@ body {
     position:relative;
 }
 
+.m-player-container {
+    margin-left: 1px;
+    position:relative;
+}
+
 div.progress {
     height:128px;
     width:100%;
@@ -208,6 +213,5 @@ div.progress div {
 }
 
 #id_text_to_say {
-    width: 500px;
-    height: 200px;
+    width: 100%;
 }

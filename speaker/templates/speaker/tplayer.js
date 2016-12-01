@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  console.log(document.getElementsByTagName('source')[0].src)
+  //console.log(document.getElementsByTagName('source')[0].src)
 
   function playNext(domObj) {
     var next_audio_elem = $(domObj).parents('.audiotracks-list-entry')

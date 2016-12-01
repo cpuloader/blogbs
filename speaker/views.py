@@ -50,7 +50,7 @@ def enter_new_text(request):
             #text.file_to_play = filename
             text.expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(seconds=100), "%Y-%m-%d %H:%M:%S")
             text.save()
-            print(text.expires)
+            #print(text.expires)
             f.close()
             os.remove(fullpath)
             return redirect('play_text', pk=text.pk)

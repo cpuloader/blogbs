@@ -8,9 +8,9 @@
         {% if text.file_to_play %}
             <div class="audiotracks-list-entry">
               <div class="track-details">
-                <p>{{ text.file_to_play }}</p>
+                <!--<p>{{ text.file_to_play }}</p>-->
               </div>
-              <div class="player-container" style="width:300px;height:50px;display:block;">
+              <div class="m-player-container" style="width:300px;height:50px;display:block;">
                 <audio preload="none">
                   <source src="{{ text.file_to_play.url }}" type="{{ text.mimetype }}">
                 </audio>
@@ -24,7 +24,6 @@
     </div>
     <br>
 </div>
-<hr>
 <script src="{{ STATIC_URL }}mediaelement-2.8.2/mediaelement-and-player.min.js"></script>
 <link href="{{ STATIC_URL }}mediaelement-2.8.2/mediaelementplayer.min.css" type="text/css" rel="stylesheet"/>
 <script src="{% url 'tplayer_script' %}"></script>
