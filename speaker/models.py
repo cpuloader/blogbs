@@ -4,7 +4,7 @@ from django.db import models
 from datetime import datetime
 
 class TextToSay(models.Model):
-    text_to_say = models.TextField(max_length=500, verbose_name=u'Текст'.encode('utf-8'))
+    text_to_say = models.TextField(max_length=800, verbose_name=u'Текст'.encode('utf-8'))
     file_to_play = models.FileField(upload_to='speaker_mp3s')
     #file_to_play = models.CharField(max_length=100, verbose_name=u'Файл с речью'.encode('utf-8'))
     expires = models.DateTimeField(default=datetime.now, verbose_name=u'Действует до'.encode('utf-8'))

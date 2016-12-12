@@ -47,10 +47,10 @@ class EnterTextView(CreateView):
         user = self.request.user
         form.instance.expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(seconds=600), "%Y-%m-%d %H:%M:%S")
         m = hashlib.md5(user.username.encode('utf-8') + form.instance.text).hexdigest()[:12]
-        print("Expires:", str(form.instance.expires).encode('utf-8'))
-        print(self.request.user)
+        #print("Expires:", str(form.instance.expires).encode('utf-8'))
+        #print(self.request.user)
         form.instance.url_hash = m
-        print(form.instance.url_hash)
+        #print(form.instance.url_hash)
         data = {"username": user.username, "url_hash": form.instance.url_hash,
                        "email": user.email, "expires": form.instance.expires}
         form.SendEmail(data)

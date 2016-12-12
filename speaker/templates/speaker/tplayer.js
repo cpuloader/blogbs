@@ -35,7 +35,7 @@ $(document).ready(function() {
   }
 
   $('audio').mediaelementplayer({
-    audioWidth: '100%', 
+    audioWidth: '90%', 
     pluginPath: '{{ STATIC_URL }}mediaelement-2.8.2/',
     error: function(domObj) {
         $(domObj).bind('play', function() { playNext(domObj); });

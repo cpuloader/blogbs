@@ -1,5 +1,6 @@
 from gtts import gTTS
-import os, urllib
+from pymarkov import markov
+import os
 import datetime
 import hashlib, random
 from django.utils import timezone
@@ -20,6 +21,17 @@ class JavaScriptView(TemplateView):
             context, **response_kwargs)
 
 tplayer_script = JavaScriptView.as_view(template_name="speaker/tplayer.js")
+
+def make_text():
+    f = open(settings.BASEDICT, 'r')
+    bulk = ""
+    for i,line in enumerate(f):
+        bulk += line
+    f.close()
+    markov_dict = markov.train([bulk], 3)
+    out = markov.generate(markov_dict, 100, 3, join_char=" ")
+    result = out[:1].upper() + out[1:].rstrip() + '.'
+    return result
 
 def enter_new_text(request):
     all_texts = TextToSay.objects.all()
@@ -45,20 +57,16 @@ def enter_new_text(request):
             tts.save(fullpath)
             f = open(fullpath, 'rb')
             django_file = DjangoFile(f)
-            #text.file_to_play = DjangoFile(f)
             text.file_to_play.save(filename, django_file, save=True)
-            #text.file_to_play = filename
             text.expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(seconds=100), "%Y-%m-%d %H:%M:%S")
             text.save()
-            #print(text.expires)
             f.close()
             os.remove(fullpath)
             return redirect('play_text', pk=text.pk)
     else:
-        form = SpeakForm()
+        form = SpeakForm(initial = { 'text_to_say': make_text() })
     return render(request, 'speaker/enter_text.html', {'form' : form})
 
 def play_new_text(request, pk):
     text = get_object_or_404(TextToSay, pk=pk)
-    #text.file_url = urllib.pathname2url(text.file_to_play)
     return render(request, 'speaker/play_text.html', {'text' : text})

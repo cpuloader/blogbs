@@ -17,6 +17,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 BASEFILE = '/home/cpuloader/blogbs/bin/filetocopy.zip'
+BASEDICT = '/home/cpuloader/blogbs/bin/basedict.txt'
 
 LOGIN_REDIRECT_URL = '/'
 
