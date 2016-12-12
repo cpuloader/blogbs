@@ -14,13 +14,13 @@ import blogbootstrap.settings as settings
 
 
 class JavaScriptView(TemplateView):
-
     def render_to_response(self, context, **response_kwargs):
         response_kwargs['content_type'] = "application/javascript"
         return super(JavaScriptView, self).render_to_response(
             context, **response_kwargs)
 
 tplayer_script = JavaScriptView.as_view(template_name="speaker/tplayer.js")
+pretext_script = JavaScriptView.as_view(template_name="speaker/pretext.js")
 
 def make_text():
     f = open(settings.BASEDICT, 'r')

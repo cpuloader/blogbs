@@ -3,7 +3,7 @@
 {% block content %}
 <div class="blog-container">
   <div class="enter-text-to-say">
-    <h3>Введите текст и я его вам скажу.</h2>
+    <h3>Введите текст и я его вам скажу.</h3>
     <form class="post-form" method="post" action="{% url 'speaker' %}">
       {% csrf_token %}
       {% for field in form.hidden_fields %}
@@ -36,4 +36,7 @@
   </div>
   <br>
 </div>
+<script src="{% url 'pretext_script' %}"></script>
 {% endblock %}
+
+
