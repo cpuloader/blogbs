@@ -110,7 +110,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'ru'
 LANGUAGES = (
-	('ru', _(u'Русский')), # Python 2
+	('ru', _(u'Р СѓСЃСЃРєРёР№')), # Python 2
 	('en', _('English')),
 )
 LOCALE_PATHS = (
