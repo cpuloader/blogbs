@@ -1,8 +1,8 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 import django.contrib.auth.views
-from django.conf import settings
-from django.conf.urls.static import static
+#from django.conf import settings
+#from django.conf.urls.static import static
 
 admin.autodiscover()
 
@@ -17,4 +17,4 @@ urlpatterns = [
     url(r'^accounts/logout/$', django.contrib.auth.views.logout, name='logout', kwargs={'next_page': '/'}),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
