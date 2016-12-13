@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+{% load i18n %}
 {% block content %}
 <div class="blog-container">
     <div class="post">
@@ -18,9 +18,9 @@
             </div>    
         {% endif %} 
       {% else %} 
-        <p>Введите текст и я его вам скажу</p>
+        <p>No text</p>
       {% endif %} 
-      <a class="btn btn-default" href="{% url 'speaker' %}">Новый текст</a>
+      <a class="btn btn-default" href="{% url 'speaker' %}">{% trans "Новый текст" %}</a>
     </div>
     <br>
 </div>

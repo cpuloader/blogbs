@@ -1,10 +1,12 @@
 {% load staticfiles %}
+{% load i18n %}
+{% get_available_languages as LANGUAGES %} 
 <!DOCTYPE html>
 <html lang="ru">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Это сайт</title>
+        <title>{% trans "Полигон" %}</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -29,22 +31,37 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Это сайт</a>
+      <a class="navbar-brand" href="#">{% trans "Полигон" %}</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li id="menu1" class=""><a id="link1" href="{% url 'carousel_name' %}">Картинки</a></li>
-        <li id="menu2" class=""><a id="link2" href="{% url 'tracks_list' %}">Звуки</a></li>
-        <li id="menu3" class=""><a id="link3" href="{% url 'list' %}">Блог</a></li>
-        <li id="menu4" class=""><a id="link4" href="{% url 'secret' %}">Секрет</a></li>
-        <li id="menu4" class=""><a id="link5" href="{% url 'speaker' %}">Диктор</a></li>
+        <li id="menu1" class=""><a id="link1" href="{% url 'carousel_name' %}">{% trans "Картинки" %}</a></li>
+        <li id="menu2" class=""><a id="link2" href="{% url 'tracks_list' %}">{% trans "Звуки" %}</a></li>
+        <li id="menu3" class=""><a id="link3" href="{% url 'list' %}">{% trans "Блог" %}</a></li>
+        <li id="menu4" class=""><a id="link4" href="{% url 'secret' %}">{% trans "Секрет" %}</a></li>
+        <li id="menu4" class=""><a id="link5" href="{% url 'speaker' %}">{% trans "Диктор" %}</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Язык" %}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {% for lang in LANGUAGES %}
+              <li>
+                <form class="form-group" name="setLang{{ lang.1}}" action="/i18n/setlang/" method="POST">
+                {% csrf_token %}
+                  <input name="next" type="hidden" value="{{ request.path }}">
+                  <input type="hidden" name="language" value="{{ lang.0 }}">
+                  <a class="navbar-link" href="#" onclick="document.setLang{{ lang.1 }}.submit();return false;" style="padding:10px;">{{ lang.1 }}</a>
+                </form>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Выйти</a></li>
+        <li><a href="{% url 'logout' %}">{% trans "Выйти" %}</a></li>
         {% else %}
-        <li><a href="{% url 'login' %}">Войти</a></li>
+        <li><a href="{% url 'login' %}">{% trans "Войти" %}</a></li>
         {% endif %}
       </ul>
     </div><!-- /.navbar-collapse -->

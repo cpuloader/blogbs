@@ -1,9 +1,9 @@
 {% extends 'blog/base.html' %}
-
+{% load i18n %}
 {% block content %}
 <div class="blog-container">
 {% if user.is_authenticated %}
-  <p>Временную ссылку вам отправили, вот сюда {{ user.email }}.</p>
+  <p>{% trans "Временную ссылку вам отправили, вот сюда" %} {{ user.email }}.</p>
 {% endif %}
 </div>
 {% endblock %}

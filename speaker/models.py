@@ -2,22 +2,18 @@
 import mimetypes, os
 from django.db import models
 from datetime import datetime
+from django.utils.translation import ugettext_lazy as _
 
 class TextToSay(models.Model):
-    text_to_say = models.TextField(max_length=800, verbose_name=u'Текст'.encode('utf-8'))
+    text_to_say = models.TextField(max_length=800, verbose_name=_(u'Текст'))
     file_to_play = models.FileField(upload_to='speaker_mp3s')
-    #file_to_play = models.CharField(max_length=100, verbose_name=u'Файл с речью'.encode('utf-8'))
-    expires = models.DateTimeField(default=datetime.now, verbose_name=u'Действует до'.encode('utf-8'))
+    expires = models.DateTimeField(default=datetime.now, verbose_name=_(u'Действует до'))
 
     def __unicode__(self):
         return self.text_to_say[0:10] + '..'
 
     def delete(self, *args, **kwargs):
         if self.file_to_play is not None:
-            #try:
-            #    os.remove(self.file_to_play)
-            #except EnvironmentError:
-            #    pass
             mp3_storage, mp3_path = self.file_to_play.storage, self.file_to_play.path
             mp3_storage.delete(mp3_path)
         super(TextToSay, self).delete(*args,**kwargs)

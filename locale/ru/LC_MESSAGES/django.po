@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-13 17:31+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: .\blog\forms.py:18
+msgid "Немного о себе"
+msgstr "Немного о себе"
+
+#: .\blog\models.py:10
+msgid "Пара слов о себе"
+msgstr "Пара слов о себе"
+
+#: .\blog\models.py:17 .\carousel\models.py:11 .\soundtracks\models.py:12
+msgid "Заголовок"
+msgstr "Заголовок"
+
+#: .\blog\models.py:18
+msgid "Дата публикации"
+msgstr "Дата публикации"
+
+#: .\blog\models.py:19
+msgid "Основной текст"
+msgstr "Основной текст"
+
+#: .\blog\templates\400.html:7
+msgid "Неправильный запрос."
+msgstr "Неправильный запрос."
+
+#: .\blog\templates\404.html:7
+msgid "Такой страницы у нас нет."
+msgstr "Такой страницы у нас нет."
+
+#: .\blog\templates\blog\base.html:9 .\blog\templates\blog\base.html.py:34
+msgid "Полигон"
+msgstr "Полигон"
+
+#: .\blog\templates\blog\base.html:39
+msgid "Картинки"
+msgstr "Картинки"
+
+#: .\blog\templates\blog\base.html:40
+msgid "Звуки"
+msgstr "Звуки"
+
+#: .\blog\templates\blog\base.html:41
+msgid "Блог"
+msgstr "Блог"
+
+#: .\blog\templates\blog\base.html:42
+msgid "Секрет"
+msgstr "Секрет"
+
+#: .\blog\templates\blog\base.html:43
+msgid "Диктор"
+msgstr "Диктор"
+
+#: .\blog\templates\blog\base.html:47
+msgid "Язык"
+msgstr "Язык"
+
+#: .\blog\templates\blog\base.html:62
+msgid "Выйти"
+msgstr "Выйти"
+
+#: .\blog\templates\blog\base.html:64
+#: .\blog\templates\registration\login.html:23
+msgid "Войти"
+msgstr "Войти"
+
+#: .\blog\templates\blog\post_add.html:28
+#: .\blog\templates\blog\user_add.html:33
+#: .\tempurls\templates\tempurls\enter.html:32
+msgid "Отправить"
+msgstr "Отправить"
+
+#: .\blog\templates\blog\post_list.html:3
+msgid "Нет постов"
+msgstr "Нет постов"
+
+#: .\blog\templates\registration\login.html:7
+msgid "Неправильный логин или пароль. Напиши еще."
+msgstr "Неправильный логин или пароль. Напиши еще."
+
+#: .\blog\templates\registration\login.html:14
+msgid "Пользователь"
+msgstr "Пользователь"
+
+#: .\blog\templates\registration\login.html:18
+msgid "Пароль"
+msgstr "Пароль"
+
+#: .\blog\templates\registration\login.html:25
+msgid "Регистрация"
+msgstr "Регистрация"
+
+#: .\blogbootstrap\settings.py:112
+msgid "Русский"
+msgstr "Русский"
+
+#: .\blogbootstrap\settings.py:113
+msgid "English"
+msgstr "English"
+
+#: .\carousel\models.py:12 .\soundtracks\models.py:13
+msgid "Текст описания"
+msgstr "Текст описания"
+
+#: .\carousel\models.py:13 .\soundtracks\models.py:14
+msgid "Дата"
+msgstr "Дата"
+
+#: .\carousel\models.py:14
+msgid "Фото"
+msgstr "Фото"
+
+#: .\soundtracks\models.py:15
+msgid "Трек"
+msgstr "Трек"
+
+#: .\soundtracks\templates\soundtracks\tracklist.html:23
+msgid "Нет треков"
+msgstr "Нет треков"
+
+#: .\speaker\models.py:8
+msgid "Текст"
+msgstr "Текст"
+
+#: .\speaker\models.py:10 .\tempurls\models.py:10
+msgid "Действует до"
+msgstr "Действует до"
+
+#: .\speaker\templates\speaker\enter_text.html:6
+msgid "Введите текст и я его вам скажу."
+msgstr "Введите текст и я его вам скажу."
+
+#: .\speaker\templates\speaker\enter_text.html:33
+msgid "Сказать"
+msgstr "Сказать"
+
+#: .\speaker\templates\speaker\play_text.html:23
+msgid "Новый текст"
+msgstr "Новый текст"
+
+#: .\tempurls\models.py:12
+msgid "Случайный текст"
+msgstr "Случайный текст"
+
+#: .\tempurls\templates\tempurls\enter.html:6
+msgid "Секрет будет вам отправлен на этот адрес:"
+msgstr "Секрет будет вам отправлен на этот адрес:"
+
+#: .\tempurls\templates\tempurls\enter.html:35
+msgid "Чтобы получить секретную ссылку, нужно войти в свой аккаунт."
+msgstr "Чтобы получить секретную ссылку, нужно войти в свой аккаунт."
+
+#: .\tempurls\templates\tempurls\link.html:6
+msgid "Временную ссылку вам отправили, вот сюда"
+msgstr "Временную ссылку вам отправили, вот сюда"
+
+#: .\tempurls\views.py:73
+msgid "Ссылка просрочена!"
+msgstr "Ссылка просрочена!"
+
+#: .\tempurls\views.py:83
+msgid "Хэш не совпадает! Наверно не тот юзер."
+msgstr "Хэш не совпадает! Наверно не тот юзер."
+
+#: .\tempurls\views.py:86
+msgid "Нужно войти под своим аккаунтом, чтобы скачать файл!"
+msgstr "Нужно войти под своим аккаунтом, чтобы скачать файл!"

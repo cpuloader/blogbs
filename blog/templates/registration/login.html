@@ -1,32 +1,32 @@
 {% extends "blog/base.html" %}
-
+{% load i18n %}
 {% block content %}
 <div class="loginform">
   <div class="loginform-inner">
   {% if form.errors %}
-  <p class="error-list">Неправильный логин или пароль. Напиши еще.</p>
+  <p class="error-list">{% trans "Неправильный логин или пароль. Напиши еще." %}</p>
   {% endif %}
 
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <table class="logintable">
     <tr>
-        <td style="padding-right:10px;">Пользователь:</td>
+        <td style="padding-right:10px;">{% trans "Пользователь" %}:</td>
         <td class="logininput">{{ form.username }}</td>
     </tr>
     <tr>
-        <td style="padding-right:10px;">Пароль:</td>
+        <td style="padding-right:10px;">{% trans "Пароль" %}:</td>
         <td class="logininput">{{ form.password }}</td>
     </tr>
     </table>
     <div class="submit-button">
-      <input id="submit-button-inner" class="btn btn-default" type="submit" value="Войти" /> <!--submit-button-inner-->
+      <input id="submit-button-inner" class="btn btn-default" type="submit" value='{% trans "Войти" %}' /> <!--submit-button-inner-->
       <input type="hidden" name="next" value="{{ next }}" />
-      <a href="{% url 'user_add' %}" style="position:relative;top:10px;" >Регистрация</a>
+      <p class="register"><a href="{% url 'user_add' %}">{% trans "Регистрация" %}</a></p>
     </div>
     </form>
-    <div style="clear:both;"></div>
+    <div class="clear-both"></div>
   </div>
-  <div style="clear:both;"></div> 
+  <div class="clear-both"></div> 
 </div>
 {% endblock %}

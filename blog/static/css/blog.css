@@ -141,7 +141,7 @@ div.progress div {
     background-color: #e9fbfa; 
     padding:20px 10px 20px 10px;
     border-radius: 5px;
-    float:left;
+    
 }
 
 .logintable {
@@ -157,6 +157,12 @@ div.progress div {
 #submit-button-inner {
     width:200px;
 }
+
+.register {
+    margin-top:5px;
+}
+
+
 
 .user-add-form {
     width:300px;

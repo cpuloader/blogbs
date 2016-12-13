@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-13 17:30+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\blog\forms.py:18
+msgid "Немного о себе"
+msgstr "About you"
+
+#: .\blog\models.py:10
+msgid "Пара слов о себе"
+msgstr "Something about you"
+
+#: .\blog\models.py:17 .\carousel\models.py:11 .\soundtracks\models.py:12
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\blog\models.py:18
+msgid "Дата публикации"
+msgstr "Publication date"
+
+#: .\blog\models.py:19
+msgid "Основной текст"
+msgstr "Main text"
+
+#: .\blog\templates\400.html:7
+msgid "Неправильный запрос."
+msgstr "Wrong request."
+
+#: .\blog\templates\404.html:7
+msgid "Такой страницы у нас нет."
+msgstr "We have no such page."
+
+#: .\blog\templates\blog\base.html:9 .\blog\templates\blog\base.html.py:34
+msgid "Полигон"
+msgstr "Polygon"
+
+#: .\blog\templates\blog\base.html:39
+msgid "Картинки"
+msgstr "Pictures"
+
+#: .\blog\templates\blog\base.html:40
+msgid "Звуки"
+msgstr "Sounds"
+
+#: .\blog\templates\blog\base.html:41
+msgid "Блог"
+msgstr "Blog"
+
+#: .\blog\templates\blog\base.html:42
+msgid "Секрет"
+msgstr "Secret"
+
+#: .\blog\templates\blog\base.html:43
+msgid "Диктор"
+msgstr "Speaker"
+
+#: .\blog\templates\blog\base.html:47
+msgid "Язык"
+msgstr "Lang"
+
+#: .\blog\templates\blog\base.html:62
+msgid "Выйти"
+msgstr "Log out"
+
+#: .\blog\templates\blog\base.html:64
+#: .\blog\templates\registration\login.html:23
+msgid "Войти"
+msgstr "Log in"
+
+#: .\blog\templates\blog\post_add.html:28
+#: .\blog\templates\blog\user_add.html:33
+#: .\tempurls\templates\tempurls\enter.html:32
+msgid "Отправить"
+msgstr "Send"
+
+#: .\blog\templates\blog\post_list.html:3
+msgid "Нет постов"
+msgstr "No posts"
+
+#: .\blog\templates\registration\login.html:7
+msgid "Неправильный логин или пароль. Напиши еще."
+msgstr "Wrong password or login. Enter something else."
+
+#: .\blog\templates\registration\login.html:14
+msgid "Пользователь"
+msgstr "Username"
+
+#: .\blog\templates\registration\login.html:18
+msgid "Пароль"
+msgstr "Password"
+
+#: .\blog\templates\registration\login.html:25
+msgid "Регистрация"
+msgstr "Register"
+
+#: .\blogbootstrap\settings.py:112
+msgid "Русский"
+msgstr "Русский"
+
+#: .\blogbootstrap\settings.py:113
+msgid "English"
+msgstr "English"
+
+#: .\carousel\models.py:12 .\soundtracks\models.py:13
+msgid "Текст описания"
+msgstr "Description"
+
+#: .\carousel\models.py:13 .\soundtracks\models.py:14
+msgid "Дата"
+msgstr "Date"
+
+#: .\carousel\models.py:14
+msgid "Фото"
+msgstr "Photo"
+
+#: .\soundtracks\models.py:15
+msgid "Трек"
+msgstr "Track"
+
+#: .\soundtracks\templates\soundtracks\tracklist.html:23
+msgid "Нет треков"
+msgstr "No tracks"
+
+#: .\speaker\models.py:8
+msgid "Текст"
+msgstr "Text"
+
+#: .\speaker\models.py:10 .\tempurls\models.py:10
+msgid "Действует до"
+msgstr "Expires on"
+
+#: .\speaker\templates\speaker\enter_text.html:6
+msgid "Введите текст и я его вам скажу."
+msgstr "Enter text and i will speak it."
+
+#: .\speaker\templates\speaker\enter_text.html:33
+msgid "Сказать"
+msgstr "Speak"
+
+#: .\speaker\templates\speaker\play_text.html:23
+msgid "Новый текст"
+msgstr "New text"
+
+#: .\tempurls\models.py:12
+msgid "Случайный текст"
+msgstr "Random text"
+
+#: .\tempurls\templates\tempurls\enter.html:6
+msgid "Секрет будет вам отправлен на этот адрес:"
+msgstr "Secret will be sent to this address:"
+
+#: .\tempurls\templates\tempurls\enter.html:35
+msgid "Чтобы получить секретную ссылку, нужно войти в свой аккаунт."
+msgstr "You must log in to get secret link."
+
+#: .\tempurls\templates\tempurls\link.html:6
+msgid "Временную ссылку вам отправили, вот сюда"
+msgstr "Temporary link was sent here"
+
+#: .\tempurls\views.py:73
+msgid "Ссылка просрочена!"
+msgstr "Link expired!"
+
+#: .\tempurls\views.py:83
+msgid "Хэш не совпадает! Наверно не тот юзер."
+msgstr "Wrong hash! Maybe it was another user."
+
+#: .\tempurls\views.py:86
+msgid "Нужно войти под своим аккаунтом, чтобы скачать файл!"
+msgstr "You must log in to download file!"

@@ -1,3 +1,5 @@
+#coding: utf-8
+
 """
 Django settings for blogbootstrap project.
 
@@ -13,11 +15,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # coding utf-8
 import os
+from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-BASEFILE = '/home/cpuloader/blogbs/bin/filetocopy.zip'
-BASEDICT = '/home/cpuloader/blogbs/bin/basedict.txt'
+BASEFILE = 'c:/sites/blogbs/bin/filetocopy.zip'
+BASEDICT = 'c:/sites/blogbs/bin/basedict.txt'
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -28,9 +30,9 @@ LOGIN_REDIRECT_URL = '/'
 SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['cpuloader.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1:8000']
 
 # Application definition
 
@@ -47,13 +49,12 @@ INSTALLED_APPS = (
     'carousel',
     'soundtracks',
     'tempurls',
-    'anymail',
     'speaker',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -90,13 +91,14 @@ WSGI_APPLICATION = 'blogbootstrap.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cpuloader$blogbs',
-        'USER': 'cpuloader',
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'blogbs',
+        'USER': 'undead',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
         'PASSWORD':'volosatiy0',
-        'HOST': 'cpuloader.mysql.pythonanywhere-services.com', 
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+          'autocommit': True,
         },
     }
 }
@@ -105,7 +107,14 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru'
+LANGUAGES = (
+	('ru', _(u'Русский')), # Python 2
+	('en', _('English')),
+)
+LOCALE_PATHS = (
+	os.path.join(BASE_DIR, 'locale'),
+)
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -126,24 +135,16 @@ MEDIA_URL = '/media/'
 
 SITE_ID = 1
 
-#ADMINS = (("bols", "bols@mail.ru"), )
-#MANAGERS = (("bols", "bols@mail.ru"), )
 
-#EMAIL_HOST = "smtp.mail.ru"
-#EMAIL_HOST_USER = "bols@mail.ru"
-#EMAIL_HOST_PASSWORD = "neebivola"
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
-#DEFAULT_FROM_EMAIL = "Bols <bols@mail.ru>"
+ADMINS = (("bols", "bols@mail.ru"),)
+MANAGERS = (("bols", "bols@mail.ru"),)
 
-ANYMAIL = {
-    # (exact settings here depend on your ESP...)
-    "MAILGUN_API_KEY": "key-8668f638ba7f7229bbc457863d303ca2",
-    "MAILGUN_SENDER_DOMAIN": 'sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org',
-}
-
-DEFAULT_FROM_EMAIL = "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org"
-EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+EMAIL_HOST = "smtp.mail.ru"
+EMAIL_HOST_USER = "bols@mail.ru"
+EMAIL_HOST_PASSWORD = "shestnadsatsisek"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Bols <bols@mail.ru>"
 
 
 DISQUS_WEBSITE_SHORTNAME = 'blog-kz8i2cpqvz'

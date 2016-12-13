@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from wsgiref.util import FileWrapper as myFileWrapper
-#from django.core.servers.basehttp import FileWrapper
+from django.utils.translation import ugettext as _
 
 import blogbootstrap.settings as settings
 
@@ -70,7 +70,7 @@ def your_file(request, key):
     yourfile = os.path.join(basedir, temp_url.text + '.zip')
     copyfile(settings.BASEFILE, yourfile)
     if timezone.now() > temp_url.expires:
-        error = 'Ссылка просрочена!'
+        error = _(u'Ссылка просрочена!')
         try:
             os.remove(yourfile)
         except EnvironmentError:
@@ -80,10 +80,10 @@ def your_file(request, key):
         m = hashlib.md5(request.user.username.encode('utf-8') +
                      temp_url.text.encode('utf-8')).hexdigest()[:12]
         if m != url_hash:
-            error = 'Хэш не совпадает! Наверно не тот юзер.'
+            error = _(u'Хэш не совпадает! Наверно не тот юзер.')
             return render(request, 'tempurls/show.html', {'error' : error})
     else:
-        error = 'Нужно войти под своим аккаунтом, чтобы скачать файл!'
+        error = _(u'Нужно войти под своим аккаунтом, чтобы скачать файл!')
         return render(request, 'tempurls/show.html', {'error' : error})
     wrapper = myFileWrapper(open(yourfile, 'rb'))
     response = HttpResponse(wrapper, content_type='application/zip')

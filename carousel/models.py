@@ -3,14 +3,15 @@ from django.db import models
 from django.utils import timezone
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.utils.translation import ugettext_lazy as _
 
 from PIL import Image
 
 class Picture(models.Model):
-    title = models.CharField(max_length=200, verbose_name=u'Заголовок'.encode('utf-8'))
-    text = models.TextField(verbose_name=u'Текст описания'.encode('utf-8'))
-    created_date = models.DateTimeField(default=timezone.now, db_index = True, verbose_name=u'Дата'.encode('utf-8'))
-    picture = models.ImageField(verbose_name=u'Фото'.encode('utf-8'))
+    title = models.CharField(max_length=200, verbose_name=_(u'Заголовок'))
+    text = models.TextField(verbose_name=_(u'Текст описания'))
+    created_date = models.DateTimeField(default=timezone.now, db_index = True, verbose_name=_(u'Дата'))
+    picture = models.ImageField(verbose_name=_(u'Фото'))
 
     def __unicode__(self):
         return self.title

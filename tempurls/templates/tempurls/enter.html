@@ -1,9 +1,9 @@
 {% extends 'blog/base.html' %}
-
+{% load i18n %}
 {% block content %}
 <div class="blog-container">
 {% if user.is_authenticated %}
-  <p>Секрет будет вам отправлен на этот адрес: {{ user.email }}</p>
+  <p>{% trans "Секрет будет вам отправлен на этот адрес:" %} {{ user.email }}</p>
   <form class="post-form" method="post" action="{% url 'secret' %}">
     {% csrf_token %}
     {% for field in form.hidden_fields %}
@@ -29,10 +29,10 @@
         </div>
       {% endif %}
     {% endfor %}
-    <input class="btn btn-default" id="submit-btn" type="submit" value='Отправить'>
+    <input class="btn btn-default" id="submit-btn" type="submit" value='{% trans "Отправить" %}'>
   </form>
 {% else %}
-  <p>Чтобы получить секретную ссылку, нужно войти в свой аккаунт.</p>
+  <p>{% trans "Чтобы получить секретную ссылку, нужно войти в свой аккаунт." %}</p>
 {% endif %}
 </div>
 {% endblock %}

@@ -1,4 +1,6 @@
 {% extends 'blog/base.html' %}
+{% load i18n %}
+{% trans "Нет постов" as no_posts %}
 
 {% block content %}
 <div class="blog-container" style="">
@@ -23,7 +25,7 @@
           </div>
         </div>
     {% empty %}
-        <p>Нет постов</p>
+        <p>{{ no_posts }}</p>
     {% endfor %}
     <script id="dsq-count-scr" src="//blog-kz8i2cpqvz.disqus.com/count.js" async></script>
 </div>

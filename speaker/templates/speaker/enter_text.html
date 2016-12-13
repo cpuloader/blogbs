@@ -1,9 +1,9 @@
 {% extends 'blog/base.html' %}
-
+{% load i18n %}
 {% block content %}
 <div class="blog-container">
   <div class="enter-text-to-say">
-    <h3>Введите текст и я его вам скажу.</h3>
+    <h3>{% trans "Введите текст и я его вам скажу." %}</h3>
     <form class="post-form" method="post" action="{% url 'speaker' %}">
       {% csrf_token %}
       {% for field in form.hidden_fields %}
@@ -30,7 +30,7 @@
         {% endif %}
       {% endfor %}
     <div class="submit-button" style="text-align:left;">
-      <input class="btn btn-default" id="submit-btn" type="submit" value='Сказать'>
+      <input class="btn btn-default" id="submit-btn" type="submit" value='{% trans "Сказать" %}'>
     </div>
     </form>
   </div>

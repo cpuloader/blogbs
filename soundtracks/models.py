@@ -5,13 +5,14 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.utils.translation import ugettext_lazy as _
 
 class Track(models.Model):
     author = models.ForeignKey(User, blank=False)
-    title = models.CharField(max_length=200, verbose_name=u'Заголовок'.encode('utf-8'))
-    text = models.TextField(verbose_name=u'Текст описания'.encode('utf-8'))
-    created_date = models.DateTimeField(default=timezone.now, db_index = True, verbose_name=u'Дата'.encode('utf-8'))
-    soundtrack = models.FileField(upload_to='audio', verbose_name=u'Трек'.encode('utf-8'),  blank=False)
+    title = models.CharField(max_length=200, verbose_name=_(u'Заголовок'))
+    text = models.TextField(verbose_name=_(u'Текст описания'))
+    created_date = models.DateTimeField(default=timezone.now, db_index = True, verbose_name=_(u'Дата'))
+    soundtrack = models.FileField(upload_to='audio', verbose_name=_(u'Трек'),  blank=False)
 
     class Meta:
         ordering = ["-created_date"]

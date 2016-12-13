@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load i18n %}
 {% load staticfiles %}
 
 {% block addplayerjs %}
@@ -19,6 +20,7 @@
         </style>-->
 {% endblock %}
 
+{% trans "Нет треков" as no_tracks %}
 {% block content %}
 <div class="blog-container">
 <section> 
@@ -55,7 +57,7 @@
         <p>{{ track.text|linebreaksbr }}</p>
     </div>
   {% empty %}
-    <p>Нет треков</p>
+    <p>{{ no_tracks }}</p>
   {% endfor %}
   <br>
 </div>
