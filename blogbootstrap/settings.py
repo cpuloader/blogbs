@@ -54,7 +54,6 @@ INSTALLED_APPS = (
     'tempurls',
     'anymail',
     'speaker',
-    'bredbot',
 )
 
 MIDDLEWARE_CLASSES = (

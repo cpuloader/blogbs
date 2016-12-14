@@ -8,8 +8,9 @@ from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonRespo
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-from django.conf import settings
+#from django.conf import settings
 
+import blogbootstrap.settings as settings
 from .utils import help_text, make_text
 
 TelegramBot = telepot.Bot(settings.TELEGRAM_BOT_TOKEN)
