@@ -30,6 +30,8 @@ LOGIN_REDIRECT_URL = '/'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
 
+TELEGRAM_BOT_TOKEN = '276099709:AAGgyarUgQRNcitxmg4Ex0ksQlrp-z3sSlI'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -52,6 +54,7 @@ INSTALLED_APPS = (
     'tempurls',
     'anymail',
     'speaker',
+    'bredbot',
 )
 
 MIDDLEWARE_CLASSES = (

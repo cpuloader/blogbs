@@ -1,3 +1,5 @@
+#coding: utf-8
+
 """
 Django settings for blogbootstrap project.
 
@@ -13,6 +15,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # coding utf-8
 import os
+from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -26,6 +29,8 @@ LOGIN_REDIRECT_URL = '/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
+
+TELEGRAM_BOT_TOKEN = '276099709:AAGgyarUgQRNcitxmg4Ex0ksQlrp-z3sSlI'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -49,6 +54,7 @@ INSTALLED_APPS = (
     'tempurls',
     'anymail',
     'speaker',
+    'bredbot',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,7 +114,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'ru'
 LANGUAGES = (
-	('ru', _(u'–ÛÒÒÍËÈ')), # Python 2
+	('ru', _(u'–†—É—Å—Å–∫–∏–π')), # Python 2
 	('en', _('English')),
 )
 LOCALE_PATHS = (
