@@ -1,4 +1,4 @@
-# coding utf-8
+# coding: utf-8
 from pymarkov import markov
 import random
 import cPickle
