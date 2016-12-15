@@ -36,6 +36,7 @@ def make_text():
         if word[0].isupper():
             j = 0
             out[i-1] = out[i-1] + '.'
+            out[i] = out[i][0] + out[i][1:].lower()
         if j > 1 and random.choice(xrange(0,10)) > 5:
             out[i-1] = out[i-1] + ','
         #if len(word) > 10:
