@@ -19,7 +19,9 @@ from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASEFILE = 'c:/sites/blogbs/bin/filetocopy.zip'
-BASEDICT = 'c:/sites/blogbs/bin/basedict.txt'
+#BASEDICT = 'c:/sites/blogbs/bin/basedict.txt'
+BASETEXT = 'c:/sites/blogbs/bin/basedict_w.dat'
+BASEWORDS = 'c:/sites/blogbs/bin/basedict_l.dat'
 
 TELEGRAM_BOT_TOKEN = '276099709:AAGgyarUgQRNcitxmg4Ex0ksQlrp-z3sSlI'
 

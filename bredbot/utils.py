@@ -1,20 +1,34 @@
 from pymarkov import markov
 import random
+import cPickle
 
 import blogbootstrap.settings as settings
 
 def help_text():
     return "Privet! I'm Breditel."
 
+def load(filename):
+    data = None
+    try:
+        fh = open(filename, "rb")
+        data = cPickle.load(fh)
+    except (EnvironmentError, cPickle.UnpicklingError) as err:
+        raise LoadError(str(err))
+    finally:
+        if fh is not None:
+            fh.close()
+    return data
+
 def make_text():
-    f = open(settings.BASEDICT, 'r')
-    bulk = ""
-    for i,line in enumerate(f):
-        bulk += line
-    f.close()
-    markov_dict = markov.train([bulk], 2, split_callback=markov.letters)
+    #f = open(settings.BASEDICT, 'r')
+    #bulk = ""
+    #for i,line in enumerate(f):
+    #    bulk += line
+    #f.close()
+    #markov_dict = markov.train([bulk], 2, split_callback=markov.letters)
+    data = load(settings.BASEWORDS)
     length = random.choice(xrange(0,200))
-    out = markov.generate(markov_dict, length, 2, join_char="")
+    out = markov.generate(data, length, 2, join_char="")
     out = out.split()
     i = 0
     j = 0

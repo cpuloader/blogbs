@@ -1,5 +1,4 @@
 from gtts import gTTS
-from pymarkov import markov
 import os
 import datetime
 import hashlib, random
@@ -8,10 +7,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import TemplateView
 from django.core.files.base import File as DjangoFile
 
+import blogbootstrap.settings as settings
 from .models import TextToSay
 from .forms import SpeakForm
-import blogbootstrap.settings as settings
-
+from .utils import make_text
 
 class JavaScriptView(TemplateView):
     def render_to_response(self, context, **response_kwargs):
@@ -21,17 +20,6 @@ class JavaScriptView(TemplateView):
 
 tplayer_script = JavaScriptView.as_view(template_name="speaker/tplayer.js")
 pretext_script = JavaScriptView.as_view(template_name="speaker/pretext.js")
-
-def make_text():
-    f = open(settings.BASEDICT, 'r')
-    bulk = ""
-    for i,line in enumerate(f):
-        bulk += line
-    f.close()
-    markov_dict = markov.train([bulk], 3)
-    out = markov.generate(markov_dict, 100, 3, join_char=" ")
-    result = out[:1].upper() + out[1:].rstrip() + '.'
-    return result
 
 def enter_new_text(request):
     all_texts = TextToSay.objects.all()

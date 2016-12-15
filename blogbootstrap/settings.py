@@ -20,7 +20,9 @@ from django.utils.translation import ugettext_lazy as _
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 BASEFILE = '/home/cpuloader/blogbs/bin/filetocopy.zip'
-BASEDICT = '/home/cpuloader/blogbs/bin/basedict.txt'
+#BASEDICT = '/home/cpuloader/blogbs/bin/basedict.txt'
+BASETEXT = '/home/cpuloader/blogbs/bin/basedict_w.dat'
+BASEWORDS = '/home/cpuloader/blogbs/bin/basedict_l.dat'
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -54,6 +56,7 @@ INSTALLED_APPS = (
     'tempurls',
     'anymail',
     'speaker',
+    'bredbot',
 )
 
 MIDDLEWARE_CLASSES = (
