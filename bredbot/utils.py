@@ -1,3 +1,4 @@
+# coding utf-8
 from pymarkov import markov
 import random
 import cPickle
@@ -32,7 +33,7 @@ def make_text():
     out = out.split()
     i = 0
     j = 0
-    signs = u'üú'
+    signs = u'ÑŒÑŠ'
     for word in out:
         if word[0].isupper():
             j = 0
