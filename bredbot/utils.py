@@ -32,11 +32,14 @@ def make_text():
     out = out.split()
     i = 0
     j = 0
+    signs = u'üú'
     for word in out:
         if word[0].isupper():
             j = 0
             out[i-1] = out[i-1] + '.'
             out[i] = out[i][0] + out[i][1:].lower()
+        if word[0] in signs:
+            out[i] = word[1:]
         if j > 1 and random.choice(xrange(0,10)) > 5:
             out[i-1] = out[i-1] + ','
         #if len(word) > 10:
