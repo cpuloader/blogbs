@@ -39,6 +39,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['cpuloader.pythonanywhere.com']
 
+SECURE_SSL_REDIRECT = True
+
 # Application definition
 
 INSTALLED_APPS = (
