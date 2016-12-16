@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
 import json
-
+import random
 import telepot
 from django.template.loader import render_to_string
 from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonResponse
@@ -40,15 +40,30 @@ class CommandReceiveView(View):
         except ValueError:
             return HttpResponseBadRequest('Invalid request body')
         else:
-            chat_id = payload['message']['chat']['id']
-            cmd = payload['message'].get('text')  # command
-
-            func = commands.get(cmd.split()[0].lower())
+            try:
+                chat_id = payload['message']['chat']['id']
+                cmd = payload['message'].get('text')
+            except KeyError:
+                chat_id = None
+                cmd = None
+            try:
+                if cmd:
+                    func = commands.get(cmd.split()[0].lower())
+                    ans_word = random.choice(cmd.split()).lower()
+                    if not ans_word.isalpha():
+                        ans_word = None
+                else:
+                    func = None
+            except AttributeError: pass
             if func:
-                TelegramBot.sendMessage(chat_id, func(), parse_mode='Markdown')
+                try:
+                    TelegramBot.sendMessage(chat_id, func(), parse_mode='Markdown')
+                except telepot.exception.BotWasBlockedError: pass
             else:
-                TelegramBot.sendMessage(chat_id, make_text()) #'I do not understand you, Sir!')
-
+                if chat_id:
+                    try:
+                        TelegramBot.sendMessage(chat_id, make_text(ans_word=ans_word))
+                    except telepot.exception.BotWasBlockedError: pass
         return JsonResponse({}, status=200)
 
     @method_decorator(csrf_exempt)
