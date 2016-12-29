@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'track_delete' pk=track.pk %}" onsubmit="return confirm('Вы действительно хотите удалить трек?');">{% csrf_token %}
+    <div class="track-delete">
+        <input class="btn btn-default btn-xs" id="submit-btn" type="submit" value="Удалить" />
+    </div>
+</form>

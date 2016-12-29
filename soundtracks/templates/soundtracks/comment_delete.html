@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'track_comment_delete' pk=comment.pk %}" onsubmit="return confirm('Вы действительно хотите удалить комментарий?');">{% csrf_token %}
+    <div class="comment-remove">
+        <input class="btn btn-default btn-xs" id="submit-btn" type="submit" value="Удалить" />
+    </div>
+</form>

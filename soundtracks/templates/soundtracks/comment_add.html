@@ -1,0 +1,17 @@
+<form id="comment-form" class="comment-form" method="post" action="/create_comment/">
+{% csrf_token %}
+{% for field in form.visible_fields %}
+  <div class="track-form-field">
+  <table class="track-comment-table">
+    <tr>
+      <th class="track-comment-button">
+        <input class="btn btn-default btn-xs" type="submit" value='Отправить'>
+      </th>
+      <th class="track-comment-field">
+        <div class="track-comment-control">{{ field }}</div>
+      </th>
+    </tr>
+  </div>
+  </table>
+{% endfor %}
+</form>

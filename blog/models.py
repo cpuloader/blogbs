@@ -13,10 +13,11 @@ class UserExtraFields(models.Model):
         return self.user.username
 
 class Post(models.Model):
-    author = models.ForeignKey(User,editable=False)
+    author = models.ForeignKey(User, editable=False)
     title = models.CharField(max_length=255, verbose_name=_(u'Заголовок')) # заголовок поста
-    datetime = models.DateTimeField(default = datetime.now, db_index = True, editable=False, verbose_name=_(u'Дата публикации')) # дата публикации
-    content = models.TextField(max_length=10000, verbose_name=_(u'Основной текст')) # текст поста
+    datetime = models.DateTimeField(default = datetime.now, db_index = True, 
+           editable=False, verbose_name=_(u'Дата публикации')) # дата публикации
+    content = models.TextField(max_length=10000, verbose_name=_(u'Текст')) # текст поста
 
     class Meta:
         ordering = ["-datetime"]
@@ -25,4 +26,26 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("post_detail", kwargs = {"pk": self.pk})
+        return reverse('post_detail', kwargs = {'pk': self.pk})
+
+class Comment(models.Model):
+    parent_post = models.ForeignKey(Post, related_name='comments', verbose_name = _(u'Блог'))
+    #author = models.ForeignKey(User, editable=False)
+    author = models.CharField(max_length=50, verbose_name = _(u'Автор'))
+    content = models.TextField(verbose_name = _(u'Текст комментария'))
+    datetime = models.DateTimeField(default = datetime.now, editable=False, 
+         verbose_name = _(u'Опубликовано'))
+
+    class Meta:
+        ordering = ['datetime']
+        #verbose_name = u'комментарий блога'
+        #verbose_name_plural = u'комментарии блога'
+
+    def __unicode__(self):
+        if len(self.content) > 20:
+            return self.content[:20] + '..'
+        else:
+            return self.content
+
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs = {'pk': self.parent_post.pk})

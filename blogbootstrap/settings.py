@@ -52,7 +52,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'disqus',
+    #'disqus',
     'carousel',
     'soundtracks',
     'tempurls',
@@ -164,4 +164,4 @@ DEFAULT_FROM_EMAIL = "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun
 EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 
 
-DISQUS_WEBSITE_SHORTNAME = 'blog-kz8i2cpqvz'
+#DISQUS_WEBSITE_SHORTNAME = 'blog-kz8i2cpqvz'

@@ -1,24 +1,29 @@
 #coding: utf-8
 import mimetypes
+from datetime import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 
 class Track(models.Model):
-    author = models.ForeignKey(User, blank=False)
+    author = models.ForeignKey(User, editable=False)
     title = models.CharField(max_length=200, verbose_name=_(u'Заголовок'))
     text = models.TextField(verbose_name=_(u'Текст описания'))
-    created_date = models.DateTimeField(default=timezone.now, db_index = True, verbose_name=_(u'Дата'))
-    soundtrack = models.FileField(upload_to='audio', verbose_name=_(u'Трек'),  blank=False)
+    created_date = models.DateTimeField(default=timezone.now, db_index = True, editable=False, verbose_name=_(u'Дата'))
+    soundtrack = models.FileField(upload_to='audio', verbose_name=_(u'Аудиофайл'),  blank=False)
 
     class Meta:
         ordering = ["-created_date"]
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('track_detail', kwargs = {'pk': self.pk})
 
     def save(self, *args, **kwargs):
         try:
@@ -46,6 +51,27 @@ class Track(models.Model):
             return type_names.get(snd_filetype, snd_filetype)
         else:
             return self.mimetype
+
+
+class TrackComment(models.Model):
+    parent_track = models.ForeignKey(Track, related_name='comments', verbose_name = _(u'Трек'), editable=False)
+    author = models.CharField(max_length=50, verbose_name = _(u'Автор'), editable=False)
+    content = models.TextField(verbose_name = _(u'Текст комментария'))
+    datetime = models.DateTimeField(default = datetime.now, editable=False, 
+         verbose_name = _(u'Опубликовано'))
+
+    class Meta:
+        ordering = ['datetime']
+
+    def __unicode__(self):
+        if len(self.content) > 20:
+            return self.content[:20] + '..'
+        else:
+            return self.content
+
+    def get_absolute_url(self):
+        return reverse('track_detail', kwargs = {'pk': self.parent_track.pk})
+
 
 @receiver(post_delete, sender=Track)
 def track_post_delete_handler(sender, **kwargs):

@@ -13,7 +13,7 @@ slider.slider({
     range: "min",
     min: 1,
     value: 36,
-    step: 5 
+    step: 2
 });
 
 for (var i=0; i < 100; i++) {          //counting player objects
@@ -36,8 +36,14 @@ for (i = 0; i < j; i++) {
     $(play).on("click", function (e) {
         wavesurfers[pk].playPause();
         play = "#play" + pk;
-        console.log(wavesurfers[pk].isPlaying());
         if (wavesurfers[pk].isPlaying() == true) {
+            for (p in wavesurfers) {
+                if (wavesurfers[p].isPlaying() == true & p !== pk) { 
+                    wavesurfers[p].pause(); 
+                    otherPlay = "#play" + p;
+                    $(otherPlay + " span").attr("class", "glyphicon glyphicon-play");
+                }
+            }
             $(play + " span").attr("class", "glyphicon glyphicon-pause");
         } else {
             $(play + " span").attr("class", "glyphicon glyphicon-play");

@@ -1,6 +1,28 @@
+/* MAIN ELEMENTS*/
+
 body {
     background-color: #20B2AA;
     font-family:Fira Sans;
+}
+
+th {
+    font-weight:normal;
+}
+
+h2 {
+    font-family:Comfortaa;
+}
+
+.container-fluid {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .container-fluid {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
 }
 
 .btn-primary {
@@ -11,14 +33,35 @@ body {
     background: #17827d !important;
 }
 
+/* MESSAGES ELEMENTS */
+
+#messages-list .error {
+    color: red;
+}
+
+/* CAROUSEL ELEMENTS */
+
 .carousel-container {
+    /*margin-top: -20px;*/
+    background-color: white; 
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: -20px;
+    margin-bottom: 0%;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0px 0px 25px black;
+    border-radius: 5px;
 }
 
 .car-pic {
     width: 100%;
     margin: auto;
 }
+
+/* BLOG ELEMENTS */
 
 .blog-container {
     background-color: white; 
@@ -27,11 +70,18 @@ body {
     margin-top: -30px;
     margin-bottom: 10%;
     padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 2px;
     box-shadow: 0px 0px 25px black;
     border-radius: 5px;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .blog-container {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
 }
 
 .label {
@@ -52,7 +102,7 @@ body {
 .post-title a:hover {
     text-decoration: none;
     text-decoration-color: #202020;
-    color: #606060;
+    color: #777777;
 }
 
 .blog-content {
@@ -61,7 +111,7 @@ body {
 
 .blog-author {
     text-align:right;
-    padding-right:20px;
+    /*padding-right:20px;*/
 }
 
 .created-date {
@@ -85,6 +135,7 @@ body {
 #id_title, #id_content {
     width: 100%;
 }
+
 #id_username, #id_password {
     width: 100%;
 }
@@ -101,6 +152,51 @@ body {
     padding-bottom: 5px;
 }
 
+.post-comments, .post-comments a {
+    margin-top: 5px;
+    font-size: 14px;
+    color:#777777;
+}
+
+.comment {
+    font-size: 12px;
+}
+.comment-content {
+    text-indent:50px;
+}
+.comment-data {
+    font-weight:normal;
+    text-align:right;
+    /*padding-right:20px;*/
+}
+.comment-created-date {
+    font-style:italic;
+}
+
+/* SOUNDTRACKS ELEMENTS */
+
+.track-content {
+    padding-top:20px;
+    text-indent:50px;
+}
+
+.track-title a, .track-title a:visited {
+    text-decoration: none;
+    text-decoration-color: #000000;
+    color: #404040;
+}
+.track-title a:hover {
+    text-decoration: none;
+    text-decoration-color: #202020;
+    color: #777777;
+}
+.track-author {
+    font-size: 12px;
+    text-align:right;
+}
+.track-created-date {
+    font-style: italic;
+}
 .player-controls {
     /*float:left;*/
 }
@@ -125,6 +221,45 @@ div.progress {
 
 div.progress div {
 }
+
+.track-form-field {
+    /*background-color: #DDDDDD;
+    height:25px;
+    padding:3px;
+    margin:5px;*/
+}
+.track-comment-table {
+    margin-left:0px;
+    margin-top:5px;
+    width:100%;
+}
+.track-comment-field {
+    background-color: #DDDDDD;
+    width:100%;
+    padding-right:4px;
+    padding-left:4px;
+}
+.track-comment-button {
+    width:76px;
+    padding-right:4px;
+}
+.track-comment-button input {
+    /*margin:3px;
+    padding:4px;*/
+    height:28px;
+    width:70px;
+}
+.track-comment-control #id_content {
+    border: none;
+    padding:4px;
+    width:100%;
+    height:20px;
+}
+.track-comment-control #id_content:hover,
+.track-comment-control #id_content:focus {
+    border: 1px solid #888888;
+}
+/* LOGIN ELEMENTS */
 
 .loginform {
     width:300px;
@@ -161,8 +296,6 @@ div.progress div {
 .register {
     margin-top:5px;
 }
-
-
 
 .user-add-form {
     width:300px;
@@ -214,6 +347,9 @@ div.progress div {
     text-decoration:none;
     color:#444444;
 }
+
+/* SPEAKER ELEMENTS */
+
 .enter-text-to-say label {
 
 }

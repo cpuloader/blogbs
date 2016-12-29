@@ -4,10 +4,43 @@
     <p class="created-date">{{ post.datetime }}</p>
     <h2 class="post-title">{{ post.title }}</h2>
     <p class="blog-content">{{ post.content }}</p>
-    <p>
-    {% load disqus_tags %}
-    {# disqus_dev #}
-    {% disqus_show_comments %}
-    </p>
+    <div class="blog-author">
+      <p class="author">{{ post.author.username }}</p>
+      <p class="author-extra">{{ post.author.userextrafields.text }}</p>
+    </div>
+    <hr>
+    <p>Комментарии:</p>
+    {% if comments.count > 0 %}
+      {% for comment in comments %}
+        <div class="comment">
+            <div class="comment-content">{{ comment.content }}</div>
+              <table style="width:100%;">
+                <tr>
+                  <th>
+                    {% if perms.blog.delete_comment %}
+                      {% include "blog/comment_remove.html" with form=comment_remove_form %}
+                    {% endif %}
+                  </th>
+                  <th>
+                    <div class="comment-data">
+                      <div class="comment-author">{{ comment.author }}</div>
+                      <div class="comment-created-date">{{ comment.datetime }}</div>
+                    </div>
+                  </th>
+                </tr>
+              </table>
+        </div>
+        <br>
+      {% endfor %}
+    {% endif %}
+    {% if messages %}
+      <div id="messages-list">
+        {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% include "blog/comment_add.html" with form=comment_form pk=post.pk %}
+  <br>
 </div>
 {% endblock %}

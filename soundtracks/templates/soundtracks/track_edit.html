@@ -1,0 +1,76 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="blog-container">
+  <p class="track-title">{{ track.title }}</p>
+    <form enctype="multipart/form-data" class="post-form" method="post" action="{% url 'track_edit' pk=track.pk %}">
+    {% csrf_token %}
+    {% for field in form.hidden_fields %}
+      {{ field }}
+    {% endfor %}
+    {% for field in form.visible_fields %}
+      {% if field.name == "honeypot" %}
+        <div class="honeypot">{{ field }}</div>
+      {% else %}
+        <div class="form-field">
+          {% if field.errors|length > 0 %}
+            <div class="error-list">
+              {% for error in field.errors %}
+                <div class="error-description">{{ error }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <div class="label">{{ field.label }}</div>
+          {% if field.name = "soundtrack" %}
+            <div class="control">{{ field }}
+              <input id="uploadFile" placeholder="Выбрать файл" disabled="disabled" />
+              <div class="uploadFile btn btn-primary">
+                <span>Загрузить</span>
+                <input id="uploadBtn" name="soundtrack" type="file" class="upload"/>
+              </div>
+            </div>
+          {% else %}
+            <div class="control">{{ field }}</div>
+          {% endif %}
+          {% if field.help_text %}
+            <div class="help">{{ field.help_text }}</div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+    <input class="btn btn-default" type="submit" value='Отправить' style="display:block">
+    </form>
+    <br>
+</div>
+<style>
+.uploadFile {
+    position: relative;
+    overflow: hidden;
+    margin: 20px;
+}
+.uploadFile input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    /*font-size: 20px;*/
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+#id_title {
+    width:30%;
+}
+
+#id_text {
+    width:100%;
+}
+</style>
+<script>
+    document.getElementById("uploadBtn").onchange = function () {
+        document.getElementById("uploadFile").value = this.value;
+    };
+var oldButton = document.getElementById("id_soundtrack")
+    oldButton.parentNode.removeChild(oldButton);
+</script>
+{% endblock %}

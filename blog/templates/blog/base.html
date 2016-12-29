@@ -22,7 +22,8 @@
         </style>-->
     </head>
 <body>
-<nav class="navbar navbar-default">
+<!--<div class="navbar-container">-->
+<nav class="navbar navbar-default" style="-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -31,13 +32,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">{% trans "Полигон" %}</a>
+      <a class="navbar-brand" href="#" style="background-color:#DDDDDD">{% trans "Полигон" %}</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li id="menu1" class=""><a id="link1" href="{% url 'carousel_name' %}">{% trans "Картинки" %}</a></li>
-        <li id="menu2" class=""><a id="link2" href="{% url 'tracks_list' %}">{% trans "Звуки" %}</a></li>
+        <li id="menu2" class=""><a id="link2" href="{% url 'track_list' %}">{% trans "Звуки" %}</a></li>
         <li id="menu3" class=""><a id="link3" href="{% url 'list' %}">{% trans "Блог" %}</a></li>
         <li id="menu4" class=""><a id="link4" href="{% url 'secret' %}">{% trans "Секрет" %}</a></li>
         <li id="menu4" class=""><a id="link5" href="{% url 'speaker' %}">{% trans "Диктор" %}</a></li>
@@ -67,7 +68,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<!--</div>-->
 {% block content %}Empty page{% endblock %}
 
 </body>

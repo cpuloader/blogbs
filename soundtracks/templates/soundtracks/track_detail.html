@@ -1,0 +1,110 @@
+{% extends 'blog/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block addplayerjs %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
+        <script src="{% url 'player_script' %}"></script>
+        <script src="{% url 'comments_script' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+{% endblock %}
+
+{% trans "Нет треков" as no_tracks %}
+{% block content %}
+<div class="blog-container">
+    <section> 
+        <span class="tooltip"></span> 
+        <div id="slider"></div>
+    </section>  
+    <div class="track"> 
+        <h2 class="track-title">{{ track.title }}</h1>
+        {% if track.soundtrack %}
+            <div class="audiotracks-list-entry">   
+              <div class="player-sizing">
+                <div class="player-controls">
+                  <button class="btn btn-primary" id="play{{ track.pk }}" style="width:60px;height:128px;position:absolute;">
+                    <span class="glyphicon glyphicon-play" style="font-size:30px;"></span>
+                  </button>
+                </div>
+                <div class="player-container" id="player-container{{ track.pk }}" src="{{ track.soundtrack.url }}">	
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" id="progress{{ track.pk }}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                  </div>              
+                </div>
+              </div>
+            </div>
+        {% endif %} 
+        {% include "soundtracks/comment_add.html" with form=comment_form pk=track.pk %}
+        <p class="track-content">{{ track.text|linebreaksbr }}</p>
+        <table style="width:100%;">
+          <tr>
+            <th>
+              {# if perms.soundtrack.change_track #}
+              <div style="float:left">
+                <a class="btn btn-default btn-xs" href="{% url 'track_edit' pk=track.pk %}" role="button">Изменить</a>
+              </div>
+              {# endif #}
+              {# if perms.soundtracks.delete_track #}
+                  {% include "soundtracks/track_delete.html" with form=track_delete_form %}
+              {# endif #}
+            </th>
+            <th>
+              <div class="track-author">
+                <div class="track-author">{{ track.author }}</div>
+                <div class="track-created-date">{{ track.created_date }}</div>
+              </div>
+            </th>
+          </tr>
+        </table>
+        <hr>
+        <p id="results"></p>
+        <p>Комментарии:</p>
+        <div id="comments-list">
+        {% if comments.count > 0 %}
+          {% for comment in comments %}
+            <div class="comment">
+              <div class="comment-content">{{ comment.content }}</div>
+                <table style="width:100%;">
+                  <tr>
+                    <th>
+                      {% if perms.soundtracks.delete_trackcomment %}
+                        {% include "soundtracks/comment_delete.html" with form=comment_delete_form %}
+                      {% endif %}
+                    </th>
+                    <th>
+                      <div class="comment-data">
+                        <div class="comment-author">{{ comment.author }}</div>
+                        <div class="comment-created-date">{{ comment.datetime }}</div>
+                      </div>
+                    </th>
+                  </tr>
+                </table>
+            </div>
+            <br>
+          {% endfor %}
+          <div id="new-comment">
+          </div>
+        {% endif %}
+        </div>
+    </div>
+  <br>
+</div>
+<div id="comment-template" class="comment" hidden="true">
+  <div class="comment">
+  <div class="comment-content"></div>
+  <table style="width:100%;">
+    <tr>
+      <th>
+        <div class="comment-data">
+          <div class="comment-author"></div>
+          <div class="comment-created-date"></div>
+        </div>
+      </th>
+    </tr>
+  </table>
+  </div>
+  <br>
+</div>
+{% endblock %}

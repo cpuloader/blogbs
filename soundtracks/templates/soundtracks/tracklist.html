@@ -6,17 +6,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
         <script src="{% url 'player_script' %}"></script>
-        <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">-->
         <link rel="stylesheet" href="{% static 'css/slider.css' %}">
         <!--<style>
            .ui-slider-handle {
                background: url({% static 'css/knob.png' %}) no-repeat 50% 50%;
            }
-        </style>-->
-        <!--<style>
-            .blog-container { 
-                background-image: url({% static 'css/back.jpg' %})
-            }
         </style>-->
 {% endblock %}
 
@@ -27,15 +21,12 @@
   <span class="tooltip"></span> 
   <div id="slider"></div>
 </section>  
-<!--<p id="debug">test</p>-->
+  <br>
+  <a class="btn btn-default" href="{% url 'track_add' %}" role="button">Загрузить</a>
   {% for track in object_list %}
+  <hr>
     <div class="track"> 
-        <div class="blog-author">
-            <p class="author">{{ track.author }}</p>
-            <p class="created-date">{{ track.created_date }}</p>
-        </div>
-        <h1>{{ track.title }}</h1>
-        <!--<p>Debug: {{ track.soundtrack.path }}</p>-->
+        <h2 class="track-title"><a href="{{ track.get_absolute_url }}">{{ track.title }}</a></h1>
         {% if track.soundtrack %}
             <div class="audiotracks-list-entry">   
               <div class="player-sizing">
@@ -45,7 +36,6 @@
                   </button>
                 </div>
                 <div class="player-container" id="player-container{{ track.pk }}" src="{{ track.soundtrack.url }}">	
-                  <!--<progress id="progress{{ track.pk }}" class="progress progress-striped" value="0" max="100"></progress>-->
                   <div class="progress">
                     <div class="progress-bar progress-bar-info progress-bar-striped" id="progress{{ track.pk }}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                     </div>
@@ -54,7 +44,17 @@
               </div>
             </div>
         {% endif %} 
-        <p>{{ track.text|linebreaksbr }}</p>
+        <div class="track-author">
+            <p class="track-author">{{ track.author }}</p>
+            <p class="track-created-date">{{ track.created_date }}</p>
+        </div>
+        <div class="post-comments">
+          {% if track.comments.count > 0 %}
+            <a href="{% url 'track_detail' pk=track.pk %}">Комментариев: {{ track.comments.count }}</a>
+          {% else %}
+            <p>Комментариев нет.</p>
+          {% endif %}
+        </div>
     </div>
   {% empty %}
     <p>{{ no_tracks }}</p>
