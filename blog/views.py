@@ -85,6 +85,8 @@ class PostUpdate(TemplateView):
             self.form = PostForm(instance = self.post)
             return super(PostUpdate, self).get(request, *args, **kwargs)
         else:
+            #messages.add_message(request, messages.ERROR, "Поле не может быть пустым.")
+            #redirect_url = reverse("post_detail", kwargs={"pk" : self.post_pk})
             return redirect(reverse("login"))
 
     def get_context_data(self, **kwargs):

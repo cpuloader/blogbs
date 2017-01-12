@@ -27,18 +27,26 @@ function create_comment() {
             $('#id_content').val(''); // remove the value from the input
             if (json['content'] == undefined) return;
             $(function() {
-            var newComment = $('#comment-template').html()
-            $('#comments-list').append(newComment)
-            $('#comments-list .comment-content').last().text(json['content'])
-            $('#comments-list .comment-author').last().text(json['author'])
-            $('#comments-list .comment-created-date').last().text(json['datetime'])
-            //commentsList$('.comment-author').val = json['author']
-            //$('.comment-content').val = json['content']
-            //$('.comment-created-date').val = json['datetime']
+            var newComment = $('#comment-template').html();
+            $('#comments-list').append(newComment);
+            $('#comments-list .comment-content').last().text(json['content']);
+            $('#comments-list .comment-author').last().text(json['author']);
+            var commentDate = new Date();
+            commentDate.setTime(Date.parse(json['datetime']))
+            var options = {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              timezone: 'UTC',
+              hour: 'numeric',
+              minute: 'numeric'
+            };
+            var lang = $('#current-language').text();
+            $('#comments-list .comment-created-date').last().text(commentDate.toLocaleString(lang, options));
 
             });
-            console.log(json); // log the returned json to the console
-            console.log("success"); // another sanity check
+            //console.log(json); // log the returned json to the console
+            //console.log("success"); // another sanity check
         },
 
         // handle a non-successful response

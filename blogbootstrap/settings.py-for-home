@@ -18,12 +18,11 @@ import os
 from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-BASEFILE = 'c:/sites/blogbs/bin/filetocopy.zip'
-#BASEDICT = 'c:/sites/blogbs/bin/basedict.txt'
-BASETEXT = 'c:/sites/blogbs/bin/basedict_w.dat'
-BASEWORDS = 'c:/sites/blogbs/bin/basedict_l.dat'
+BASEFILE = os.environ['BASEFILE'] #'c:/sites/blogbs/bin/filetocopy.zip'
+BASETEXT = os.environ['BASETEXT'] #'c:/sites/blogbs/bin/basedict_w.dat'
+BASEWORDS = os.environ['BASEWORDS'] #'c:/sites/blogbs/bin/basedict_l.dat'
 
-TELEGRAM_BOT_TOKEN = '276099709:AAGgyarUgQRNcitxmg4Ex0ksQlrp-z3sSlI'
+TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN'] #'276099709:AAGgyarUgQRNcitxmg4Ex0ksQlrp-z3sSlI'
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -31,7 +30,8 @@ LOGIN_REDIRECT_URL = '/'
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
+#SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

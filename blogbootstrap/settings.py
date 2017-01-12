@@ -18,11 +18,11 @@ import os
 from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASEFILE = os.environ['BASEFILE']
+BASETEXT = os.environ['BASETEXT']
+BASEWORDS = os.environ['BASEWORDS']
 
-BASEFILE = '/home/cpuloader/blogbs/bin/filetocopy.zip'
-#BASEDICT = '/home/cpuloader/blogbs/bin/basedict.txt'
-BASETEXT = '/home/cpuloader/blogbs/bin/basedict_w.dat'
-BASEWORDS = '/home/cpuloader/blogbs/bin/basedict_l.dat'
+TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -30,9 +30,7 @@ LOGIN_REDIRECT_URL = '/'
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
-
-TELEGRAM_BOT_TOKEN = '276099709:AAGgyarUgQRNcitxmg4Ex0ksQlrp-z3sSlI'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -52,7 +50,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    #'disqus',
     'carousel',
     'soundtracks',
     'tempurls',
@@ -144,18 +141,7 @@ MEDIA_URL = '/media/'
 
 SITE_ID = 1
 
-#ADMINS = (("bols", "bols@mail.ru"), )
-#MANAGERS = (("bols", "bols@mail.ru"), )
-
-#EMAIL_HOST = "smtp.mail.ru"
-#EMAIL_HOST_USER = "bols@mail.ru"
-#EMAIL_HOST_PASSWORD = "neebivola"
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
-#DEFAULT_FROM_EMAIL = "Bols <bols@mail.ru>"
-
 ANYMAIL = {
-    # (exact settings here depend on your ESP...)
     "MAILGUN_API_KEY": "key-8668f638ba7f7229bbc457863d303ca2",
     "MAILGUN_SENDER_DOMAIN": 'sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org',
 }
@@ -164,4 +150,3 @@ DEFAULT_FROM_EMAIL = "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun
 EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 
 
-#DISQUS_WEBSITE_SHORTNAME = 'blog-kz8i2cpqvz'

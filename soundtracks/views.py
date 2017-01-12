@@ -39,7 +39,7 @@ class TrackDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(TrackDetail, self).get_context_data(**kwargs)
         user = self.request.user
-        print(user.username)
+        #print(user.username)
         #initial_data = {'parent_track': self.kwargs["pk"], 'author': user }
         context["comment_form"] = CommentForm() #initial = initial_data
         context["comment_delete_form"] = CommentDeleteForm(initial = {'parent_track': self.kwargs["pk"]})
