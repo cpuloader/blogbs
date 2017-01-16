@@ -16,10 +16,10 @@ def user_create(request):
         user_form = NewUserForm(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
-            new_user = user_form.save(commit=False)
+            new_user = user_form.save()
             new_user.save()
             new_profile = profile_form.save(commit=False)
-            new_profile.user = new_user
+            new_profile.baseuser = new_user
             new_profile.save()
             return redirect(reverse('login'))
         else:
@@ -49,7 +49,7 @@ def user_update(request, pk):
             new_user = user_form.save(commit=False)
             new_user.save()
             new_profile = profile_form.save(commit=False)
-            new_profile.user = new_user
+            new_profile.baseuser = new_user
             new_profile.save()
             return redirect('user_profile', pk=user.pk)
         else:

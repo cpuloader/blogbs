@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'blogbootstrap.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'blogbs',
+        'NAME': 'blogbs1',
         'USER': 'undead',
         'HOST': '127.0.0.1',
         'PORT': '3306',

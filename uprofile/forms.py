@@ -15,12 +15,14 @@ class NewUserForm(UserCreationForm):
     def save(self, commit = True):
         user = super(NewUserForm, self).save(commit = False)
         if commit:
+            print('creating user')
             user.save()
             baseuser = User.objects.get(username='baseuser')
             base_perms = baseuser.user_permissions.all()
             for p in base_perms:
                 perm = Permission.objects.get(name=p.name)
                 user.user_permissions.add(perm)
+                print('adding perms')
         return user
 
 
