@@ -116,39 +116,22 @@ class CommentCreate(TemplateView):
 
     def post(self, request, *args, **kwargs):
         self.track_pk = self.kwargs["pk"]
-        print(self.request.user.username)
+        #print(self.request.user.username)
         if self.request.user:
             comment_text = self.request.POST.get('comment')
             track = Track.objects.get(pk = self.track_pk)
             comment = TrackComment(parent_track=track, 
-                   author=self.request.user.username, content=comment_text)
+                   author=self.request.user, content=comment_text)
             comment.save()
             response_data = {}
             response_data['result'] = 'Comment created!'
             response_data['content'] = comment.content
             response_data['datetime'] = comment.datetime
-            response_data['author'] = comment.author
+            response_data['author'] = comment.author.username
             return JsonResponse(response_data)
         else:
             redirect_url = reverse("track_detail", kwargs={"pk" : self.track_pk})
             return redirect(redirect_url)
-        """
-        self.form = CommentForm(request.POST)
-        if self.form.is_valid():
-            print('trying post')
-            self.form.instance.author = self.request.user
-            track = Track.objects.get(pk = self.track_pk)
-            self.form.instance.parent_track = track
-            self.form.save()
-            redirect_url = reverse("track_detail", kwargs={"pk" : self.track_pk})
-            return redirect(redirect_url)
-        else:
-            #self.request.session['comment_tupo'] = 'yes'
-            #self.request.session['comment_form_content'] = self.form.instance.content
-            messages.add_message(request, messages.ERROR, "Поле не может быть пустым.")
-            redirect_url = reverse("track_detail", kwargs={"pk" : self.track_pk})
-            return redirect(redirect_url)
-        """
 
 class CommentDelete(TemplateView):
     model = TrackComment
@@ -159,7 +142,7 @@ class CommentDelete(TemplateView):
     def post(self, request, *args, **kwargs):
         self.comment = TrackComment.objects.get(pk = self.kwargs["pk"])
         print(self.comment.author)
-        if self.comment.author == request.user.username or request.user.is_superuser:
+        if self.comment.author == request.user or request.user.is_superuser:
             self.comment.delete()
             redirect_url = reverse("track_detail", kwargs={"pk" : self.comment.parent_track.pk})
             return redirect(redirect_url)

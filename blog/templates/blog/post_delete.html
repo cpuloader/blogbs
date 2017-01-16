@@ -1,4 +1,5 @@
-<form method="post" action="{% url 'post_delete' pk=post.pk %}" onsubmit="return confirm('Вы действительно хотите удалить пост?');">{% csrf_token %}
+<form method="post" action="{% url 'post_delete' pk=post.pk %}" onsubmit="return confirm('Вы действительно хотите удалить пост?');">
+    {% csrf_token %}
     <div class="post-remove">
         <input class="btn btn-default btn-xs" id="submit-btn" type="submit" value="Удалить" />
     </div>

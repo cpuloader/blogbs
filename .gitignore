@@ -4,3 +4,5 @@ run_env.bat
 admin.txt
 req.txt
 envvars.txt
+bin/
+media/

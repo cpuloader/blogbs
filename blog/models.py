@@ -5,12 +5,6 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
 
-class UserExtraFields(models.Model):
-    user = models.OneToOneField(User)
-    text = models.TextField(max_length=255, verbose_name=_(u'Пара слов о себе'))
-
-    def __unicode__(self):
-        return self.user.username
 
 class Post(models.Model):
     author = models.ForeignKey(User, editable=False)
@@ -30,8 +24,8 @@ class Post(models.Model):
 
 class Comment(models.Model):
     parent_post = models.ForeignKey(Post, related_name='comments', verbose_name = _(u'Блог'))
-    #author = models.ForeignKey(User, editable=False)
-    author = models.CharField(max_length=50, verbose_name = _(u'Автор'))
+    author = models.ForeignKey(User)
+    #author = models.CharField(max_length=50, verbose_name = _(u'Автор'))
     content = models.TextField(verbose_name = _(u'Текст комментария'))
     datetime = models.DateTimeField(default = datetime.now, editable=False, 
          verbose_name = _(u'Опубликовано'))

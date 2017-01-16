@@ -52,7 +52,7 @@
             </th>
             <th>
               <div class="track-author">
-                <div class="track-author">{{ track.author }}</div>
+                <p class="track-author"><a href="{% url 'user_profile' pk=track.author.pk %}">{{ track.author }}</a></p>
                 <div class="track-created-date">{{ track.created_date }}</div>
               </div>
             </th>
@@ -75,7 +75,7 @@
                     </th>
                     <th>
                       <div class="comment-data">
-                        <div class="comment-author">{{ comment.author }}</div>
+                        <div class="comment-author"><a href="{% url 'user_profile' pk=comment.author.pk %}">{{ comment.author }}</a></div>
                         <div class="comment-created-date">{{ comment.datetime }}</div>
                       </div>
                     </th>

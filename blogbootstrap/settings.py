@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'anymail',
     'speaker',
     'bredbot',
+    'uprofile',
 )
 
 MIDDLEWARE_CLASSES = (

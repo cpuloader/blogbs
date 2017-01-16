@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="blog-container">
+    <h1>{{ userdata.username }}</h1>
+    <img src="{{ userdata.userextrafields.getPicture }}" />
+    <p>{{ userdata.email }}<p>
+    <p>Зарегистрировался {{ userdata.date_joined }}<p>
+    <p>{{ userdata.userextrafields.text }}</p>
+    {% if user.is_authenticated and user.id == userdata.id %}
+        <a class="btn btn-default" href="{% url 'user_profile_edit' pk=userdata.pk %}" role="button">Изменить данные</a>
+    {% endif %}
+    <br>
+    <br>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="blog-container">
+  <div class="user-registration">
+    <form enctype="multipart/form-data" class="post-form" method="post" action="{% url 'user_add' %}">
+    {% csrf_token %}
+      {% include "uprofile/form.html" with form=user_form %}
+      {% include "uprofile/form.html" with form=profile_form %}
+      <div class="submit-button">
+        <input class="btn btn-default" id="submit-btn" type="submit" value='{% trans "Отправить" %}'>
+      </div>
+    </form>
+    {% if messages %}
+      <div id="messages-list">
+        {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <br>
+  </div>
+</div>
+<style>
+.uploadFile {
+    position: relative;
+    overflow: hidden;
+    margin: 20px;
+}
+.uploadFile input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    /*font-size: 20px;*/
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+#id_title {
+    width:30%;
+}
+
+#id_text {
+    width:100%;
+}
+</style>
+<script>
+    document.getElementById("uploadBtn").onchange = function () {
+        document.getElementById("uploadFile").value = this.value;
+    };
+var oldButton = document.getElementById("id_picture")
+    oldButton.parentNode.removeChild(oldButton);
+</script>
+
+{% endblock %}

@@ -4,6 +4,9 @@
 
 {% block content %}
 <div class="blog-container" style="">
+  {% if user.is_authenticated %}
+    <p class="greeting">Ну привет, <a href="{% url 'user_profile' pk=user.pk %}">{{ user.username }}</a>.</p>
+  {% endif %}
       <div class="postform">
       {% include "blog/post_add.html" with form=post_form %}
       <br>
@@ -31,7 +34,7 @@
                 </th>
                 <th>
                   <div class="blog-author">
-                    <p class="author">{{ post.author.username }}</p>
+                    <p class="author"><a href="{% url 'user_profile' pk=post.author.pk %}">{{ post.author.username }}</a></p>
                     <p class="author-extra">{{ post.author.userextrafields.text }}</p>
                   </div>
                 </th>

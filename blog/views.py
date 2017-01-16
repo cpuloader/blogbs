@@ -5,13 +5,12 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
-from django.forms.models import inlineformset_factory
 from django.contrib import messages
 #import json
 #from django.http import HttpResponse
 
 from .models import Post, Comment
-from .forms import PostForm, PostDeleteForm, CommentForm, CommentRemoveForm, MyRegistrationForm
+from .forms import PostForm, PostDeleteForm, CommentForm, CommentRemoveForm
 
 class PostList(ListView): 
     model = Post               
@@ -68,7 +67,7 @@ class PostDetail(DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
-        self.post = Post.objects.get(pk = self.kwargs["pk"])
+        #self.post = Post.objects.get(pk = self.kwargs["pk"])
         redirect_url = reverse("list")
         return redirect(redirect_url)    
 
@@ -151,32 +150,9 @@ class CommentRemove(TemplateView):
 
     def post(self, request, *args, **kwargs):
         self.comment = Comment.objects.get(pk = self.kwargs["pk"])
-        if self.comment.author == request.user.username or request.user.is_superuser:
+        if self.comment.author == request.user or request.user.is_superuser:
             self.comment.delete()
             redirect_url = reverse("post_detail", kwargs={"pk" : self.comment.parent_post.pk})
             return redirect(redirect_url)
         else:
             return redirect(reverse("login"))
-
-
-class UserCreate(TemplateView): 
-    template_name = "blog/user_add.html"
-    form = None
-
-    def get(self, request, *args, **kwargs):
-        self.form = MyRegistrationForm()
-        return super(UserCreate, self).get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super(UserCreate, self).get_context_data(**kwargs)
-        context["form"] = self.form
-        return context
-
-    def post(self, request, *args, **kwargs):
-        self.form = MyRegistrationForm(request.POST)
-        if self.form.is_valid():
-            self.form.save()
-            return redirect(reverse("list"))
-        self.form = MyRegistrationForm(request.POST)
-        return super(UserCreate, self).get(request, *args, **kwargs)
-

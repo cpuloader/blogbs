@@ -45,7 +45,7 @@
             </div>
         {% endif %} 
         <div class="track-author">
-            <p class="track-author">{{ track.author }}</p>
+            <p class="track-author"><a href="{% url 'user_profile' pk=track.author.pk %}">{{ track.author }}</a></p>
             <p class="track-created-date">{{ track.created_date }}</p>
         </div>
         <div class="post-comments">

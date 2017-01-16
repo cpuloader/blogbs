@@ -1,0 +1,30 @@
+{% for field in form.hidden_fields %}
+  {{ field }}
+{% endfor %}
+{% for field in form.visible_fields %}
+    <div class="form-field">
+      {% if field.errors|length > 0 %}
+        <div class="error-list">
+          {% for error in field.errors %}
+            <div class="error-description">{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="label">{{ field.label }}</div>
+      {% if field.name == "picture" %}
+        <div class="control">{{ field }}
+          <input id="uploadFile" placeholder="Выбрать файл" disabled="disabled" />
+          <div class="uploadFile btn btn-primary">
+            <span>Загрузить</span>
+            <input id="uploadBtn" name="picture" type="file" class="upload"/>
+          </div>
+        </div>
+      {% else %}
+        <div class="control">{{ field }}</div>
+      {% endif %}
+      {% if field.help_text %}
+        <div class="help">{{ field.help_text }}</div>
+      {% endif %}
+    </div>
+{% endfor %}
+      

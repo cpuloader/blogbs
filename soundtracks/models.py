@@ -55,7 +55,8 @@ class Track(models.Model):
 
 class TrackComment(models.Model):
     parent_track = models.ForeignKey(Track, related_name='comments', verbose_name = _(u'Трек'), editable=False)
-    author = models.CharField(max_length=50, verbose_name = _(u'Автор'), editable=False)
+    #author = models.CharField(max_length=50, verbose_name = _(u'Автор'), editable=False)
+    author = models.ForeignKey(User) 
     content = models.TextField(verbose_name = _(u'Текст комментария'))
     datetime = models.DateTimeField(default = datetime.now, editable=False, 
          verbose_name = _(u'Опубликовано'))
