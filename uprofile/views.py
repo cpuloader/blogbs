@@ -53,7 +53,7 @@ def user_update(request, pk):
             new_profile.save()
             return redirect('user_profile', pk=user.pk)
         else:
-            messages.error(request, u'Что-то неправильно.')
+            messages.error(request, u'Произошла ошибка.')
     else:
         user_form = UserForm(instance=user)
         profile_form = ProfileForm(instance=user.userextrafields)

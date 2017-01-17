@@ -3,7 +3,7 @@
 {% block content %}
 <div class="blog-container">
     <h1>{{ userdata.username }}</h1>
-    <img src="{{ userdata.userextrafields.getPicture }}" />
+    <img src="{{ userdata.userextrafields.getPicture }}" width="300px" height="300px"/>
     <p>{{ userdata.email }}<p>
     <p>Зарегистрировался {{ userdata.date_joined }}<p>
     <p>{{ userdata.userextrafields.text }}</p>

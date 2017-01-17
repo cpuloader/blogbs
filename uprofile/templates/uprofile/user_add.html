@@ -9,7 +9,7 @@
       {% include "uprofile/form.html" with form=user_form %}
       {% include "uprofile/form.html" with form=profile_form %}
       <div class="submit-button">
-        <input class="btn btn-default" id="submit-btn" type="submit" value='{% trans "Отправить" %}'>
+        <input class="btn btn-default btn-xs" id="submit-btn" type="submit" value='{% trans "Отправить" %}'>
       </div>
     </form>
     {% if messages %}
@@ -51,8 +51,6 @@
     document.getElementById("uploadBtn").onchange = function () {
         document.getElementById("uploadFile").value = this.value;
     };
-var oldButton = document.getElementById("id_picture")
-    oldButton.parentNode.removeChild(oldButton);
 </script>
 
 {% endblock %}

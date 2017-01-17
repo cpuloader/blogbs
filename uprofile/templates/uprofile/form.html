@@ -12,9 +12,10 @@
       {% endif %}
       <div class="label">{{ field.label }}</div>
       {% if field.name == "picture" %}
-        <div class="control">{{ field }}
+        <div class="control" style="font-size:12px;">{{ field }}
+          <br>
           <input id="uploadFile" placeholder="Выбрать файл" disabled="disabled" />
-          <div class="uploadFile btn btn-primary">
+          <div class="uploadFile btn btn-primary btn-xs">
             <span>Загрузить</span>
             <input id="uploadBtn" name="picture" type="file" class="upload"/>
           </div>
