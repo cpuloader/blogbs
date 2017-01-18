@@ -17,10 +17,23 @@
 {% trans "Нет треков" as no_tracks %}
 {% block content %}
 <div class="blog-container">
-<section> 
-  <span class="tooltip"></span> 
-  <div id="slider"></div>
-</section>  
+  <table style="margin:auto;">
+    <tr>
+      <th>
+        <img src="{% static 'css/speaker-off.png' %}" style="width:20px;height:20px;"/>
+      </th>
+      <th>
+        <section> 
+          <span class="tooltip"></span> 
+          <div id="slider"></div>
+        </section>  
+      </th>
+      <th>
+        <img src="{% static 'css/speaker-on.png' %}" style="width:20px;height:20px;"/>
+      </th>
+    </tr>
+  </table>
+
   <br>
   <a class="btn btn-default" href="{% url 'track_add' %}" role="button">Загрузить</a>
   {% for track in object_list %}

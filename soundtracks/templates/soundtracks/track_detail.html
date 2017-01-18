@@ -13,10 +13,22 @@
 
 {% block content %}
 <div class="blog-container">
-    <section> 
-        <span class="tooltip"></span> 
-        <div id="slider"></div>
-    </section>  
+  <table style="margin:auto;">
+    <tr>
+      <th>
+        <img src="{% static 'css/speaker-off.png' %}" style="width:20px;height:20px;"/>
+      </th>
+      <th>
+        <section> 
+          <span class="tooltip"></span> 
+          <div id="slider"></div>
+        </section>  
+      </th>
+      <th>
+        <img src="{% static 'css/speaker-on.png' %}" style="width:20px;height:20px;"/>
+      </th>
+    </tr>
+  </table>
     <div class="track"> 
         <h2 class="track-title">{{ track.title }}</h1>
         {% if track.soundtrack %}

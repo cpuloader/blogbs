@@ -4,7 +4,9 @@
 <div class="blog-container">
     <h1>{{ userdata.username }}</h1>
     <img src="{{ userdata.userextrafields.getPicture }}" width="300px" height="300px"/>
-    <p>{{ userdata.email }}<p>
+    {% if user.is_authenticated %}
+        <p>{{ userdata.email }}<p>
+    {% endif %}
     <p>Зарегистрировался {{ userdata.date_joined }}<p>
     <p>{{ userdata.userextrafields.text }}</p>
     {% if user.is_authenticated and user.id == userdata.id %}
