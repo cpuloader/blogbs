@@ -1,6 +1,6 @@
-<form method="post" action="{% url 'comment_remove' pk=comment.pk %}" onsubmit="return confirm('Вы действительно хотите удалить комментарий?');">
+<form method="post" action="{% url 'comment_remove' pk=comment.pk %}" onsubmit="return confirm('Вы действительно хотите удалить комментарий? {{comment.pk}}');">
     {% csrf_token %}
     <div class="comment-remove">
-        <input class="btn btn-default btn-xs" id="submit-btn" type="submit" value="Удалить" />
+        <input class="post-delete btn btn-default btn-xs" type="submit" value="Удалить" />
     </div>
 </form>

@@ -1,0 +1,16 @@
+{
+    "page": {{ page.number }},
+    "hasNext": {{ page.has_next|lower }},
+    "itemList": [{% for obj in page.object_list %} {
+        "title": "{{ obj.title }}", 
+        "postUrl": "{{ obj.get_absolute_url }}",
+        "postPk": "{{ obj.pk }}",
+        "author": "{{ obj.author.username }}",
+        "authorPk": "{{ obj.author.id }}",
+        "authorText": "{{ obj.author.userextrafields.text }}",
+        "datetime": "{{ obj.datetime }}",
+        "content": "{{ obj.content }}",
+        "comments": "{{ obj.comments.count }}"
+        }{% if not forloop.last %},{% endif %}{% endfor %}
+    ]
+}

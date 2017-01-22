@@ -2,39 +2,47 @@
 {% load i18n %}
 {% trans "Нет постов" as no_posts %}
 
+{% block js %}
+    <script type="text/javascript"> 
+        var pageNum = {{ page_obj.number }};
+        console.log(pageNum);
+        var hasNextPage = {{ page_obj.has_next|lower }};
+        var baseUrl = '{% url "list" %}'; 
+        console.log(baseUrl);
+    </script>
+    <script src="{% url 'posts_load' %}"></script>
+{% endblock %}
+
 {% block content %}
-<div class="blog-container" style="">
+<div class="blog-container">
   {% if user.is_authenticated %}
     <p class="greeting">Ну привет, <a href="{% url 'user_profile' pk=user.pk %}">{{ user.username }}</a>.</p>
   {% endif %}
-      <div class="postform">
-      {% include "blog/post_add.html" with form=post_form %}
-      <br>
-      </div>
+    <div class="postform">
+    {% include "blog/post_add.html" with form=post_form %}
+    <br>
+    </div>
+    <div class="bloglist">
     {% for post in object_list %}
         <div class="blogpost">
           <hr>
           <div class="blogpost-border">
             <p class="created-date">{{ post.datetime }}</p>
-            <h2 class="post-title" id="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+            <h2 class="post-title"><a class="post-title-link" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
             <p class="blog-content">{{ post.content }}</p>
             <table style="width:100%;">
               <tr>
                 <th>
                   <div>
-                  {# if perms.blog.change_post #}
                     <div style="float:left">
-                      <a class="btn btn-default btn-xs" href="{% url 'post_edit' pk=post.pk %}" role="button">Изменить</a>
+                      <a class="post-change btn btn-default btn-xs" href="{% url 'post_edit' pk=post.pk %}" role="button">Изменить</a>
                     </div>
-                  {# endif #}
-                  {# if perms.blog.delete_post #}
                     {% include "blog/post_delete.html" with form=post_delete_form %}
-                  {# endif #}
-                  <div>
+                  </div>
                 </th>
                 <th>
                   <div class="blog-author">
-                    <p class="author"><a href="{% url 'user_profile' pk=post.author.pk %}">{{ post.author.username }}</a></p>
+                    <p class="author"><a class="author-link" href="{% url 'user_profile' pk=post.author.pk %}">{{ post.author.username }}</a></p>
                     <p class="author-extra">{{ post.author.userextrafields.text }}</p>
                   </div>
                 </th>
@@ -42,16 +50,18 @@
             </table>
             <div class="post-comments">
               {% if post.comments.count > 0 %}
-                <a href="{% url 'post_detail' pk=post.pk %}">Комментариев: {{ post.comments.count }}</a>
+                <a class="comments-count" href="{% url 'post_detail' pk=post.pk %}">Комментариев: {{ post.comments.count }}</a>
               {% else %}
-                <p>Комментариев нет.</p>
+                <p class="comments-count">Комментариев нет.</p>
               {% endif %}
             </div>
           </div>
         </div>
     {% empty %}
-        <p>{{ no_posts }}</p>
+        <p id="no-posts">{{ no_posts }}</p>
     {% endfor %}
+    </div>
+    <div id="blog-anchor"></div>
 </div>
 {% endblock %}
 

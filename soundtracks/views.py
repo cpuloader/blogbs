@@ -9,16 +9,12 @@ from django.http import HttpResponse, JsonResponse
 
 from .models import Track, TrackComment
 from .forms import TrackForm, TrackDeleteForm, CommentForm, CommentDeleteForm
+from blog.views import JavaScriptView
 
-class JavaScriptView(TemplateView):
-
-    def render_to_response(self, context, **response_kwargs):
-        response_kwargs['content_type'] = "application/javascript"
-        return super(JavaScriptView, self).render_to_response(
-            context, **response_kwargs)
 
 player_script = JavaScriptView.as_view(template_name="soundtracks/player.js")
 player_comments = JavaScriptView.as_view(template_name="soundtracks/comments.js")
+
 
 class TrackList(ListView): 
     model = Track

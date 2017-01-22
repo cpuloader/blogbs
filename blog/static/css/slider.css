@@ -1,9 +1,13 @@
 
 section {
-  width: 200px;
+  width: 140px;
   height: auto;
   margin: auto;
   position: relative;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 #slider {
@@ -11,13 +15,13 @@ section {
   border-style: solid;
   border-color: #333 #333 #777 #333;
   border-radius: 25px;
-  width: 180px;
+  width: 128px;
   position: absolute;
   height: 13px;
   background-color: #8e8d8d;
   box-shadow: inset 0 1px 5px 0px rgba(0, 0, 0, .5), 
            0 1px 0 0px rgba(250, 250, 250, .5);
-  left: 10px;
+  left: 5px;
   top: -6px;
 }
 

@@ -11,6 +11,7 @@ th {
 
 h2 {
     font-family:Comfortaa;
+    letter-spacing: 1px;
 }
 
 .container-fluid {
@@ -32,18 +33,23 @@ h2 {
     }
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:focus {
     background: #20B2AA;
     border: 1px solid #136c68;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:visited {
+.btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background: #17827d !important;
     border: 1px solid #136c68;
 }
 .btn-primary:active:hover {
     background: #136c68 !important;
     border: 1px solid #136c68;
+}
+
+.btn-default:focus {
+    background: white;
+    border: 1px solid #CCCCCC;
 }
 
 /* MESSAGES ELEMENTS */
@@ -188,7 +194,11 @@ h2 {
     width: 100%;
     margin-bottom: 5px;
 }
-
+/*
+#id_content {
+    height: 100px;
+}
+*/
 #id_username, #id_password {
     width: 100%;
 }

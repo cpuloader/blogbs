@@ -1,21 +1,29 @@
 # coding: utf-8
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import redirect, render_to_response, render
 from django.core.urlresolvers import reverse_lazy, reverse
+from django.core.paginator import Paginator, InvalidPage
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
 from django.contrib import messages
-#import json
-#from django.http import HttpResponse
 
 from .models import Post, Comment
 from .forms import PostForm, PostDeleteForm, CommentForm, CommentRemoveForm
+
+class JavaScriptView(TemplateView):
+    def render_to_response(self, context, **response_kwargs):
+        response_kwargs['content_type'] = "application/javascript"
+        return super(JavaScriptView, self).render_to_response(
+            context, **response_kwargs)
+
+posts_load_script = JavaScriptView.as_view(template_name="blog/posts_load_script.js")
 
 class PostList(ListView): 
     model = Post               
     fields = "__all__"
     success_url = reverse_lazy("list")
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(PostList, self).get_context_data(**kwargs)
@@ -25,7 +33,23 @@ class PostList(ListView):
             content = self.request.session.pop('post_form_content','')
             initial = {'title': title, 'content': content }
         context["post_form"] = PostForm(initial)
+        #context["object_list"] = None #for testing
         return context
+
+
+def post_list_json(request, page):
+    object_list = Post.objects.all()
+    paginator = Paginator(object_list, 5)
+    try:
+        page_obj = paginator.page(page)
+    except InvalidPage:
+        pass
+    context = {
+        "object_list": page_obj.object_list,
+        "page": page_obj,
+    }
+    template_name = 'blog/post_list.json'
+    return render(request, template_name, context, content_type='text/javascript')
 
 
 class PostCreate(CreateView): 
@@ -106,6 +130,7 @@ class PostUpdate(TemplateView):
                 return super(PostUpdate, self).get(request, *args, **kwargs)
         else:
             return redirect(reverse("login"))
+
 
 class PostDelete(TemplateView):
     post = None

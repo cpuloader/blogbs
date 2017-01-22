@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 
-{% block addplayerjs %}
+{% block js %}
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
         <script src="{% url 'player_script' %}"></script>
@@ -19,9 +19,9 @@
         <img src="{% static 'css/speaker-off.png' %}" style="width:20px;height:20px;"/>
       </th>
       <th>
-        <section> 
+        <section style="width:140px;"> 
           <span class="tooltip"></span> 
-          <div id="slider"></div>
+          <div id="slider" style="width:128px;left:5px;top:-6px;"></div>
         </section>  
       </th>
       <th>
