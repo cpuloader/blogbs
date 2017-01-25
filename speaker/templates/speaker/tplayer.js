@@ -1,23 +1,12 @@
 $(document).ready(function() {
 
   function playNext(domObj) {
-    var next_audio_elem = $(domObj).parents('.audiotracks-list-entry')
-                                   .next().find('audio').get(0);
-    if (next_audio_elem) {
-      var player = next_audio_elem.player;
-      // FIXME
-      // Only way to make play() work on Firefox is to wrap it in a
-      // setTimeout. Weird...
-      setTimeout($.proxy(player, 'play'), 0);
-    } else {
-      var pagination = $('.pagination');
-      var current = pagination.find('.active');
-      var next = current.next();
-      if (next.size()) {
-        var url = next.find('a').attr('href');
-        window.location = url + '?autoplay=true';
+      var autoNext = document.getElementById('auto-next').innerHTML;
+      if (autoNext == 'True') {
+          document.getElementById('submit-btn').click();
+      } else {
+          return;
       }
-    }
   }
 
   function setPlayingTitle(domObj) {

@@ -4,7 +4,7 @@
 <div class="blog-container">
   <div class="enter-text-to-say">
     <h3>{% trans "Введите текст и я его вам скажу." %}</h3>
-    <form class="post-form" method="post" action="{% url 'speaker' %}">
+    <form class="post-form" method="post" action="">
       {% csrf_token %}
       {% for field in form.hidden_fields %}
         {{ field }}

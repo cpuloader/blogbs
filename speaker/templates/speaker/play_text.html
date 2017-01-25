@@ -4,7 +4,8 @@
 <div class="blog-container">
     <div class="post">
       {% if text %}
-        <p>{{ post.text.text_to_say|linebreaksbr }}</p>
+        <div class="blog-content">{{ text.text_to_say|linebreaksbr }}</div>
+        <br>
         {% if text.file_to_play %}
             <div class="audiotracks-list-entry">
               <div class="track-details">
@@ -15,12 +16,13 @@
                   <source src="{{ text.file_to_play.url }}" type="{{ text.mimetype }}">
                 </audio>
               </div>
+              <div id="auto-next" style="display:none;">{{ text.auto_next }}</div>
             </div>    
         {% endif %} 
       {% else %} 
         <p>No text</p>
       {% endif %} 
-      <a class="btn btn-default" href="{% url 'speaker' %}">{% trans "Новый текст" %}</a>
+      <a class="btn btn-default" id="submit-btn" href="{% url 'speaker' autoplay=text.auto_next %}">{% trans "Новый текст" %}</a>
     </div>
     <br>
 </div>

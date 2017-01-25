@@ -71,7 +71,7 @@ class CommandReceiveView(View):
                             os.remove(filepath)
                             print('file deleted successfully')
                         except EnvironmentError:
-                            print('file error!!')
+                            print('file error!')
                             pass
                         '''
             except telepot.exception.TelegramError as err:

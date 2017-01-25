@@ -7,6 +7,6 @@ class SpeakForm(forms.ModelForm):
     class Meta:
     
         model = TextToSay
-        fields = ('text_to_say',)
+        fields = ('text_to_say', 'auto_next',)
         widgets = {'text': forms.Textarea}
 

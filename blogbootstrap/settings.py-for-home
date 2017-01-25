@@ -21,6 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASEFILE = os.environ['BASEFILE'] #'c:/sites/blogbs/bin/filetocopy.zip'
 BASETEXT = os.environ['BASETEXT'] #'c:/sites/blogbs/bin/basedict_w.dat'
 BASEWORDS = os.environ['BASEWORDS'] #'c:/sites/blogbs/bin/basedict_l.dat'
+MATWORDS = os.environ['MATWORDS'] #'c:/sites/blogbs/bin/mat_l.dat'
 
 TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN'] #'276099709:AAGgyarUgQRNcitxmg4Ex0ksQlrp-z3sSlI'
 

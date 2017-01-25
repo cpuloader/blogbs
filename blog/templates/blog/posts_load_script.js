@@ -15,23 +15,40 @@ var loadOnScroll = function() {
 };
 
 var loadItems = function() {
-    // If the next page doesn't exist, just quit now 
-    //console.log(document.getElementById('no-posts'));
     if (hasNextPage == false||document.getElementById('no-posts') !== null) {
         return false
     }
-    // Update the page number
+
+    var loadSign = document.createElement("div");
+    loadSign.style.position = "absolute";
+    loadSign.style.backgroundColor = "#AAAAAA";
+    loadSign.style.display = "block";
+    loadSign.style.width = "100px"
+    loadSign.style.top = window.pageYOffset - 80;
+    loadSign.style.left = document.documentElement.clientWidth / 2 - 50 + "px";
+    loadSign.zIndex = "11";
+    var loadText = document.createElement("p");
+    loadText.innerHTML = "Loading...";
+    loadText.style.margin = "20px";
+    loadSign.append(loadText);
+    $(".bloglist").append(loadSign);
+    function animateLoad() {
+        loadText.innerHTML = "Loading";
+        setTimeout(function() { loadText.innerHTML = "Loading."; }, 200);
+        setTimeout(function() { loadText.innerHTML = "Loading.."; }, 400);
+        setTimeout(function() { loadText.innerHTML = "Loading..."; }, 600);
+    }
+    loadingNext = setInterval(function() {animateLoad();}, 800);
     pageNum = pageNum + 1;
-    // Configure the url we're about to hit
+
     var url = baseUrl + "json/" + pageNum + '/';
     $.ajax({
         url: url, 
         dataType: 'json',
         success: function(data) {
-            // Update global next page variable
+            clearInterval(loadingNext);
+            loadSign.parentNode.removeChild(loadSign);
             hasNextPage = data.hasNext;
-            //console.log(hasNextPage);
-            // Loop through all items
             var firstPost = document.querySelector(".blogpost");
             $.each(data.itemList, function(index, item) {
                 var newPost = firstPost.cloneNode(true);
@@ -56,15 +73,13 @@ var loadItems = function() {
                 else { 
                     newPost.querySelector(".comments-count").innerHTML = 'Комментариев нет.';
                 }
-                //newPost.querySelector(".author-pk").innerHTML = item.author;
                 $('.bloglist').append(newPost);
             });
         },
         complete: function(data, textStatus){
-            // Turn the scroll monitor back on
             $(window).bind('scroll', loadOnScroll);
         },
-        error: function(xhr,errmsg,err) {
+        error: function(xhr, errmsg, err) {
             //console.log(xhr.status + ": " + errmsg + ": "+ xhr.responseText);
         }
     });

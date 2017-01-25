@@ -21,8 +21,9 @@ class JavaScriptView(TemplateView):
 tplayer_script = JavaScriptView.as_view(template_name="speaker/tplayer.js")
 pretext_script = JavaScriptView.as_view(template_name="speaker/pretext.js")
 
-def enter_new_text(request):
+def enter_new_text(request, autoplay):
     all_texts = TextToSay.objects.all()
+    auto_next = False
     if all_texts:
         #basedir = os.path.split(settings.BASEFILE)[0]
         for text in all_texts:
@@ -52,7 +53,11 @@ def enter_new_text(request):
             os.remove(fullpath)
             return redirect('play_text', pk=text.pk)
     else:
-        form = SpeakForm(initial = { 'text_to_say': make_text() })
+        if autoplay == "False":
+            auto_next = False
+        elif autoplay == "True":
+            auto_next = True
+        form = SpeakForm(initial = { 'text_to_say': make_text(), 'auto_next' : auto_next })
     return render(request, 'speaker/enter_text.html', {'form' : form})
 
 def play_new_text(request, pk):

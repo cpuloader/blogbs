@@ -8,6 +8,7 @@ class TextToSay(models.Model):
     text_to_say = models.TextField(max_length=800, verbose_name=_(u'Текст'))
     file_to_play = models.FileField(upload_to='speaker_mp3s')
     expires = models.DateTimeField(default=datetime.now, verbose_name=_(u'Действует до'))
+    auto_next = models.BooleanField(default=False, blank=False, verbose_name=_(u'Зациклить'));
 
     def __unicode__(self):
         return self.text_to_say[0:10] + '..'

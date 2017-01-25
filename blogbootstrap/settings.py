@@ -21,6 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASEFILE = os.environ['BASEFILE']
 BASETEXT = os.environ['BASETEXT']
 BASEWORDS = os.environ['BASEWORDS']
+MATWORDS = os.environ['MATWORDS']
 
 TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
 

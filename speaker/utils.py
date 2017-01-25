@@ -8,7 +8,7 @@ def load(filename):
         fh = open(filename, "rb")
         data = cPickle.load(fh)
     except (EnvironmentError, cPickle.UnpicklingError) as err:
-        raise LoadError(str(err))
+        print("{0}: file load error: {1}".format(filename, err))
     finally:
         if fh is not None:
             fh.close()

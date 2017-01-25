@@ -2,8 +2,6 @@ $(document).ready(function() {
 
 "use strict";
 
-//var pk = $(".player-container").attr("id").slice(-1);
-//console.log(pk);
 
 $('#comment-form').on('submit', function(event){
     event.preventDefault();
