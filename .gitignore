@@ -1,9 +1,12 @@
 *.pyc
 __pycache__
-**/migrations
+db.sqlite3
 run_env.bat
+run_env35.bat
 admin.txt
 req.txt
 envvars.txt
 bin/
 media/
+*.*home
+*.*pcany

@@ -16,6 +16,9 @@ class Picture(models.Model):
     def __unicode__(self):
         return self.title
 
+    def __str__(self):
+        return self.title
+
     def save(self, *args, **kwargs):
         try:
             this_record = Picture.objects.get(pk = self.pk)

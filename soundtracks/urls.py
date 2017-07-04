@@ -15,5 +15,4 @@ urlpatterns = [
     url(r'^comment/(?P<pk>\d+)/remove/$', permission_required("soundtracks.delete_trackcomment")(CommentDelete.as_view()), name='track_comment_delete'),
     url(r'^player.js$', player_script, name='player_script'),
     url(r'^comments.js$', player_comments, name='comments_script'),
-
 ]

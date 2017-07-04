@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Track, TrackComment
 
 def file_size(value):
-    limit = 5 * 1024 * 1024
+    limit = 500 * 1024 * 1024
     if value.size > limit:
         raise ValidationError(u'Размер файла превышает 5Мб.')
 

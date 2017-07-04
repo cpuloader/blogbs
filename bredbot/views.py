@@ -8,19 +8,20 @@ from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonRespo
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-#from django.conf import settings
+from django.conf import settings
 
 import blogbootstrap.settings as settings
 from .utils import help_text, make_text, get_picture, show_smile
 
+if not settings.DEBUG:
+  proxy_url = "http://proxy.server:3128"
+  telepot.api._pools = {
+      'default': urllib3.ProxyManager(proxy_url=proxy_url, num_pools=3, maxsize=10, retries=False, timeout=30),
+  }
+  telepot.api._onetime_pool_spec = (urllib3.ProxyManager, proxyname, dict(num_pools=1, maxsize=1, retries=False, timeout=30))
+
 TelegramBot = telepot.Bot(settings.TELEGRAM_BOT_TOKEN)
 
-
-#def _display_help():
-#    return render_to_string('help.md')
-
-#def _display_planetpy_feed():
-#    return render_to_string('feed.md', {'items': parse_planetpy_rss()})
 
 
 class CommandReceiveView(View):

@@ -43,9 +43,23 @@ class TrackDetail(DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
-        self.track = Track.objects.get(pk = self.kwargs["pk"])
-        redirect_url = reverse("track_list")
-        return redirect(redirect_url)    
+        return redirect(reverse("track_list"))    
+"""
+def track_create(request): 
+    if request.method == 'POST':
+        track_form = TrackForm(request.POST, request.FILES)
+        if track_form.is_valid():
+            track.form.author = request.user
+            track_form.save()
+            return redirect(reverse('track_list'))
+        else:
+            messages.error(request, u'Что-то неправильно.')
+    else:
+        track_form = TrackForm()
+    return render(request, 'soundtracks/track_add.html', {
+        'form': track_form
+    })
+"""
 
 class TrackCreate(CreateView): 
     model = Track

@@ -16,6 +16,9 @@ class UserExtraFields(models.Model):
     
     def __unicode__(self):
         return self.baseuser.username
+
+    def __str__(self):
+        return self.baseuser.username
     
     def getPicture(self):
         if self.picture:

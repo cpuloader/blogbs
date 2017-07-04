@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="blog-container">
-<form enctype="multipart/form-data" class="post-form" method="post" action="{% url 'track_add' %}">
+<form enctype="multipart/form-data" class="post-form" method="post" name="sound-form" action="{% url 'track_add' %}">
 {% csrf_token %}
 {% for field in form.hidden_fields %}
   {{ field }}
@@ -67,6 +67,11 @@
 
 #id_text {
     width:100%;
+}
+#progress-bar {
+    width:0px;
+    height:10px;
+    background-color: blue;
 }
 </style>
 <script>

@@ -13,17 +13,17 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-# coding utf-8
+
 import os
 from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-BASEFILE = os.environ['BASEFILE']
-BASETEXT = os.environ['BASETEXT']
-BASEWORDS = os.environ['BASEWORDS']
-MATWORDS = os.environ['MATWORDS']
+BASEFILE = os.environ['BASEFILE'] #'c:/sites/blogbs/bin/filetocopy.zip'
+BASETEXT = os.environ['BASETEXT'] #'c:/sites/blogbs/bin/basedict_w.dat'
+BASEWORDS = os.environ['BASEWORDS'] #'c:/sites/blogbs/bin/basedict_l.dat'
+MATWORDS = os.environ['MATWORDS'] #'c:/sites/blogbs/bin/mat_l.dat'
 
-TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
+TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN'] #'276099709:AAGgyarUgQRNcitxmg4Ex0ksQlrp-z3sSlI'
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -31,14 +31,13 @@ LOGIN_REDIRECT_URL = '/'
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+#SECRET_KEY = '1f5$aczt14((1u^$bz)$rp7(&!)4y_(nt9d1olzw1m7ayvpq1o'
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['cpuloader.pythonanywhere.com']
-
-SECURE_SSL_REDIRECT = True
+ALLOWED_HOSTS = ['127.0.0.1:8000']
 
 # Application definition
 
@@ -54,7 +53,6 @@ INSTALLED_APPS = (
     'carousel',
     'soundtracks',
     'tempurls',
-    'anymail',
     'speaker',
     'bredbot',
     'uprofile',
@@ -63,7 +61,6 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -97,20 +94,27 @@ WSGI_APPLICATION = 'blogbootstrap.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cpuloader$blogbs',
-        'USER': 'cpuloader',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'blogbs1',
+        'USER': 'undead',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
         'PASSWORD':'volosatiy0',
-        'HOST': 'cpuloader.mysql.pythonanywhere-services.com', 
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+          'autocommit': True,
         },
     }
 }
-
+'''
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -143,12 +147,16 @@ MEDIA_URL = '/media/'
 
 SITE_ID = 1
 
-ANYMAIL = {
-    "MAILGUN_API_KEY": "key-8668f638ba7f7229bbc457863d303ca2",
-    "MAILGUN_SENDER_DOMAIN": 'sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org',
-}
 
-DEFAULT_FROM_EMAIL = "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org"
-EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+ADMINS = (("bols", "bols@mail.ru"),)
+MANAGERS = (("bols", "bols@mail.ru"),)
+
+EMAIL_HOST = "smtp.mail.ru"
+EMAIL_HOST_USER = "bols@mail.ru"
+EMAIL_HOST_PASSWORD = "shestnadsatsisek"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Bols <bols@mail.ru>"
+
 
 

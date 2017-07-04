@@ -22,6 +22,9 @@ class Track(models.Model):
     def __unicode__(self):
         return self.title
 
+    def __str__(self):
+        return self.title
+
     def get_absolute_url(self):
         return reverse('track_detail', kwargs = {'pk': self.pk})
 
@@ -65,6 +68,12 @@ class TrackComment(models.Model):
         ordering = ['datetime']
 
     def __unicode__(self):
+        if len(self.content) > 20:
+            return self.content[:20] + '..'
+        else:
+            return self.content
+
+    def __str__(self):
         if len(self.content) > 20:
             return self.content[:20] + '..'
         else:

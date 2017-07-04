@@ -41,7 +41,7 @@ def enter_new_text(request, autoplay):
             text = form.save(commit=False)
             tts = gTTS(text=text.text_to_say, lang='ru')
             dirpath = os.path.join(settings.MEDIA_ROOT, 'speaker_mp3s')
-            filename = hashlib.sha1(str(random.random())).hexdigest()[:5] + '.mp3'
+            filename = hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:5] + '.mp3'
             fullpath = os.path.join(dirpath, filename)
             tts.save(fullpath)
             f = open(fullpath, 'rb')

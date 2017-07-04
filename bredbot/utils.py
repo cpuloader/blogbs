@@ -1,12 +1,13 @@
 # coding: utf-8
-from pymarkov import markov
+
 import os, random
-import cPickle
+import pickle
 import requests
 import hashlib
 
 import blogbootstrap.settings as settings
 
+from . import markov
 
 def help_text():
     return "Privet! I'm Breditel."
@@ -15,8 +16,8 @@ def load(filename):
     data = None
     try:
         fh = open(filename, "rb")
-        data = cPickle.load(fh)
-    except (EnvironmentError, cPickle.UnpicklingError) as err:
+        data = pickle.load(fh)
+    except (EnvironmentError, pickle.UnpicklingError) as err:
         print("{0}: file load error: {1}".format(filename, err))
     finally:
         if fh is not None:

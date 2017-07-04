@@ -13,6 +13,9 @@ class TextToSay(models.Model):
     def __unicode__(self):
         return self.text_to_say[0:10] + '..'
 
+    def __str__(self):
+        return self.text_to_say[0:10] + '..'
+
     def delete(self, *args, **kwargs):
         if self.file_to_play is not None:
             mp3_storage, mp3_path = self.file_to_play.storage, self.file_to_play.path

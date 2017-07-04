@@ -1,13 +1,14 @@
-import cPickle
-from pymarkov import markov
+import pickle
 import blogbootstrap.settings as settings
+
+import bredbot.markov as markov
 
 def load(filename):
     data = None
     try:
         fh = open(filename, "rb")
-        data = cPickle.load(fh)
-    except (EnvironmentError, cPickle.UnpicklingError) as err:
+        data = pickle.load(fh)
+    except (EnvironmentError, pickle.UnpicklingError) as err:
         print("{0}: file load error: {1}".format(filename, err))
     finally:
         if fh is not None:

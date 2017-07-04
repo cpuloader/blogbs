@@ -19,6 +19,9 @@ class Post(models.Model):
     def __unicode__(self):
         return self.title
 
+    def __str__(self):
+        return self.title
+
     def get_absolute_url(self):
         return reverse('post_detail', kwargs = {'pk': self.pk})
 
@@ -36,6 +39,12 @@ class Comment(models.Model):
         #verbose_name_plural = u'комментарии блога'
 
     def __unicode__(self):
+        if len(self.content) > 20:
+            return self.content[:20] + '..'
+        else:
+            return self.content
+
+    def __str__(self):
         if len(self.content) > 20:
             return self.content[:20] + '..'
         else:
