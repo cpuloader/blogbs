@@ -149,12 +149,12 @@ MEDIA_URL = '/media/'
 
 SITE_ID = 1
 
-ANYMAIL = {
-    "MAILGUN_API_KEY": os.environ['MAILGUN_API_KEY'],
-    "MAILGUN_SENDER_DOMAIN": os.environ['MAILGUN_SENDER_DOMAIN'],
-}
+#ANYMAIL = {
+#    "MAILGUN_API_KEY": os.environ['MAILGUN_API_KEY'],
+#    "MAILGUN_SENDER_DOMAIN": os.environ['MAILGUN_SENDER_DOMAIN'],
+#}
 
-DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
+#DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
 #EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 
 
