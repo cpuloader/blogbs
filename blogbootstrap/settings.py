@@ -155,6 +155,6 @@ ANYMAIL = {
 }
 
 DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
-EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+#EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 
 

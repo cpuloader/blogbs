@@ -8,5 +8,6 @@ req.txt
 envvars.txt
 bin/
 media/
-*.*home
-*.*pcany
+**/*.*home
+**/*.*pcany
+real_requirements.txt
