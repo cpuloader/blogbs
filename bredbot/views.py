@@ -13,16 +13,19 @@ from django.conf import settings
 import blogbootstrap.settings as settings
 from .utils import help_text, make_text, get_picture, show_smile
 
-#if not settings.DEBUG:
-#  import urllib3
+if not settings.DEBUG:
+  import urllib3
 
-#  proxyname = "http://proxy.server:3128"
-#  telepot.api._pools = {
-#      'default': urllib3.ProxyManager(proxy_url=proxyname, num_pools=3, maxsize=10, retries=False, timeout=30),
-#  }
-#  telepot.api._onetime_pool_spec = (urllib3.ProxyManager, proxyname, dict(num_pools=1, maxsize=1, retries=False, timeout=30))
+  proxyname = "http://proxy.server:3128"
+  telepot.api._pools = {
+      'default': urllib3.ProxyManager(proxy_url=proxyname, num_pools=3, maxsize=10, retries=False, timeout=30),
+  }
+  telepot.api._onetime_pool_spec = (urllib3.ProxyManager, dict(proxy_url=proxyname, num_pools=1, maxsize=1, retries=False, timeout=30))
 
 TelegramBot = telepot.Bot(settings.TELEGRAM_BOT_TOKEN)
+secret = "2c3801bd-0f82-4198-801c-a20a264c267e"
+bot = telepot.Bot('YOUR_AUTHORIZATION_TOKEN')
+bot.setWebhook("https://cpuloader.pythonanywhere.com/{}".format(secret), max_connections=1)
 
 
 
