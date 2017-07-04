@@ -150,11 +150,11 @@ MEDIA_URL = '/media/'
 SITE_ID = 1
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": "key-8668f638ba7f7229bbc457863d303ca2",
-    "MAILGUN_SENDER_DOMAIN": 'sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org',
+    "MAILGUN_API_KEY": os.environ['MAILGUN_API_KEY'],
+    "MAILGUN_SENDER_DOMAIN": os.environ['MAILGUN_SENDER_DOMAIN'],
 }
 
-DEFAULT_FROM_EMAIL = "postmaster@sandbox3debeca907c54d94bd4edc1548d5f2d3.mailgun.org"
+DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
 EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 
 
