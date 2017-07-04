@@ -1,14 +1,14 @@
 # -*- coding: utf8 -*-
 
 import json
-import os, random
+import os, random, sys
 import telepot
+import logging
 #from django.template.loader import render_to_string
 from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonResponse
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-from django.conf import settings
 
 import blogbootstrap.settings as settings
 from .utils import help_text, make_text, get_picture, show_smile
@@ -23,15 +23,17 @@ if not settings.DEBUG:
   telepot.api._onetime_pool_spec = (urllib3.ProxyManager, dict(proxy_url=proxyname, num_pools=1, maxsize=1, retries=False, timeout=30))
 
 TelegramBot = telepot.Bot(settings.TELEGRAM_BOT_TOKEN)
-secret = "2c3801bd-0f82-4198-801c-a20a264c267e"
-bot = telepot.Bot('YOUR_AUTHORIZATION_TOKEN')
-bot.setWebhook("https://cpuloader.pythonanywhere.com/{}".format(secret), max_connections=1)
+#print('GET ME!',TelegramBot.getMe())
+#TelegramBot.deleteWebhook()
+#TelegramBot.setWebhook('https://cpuloader.pythonanywhere.com/bredbot/bot/{token}/'.format(token=settings.TELEGRAM_BOT_TOKEN))
 
-
+logger = logging.getLogger('telegram.bot')
 
 class CommandReceiveView(View):
     def post(self, request, bot_token):
         if bot_token != settings.TELEGRAM_BOT_TOKEN:
+            #sys.stderr.write('Invalid token')
+            print('Invalid request body')
             return HttpResponseForbidden('Invalid token')
 
         commands = {
@@ -41,11 +43,15 @@ class CommandReceiveView(View):
         }
 
         raw = request.body.decode('utf-8')
+        #sys.stderr.write(raw)
+        #print(raw)
         #logger.info(raw)
 
         try:
             payload = json.loads(raw)
         except ValueError:
+            #sys.stderr.write('Invalid request body')
+            print('Invalid request body')
             return HttpResponseBadRequest('Invalid request body')
         else:
             try:
@@ -61,7 +67,10 @@ class CommandReceiveView(View):
                 else:
                     func = None
                     ans_words = []
-            except AttributeError: pass
+            except AttributeError:
+                #sys.stderr.write('Attribute Error')
+                print('Attribute Error')
+                pass
             try:
                 if func:
                     TelegramBot.sendMessage(chat_id, func(), parse_mode='Markdown')
@@ -81,7 +90,8 @@ class CommandReceiveView(View):
                             pass
                         '''
             except telepot.exception.TelegramError as err:
-                print(err)
+                #sys.stderr.write(err)
+                print('TelegramError', err)
                 pass
         return JsonResponse({}, status=200)
 

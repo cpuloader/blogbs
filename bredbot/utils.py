@@ -31,8 +31,8 @@ def add_emojies(out):
     emojies = []
     with open(fullpath, 'r', ) as emoj_file:
         for emoj in emoj_file:
-            emojies.append(emoj.decode('unicode_escape').strip())
-    for emoj in xrange(random.randint(0, 3)):
+            emojies.append(emoj)
+    for emoj in range(random.randint(0, 3)):
         insert_place = random.randint(0, len(out))
         out.insert(insert_place, random.choice(emojies))
     return out
@@ -71,7 +71,7 @@ def make_text(ans_words=[]):
     i = 0
     j = 0
     signs = u'ьъ'
-    
+
     for word in out:
         if word[0].isupper():
             j = 0
@@ -118,5 +118,5 @@ def show_smile():
         u'\U0001F605', u'\U0001F606', u'\U0001F60A', u'\U0001F60B', u'\U0001F60E',
         u'\U0001F60D', u'\U0001F618', u'\U0001F617', u'\U0001F619', u'\U0001F61A']
     out = " ".join(s)
-    a = '\U0001F60D'
-    return a.decode('unicode_escape')
+    a = u'\U0001F60D'
+    return a#.decode('unicode_escape')
