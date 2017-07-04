@@ -18,7 +18,7 @@ if not settings.DEBUG:
 
   proxyname = "http://proxy.server:3128"
   telepot.api._pools = {
-      'default': urllib3.ProxyManager(proxy_url=proxy_url, num_pools=3, maxsize=10, retries=False, timeout=30),
+      'default': urllib3.ProxyManager(proxy_url=proxyname, num_pools=3, maxsize=10, retries=False, timeout=30),
   }
   telepot.api._onetime_pool_spec = (urllib3.ProxyManager, proxyname, dict(num_pools=1, maxsize=1, retries=False, timeout=30))
 
