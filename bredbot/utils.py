@@ -31,7 +31,7 @@ def add_emojies(out):
     emojies = []
     with open(fullpath, 'r', ) as emoj_file:
         for emoj in emoj_file:
-            emojies.append(emoj)
+            emojies.append(bytes(emoj, "ascii").decode("unicode_escape"))
     for emoj in range(random.randint(0, 3)):
         insert_place = random.randint(0, len(out))
         out.insert(insert_place, random.choice(emojies))
