@@ -14,6 +14,8 @@ import blogbootstrap.settings as settings
 from .utils import help_text, make_text, get_picture, show_smile
 
 if not settings.DEBUG:
+  import urllib3
+
   proxy_url = "http://proxy.server:3128"
   telepot.api._pools = {
       'default': urllib3.ProxyManager(proxy_url=proxy_url, num_pools=3, maxsize=10, retries=False, timeout=30),
