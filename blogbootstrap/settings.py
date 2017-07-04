@@ -54,7 +54,7 @@ INSTALLED_APPS = (
     'carousel',
     'soundtracks',
     'tempurls',
-    'anymail',
+    #'anymail',
     'speaker',
     'bredbot',
     'uprofile',
