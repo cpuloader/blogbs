@@ -22,6 +22,7 @@ BASEFILE = os.environ['BASEFILE']
 BASETEXT = os.environ['BASETEXT']
 BASEWORDS = os.environ['BASEWORDS']
 MATWORDS = os.environ['MATWORDS']
+ANECS_DATA = os.environ['ANECS_DATA']
 
 TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
 

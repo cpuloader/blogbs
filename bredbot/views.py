@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 import blogbootstrap.settings as settings
-from .utils import help_text, make_text, get_picture, show_smile
+from .utils import help_text, make_text, get_picture, show_smile, tell_anecdote
 
 if not settings.DEBUG:
   import urllib3
@@ -40,17 +40,16 @@ class CommandReceiveView(View):
             '/start': help_text,
             'help': help_text,
             'smile' : show_smile,
+            'anec' : tell_anecdote
         }
 
         raw = request.body.decode('utf-8')
-        #sys.stderr.write(raw)
         #print(raw)
         #logger.info(raw)
 
         try:
             payload = json.loads(raw)
         except ValueError:
-            #sys.stderr.write('Invalid request body')
             print('Invalid request body')
             return HttpResponseBadRequest('Invalid request body')
         else:
@@ -68,7 +67,6 @@ class CommandReceiveView(View):
                     func = None
                     ans_words = []
             except AttributeError:
-                #sys.stderr.write('Attribute Error')
                 print('Attribute Error')
                 pass
             try:
@@ -90,7 +88,6 @@ class CommandReceiveView(View):
                             pass
                         '''
             except telepot.exception.TelegramError as err:
-                #sys.stderr.write(err)
                 print('TelegramError', err)
                 pass
         return JsonResponse({}, status=200)

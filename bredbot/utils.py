@@ -15,6 +15,7 @@ def help_text():
 def load(filename):
     data = None
     try:
+        fh = None
         fh = open(filename, "rb")
         data = pickle.load(fh)
     except (EnvironmentError, pickle.UnpicklingError) as err:
@@ -120,3 +121,16 @@ def show_smile():
     out = " ".join(s)
     a = u'\U0001F60D'
     return a#.decode('unicode_escape')
+
+def tell_anecdote():
+    try:
+        fh = None
+        fh = open(settings.ANECS_DATA, 'r', encoding='utf8')
+        data = fh.read()
+    except EnvironmentError as err:
+        print("{0}: file load error: {1}".format(settings.ANECS_DATA, err))
+    finally:
+        if fh is not None:
+            fh.close()
+    anecs = data.split('|')
+    return random.choice(anecs)
