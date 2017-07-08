@@ -10,7 +10,8 @@ from django.core.files.base import File as DjangoFile
 import blogbootstrap.settings as settings
 from .models import TextToSay
 from .forms import SpeakForm
-from .utils import make_text
+#from .utils import make_text
+from bredbot.utils import tell_anecdote
 
 class JavaScriptView(TemplateView):
     def render_to_response(self, context, **response_kwargs):
@@ -56,8 +57,8 @@ def enter_new_text(request, autoplay):
         if autoplay == "False":
             auto_next = False
         elif autoplay == "True":
-            auto_next = True
-        form = SpeakForm(initial = { 'text_to_say': make_text(), 'auto_next' : auto_next })
+            auto_next = True                        #or make_text()
+        form = SpeakForm(initial = { 'text_to_say': tell_anecdote().strip(), 'auto_next' : auto_next })
     return render(request, 'speaker/enter_text.html', {'form' : form})
 
 def play_new_text(request, pk):
