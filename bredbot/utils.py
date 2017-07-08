@@ -10,7 +10,9 @@ import blogbootstrap.settings as settings
 from . import markov
 
 def help_text():
-    return "Privet! I'm Breditel."
+    return u"Привет! Я Бредитель. \n На любой текст отвечаю сгенерированным случайным текстом.\n \
+             Команды:\n'жги' или 'хопа' - отвечу матом.\n'анек' - расскажу анекдот, \
+             сгенерированный нейросетью."
 
 def load(filename):
     data = None
