@@ -40,7 +40,8 @@ class CommandReceiveView(View):
             '/start': help_text,
             'help': help_text,
             'smile' : show_smile,
-            'anec' : tell_anecdote
+            'anec' : tell_anecdote,
+            u'анек' : tell_anecdote
         }
 
         raw = request.body.decode('utf-8')
