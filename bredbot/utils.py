@@ -37,7 +37,7 @@ def add_emojies(out):
             emojies.append(bytes(emoj, "ascii").decode("unicode_escape"))
     for emoj in range(random.randint(0, 3)):
         insert_place = random.randint(0, len(out))
-        out.insert(insert_place, random.choice(emojies))
+        out.insert(insert_place, random.choice(emojies)[:-1])
     return out
 
 def make_text(ans_words=[]):
