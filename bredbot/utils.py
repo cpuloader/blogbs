@@ -136,3 +136,16 @@ def tell_anecdote():
             fh.close()
     anecs = data.split('|')
     return random.choice(anecs)
+
+def tell_anecdote2():
+    try:
+        fh = None
+        fh = open(settings.ANECS_DATA2, 'r', encoding='utf8')
+        data = fh.read()
+    except EnvironmentError as err:
+        print("{0}: file load error: {1}".format(settings.ANECS_DATA2, err))
+    finally:
+        if fh is not None:
+            fh.close()
+    anecs = data.split('|')
+    return random.choice(anecs)

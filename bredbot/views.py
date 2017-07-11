@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 import blogbootstrap.settings as settings
-from .utils import help_text, make_text, get_picture, show_smile, tell_anecdote
+from .utils import help_text, make_text, get_picture, show_smile, tell_anecdote, tell_anecdote2
 
 if not settings.DEBUG:
   import urllib3
@@ -40,7 +40,7 @@ class CommandReceiveView(View):
             '/start': help_text,
             'help': help_text,
             'smile' : show_smile,
-            'anec' : tell_anecdote,
+            'anec' : tell_anecdote2,
             u'анек' : tell_anecdote
         }
 
