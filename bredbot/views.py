@@ -41,7 +41,8 @@ class CommandReceiveView(View):
             'help': help_text,
             'smile' : show_smile,
             'anec' : tell_anecdote2,
-            u'анек' : tell_anecdote
+            u'анек' : tell_anecdote,
+            'picture' : make_picture
         }
 
         raw = request.body.decode('utf-8')
@@ -57,9 +58,11 @@ class CommandReceiveView(View):
             try:
                 chat_id = payload['message']['chat']['id']
                 cmd = payload['message'].get('text')
+                msg_id = payload['message']['message_id']
             except KeyError:
                 chat_id = None
                 cmd = None
+                msg_id = None
             try:
                 if cmd:
                     func = commands.get(cmd.split()[0].lower())
@@ -71,25 +74,25 @@ class CommandReceiveView(View):
                 print('Attribute Error')
                 pass
             try:
-                if func:
-                    TelegramBot.sendMessage(chat_id, func(), parse_mode='Markdown')
-                else:
-                    if chat_id:
-                        TelegramBot.sendMessage(chat_id, make_text(ans_words=ans_words))
-                        '''
-                        filepath = get_picture()
-                        file = open(filepath, 'rb')
-                        TelegramBot.sendPhoto(chat_id, file)
-                        file.close()
+                if func and msg_id:
+                    if func == make_picture:
+                        filepath = make_picture(msg_id)
                         try:
+                            file = open(filepath, 'rb')
+                            TelegramBot.sendPhoto(chat_id, file)
+                            file.close()
                             os.remove(filepath)
                             print('file deleted successfully')
                         except EnvironmentError:
                             print('file error!')
                             pass
-                        '''
+                    else:
+                        TelegramBot.sendMessage(chat_id, func(), parse_mode='Markdown')
+                else:
+                    if chat_id:
+                        TelegramBot.sendMessage(chat_id, make_text(ans_words=ans_words))
             except telepot.exception.TelegramError as err:
-                print('TelegramError', err)
+                print('TelepotError', err)
                 pass
         return JsonResponse({}, status=200)
 

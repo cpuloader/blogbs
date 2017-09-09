@@ -24,6 +24,7 @@ BASEWORDS = os.environ['BASEWORDS']
 MATWORDS = os.environ['MATWORDS']
 ANECS_DATA = os.environ['ANECS_DATA']
 ANECS_DATA2 = os.environ['ANECS_DATA2']
+DEFAULT_PIC = 'pic.jpg'
 
 TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
 
