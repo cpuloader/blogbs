@@ -11,3 +11,4 @@ media/
 **/*.*home
 **/*.*pcany
 real_requirements.txt
+telegram.log

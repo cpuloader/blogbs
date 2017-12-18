@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 import blogbootstrap.settings as settings
-from .utils import help_text, make_text, get_picture, show_smile, tell_anecdote, tell_anecdote2
+from .utils import help_text, make_text, get_picture, show_smile, tell_anecdote, tell_anecdote2, make_picture
 
 if not settings.DEBUG:
   import urllib3
@@ -47,7 +47,8 @@ class CommandReceiveView(View):
 
         raw = request.body.decode('utf-8')
         #print(raw)
-        #logger.info(raw)
+        #sys.stderr.write(raw)
+        logger.info(raw)
 
         try:
             payload = json.loads(raw)
@@ -56,9 +57,14 @@ class CommandReceiveView(View):
             return HttpResponseBadRequest('Invalid request body')
         else:
             try:
-                chat_id = payload['message']['chat']['id']
-                cmd = payload['message'].get('text')
-                msg_id = payload['message']['message_id']
+                if payload.get('channel_post'):
+                    chat_id = payload['channel_post']['chat']['id']
+                    cmd = payload['channel_post'].get('text')
+                    msg_id = payload['channel_post']['message_id']
+                else:
+                    chat_id = payload['message']['chat']['id']
+                    cmd = payload['message'].get('text')
+                    msg_id = payload['message']['message_id']
             except KeyError:
                 chat_id = None
                 cmd = None

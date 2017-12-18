@@ -12,7 +12,7 @@ from . import markov
 
 def help_text():
     return u"Привет! Я Бредитель. \n На любой текст отвечаю сгенерированным случайным текстом.\n \
-Команды:\n'жги' или 'хопа' - отвечу матом.\n'анек' - расскажу анекдот, \
+Команды:\n'жги' или 'хопа' - отвечу матом.\n'picture' - ругаюсь картинкой.\n'анек' - расскажу анекдот, \
 сгенерированный нейросетью."
 
 def load(filename):
@@ -151,7 +151,7 @@ def tell_anecdote2():
             fh.close()
     anecs = data.split('|')
     return random.choice(anecs)
-                                                      
+
 def make_picture(msg_id):
     MAX_LINE_LEN = 30
     main_pic_path = os.path.join(settings.BASE_DIR, 'bin', settings.DEFAULT_PIC)
@@ -162,10 +162,10 @@ def make_picture(msg_id):
         return generated_pic_path
     except EnvironmentError:
         pass
-    
+
     image = Image.open(main_pic_path)
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype("arial.ttf", 30)
+    font = ImageFont.truetype(os.path.join(settings.BASE_DIR, 'bin', 'arial.ttf'), 27)
     text = make_text([u'жги'], include=False).upper()
     words = text.split()
     lines = []
@@ -180,8 +180,8 @@ def make_picture(msg_id):
             lines.append(line.center(MAX_LINE_LEN))
 
     for i, line in enumerate(lines):
-        draw.text(((image.width - font.getsize(line)[0]) // 2, 
-           image.height // 10 * 9 - (len(lines) - 1) * 40 + i * 40), 
+        draw.text(((image.width - font.getsize(line)[0]) // 2,
+           image.height // 10 * 9 - (len(lines) - 1) * 40 + i * 40),
             line, font=font, fill=(234,196,6,255))
     del draw
     image.save(generated_pic_path, quality=95)

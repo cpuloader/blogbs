@@ -3,7 +3,7 @@ var KEYSTRING = "player-container";
 var allAudioDivs = $("div").filter("." + KEYSTRING);
 var wavesurfers = {};
 var id = [];
-var j=0;
+var j = 0;
 
 "use strict";
 
@@ -16,17 +16,24 @@ slider.slider({
     step: 2
 });
 
+function buildPeaks(pk) {
+    let peakStr = $('#peaks' + pk).text();
+    let peakData = peakStr.split(',');
+    return peakData;
+}
+
 for (var i=0; i < 100; i++) {          //counting player objects
     if (typeof allAudioDivs[i] !== "object" ) { break; }
     j++;
-    }
+}
 
 for (i = 0; i < j; i++) {
     id[i] = allAudioDivs[i].id;
     let pk = id[i].slice(KEYSTRING.length);
+
     wavesurfers[pk] = WaveSurfer.create({
         container: ("#" + id[i]),
-        //backend: 'MediaElement',
+        backend: 'MediaElement',
         //barWidth: 3,
         progressColor: "hsla(177, 82%, 30%, 0.5)",
         hideScrollbar: true
@@ -78,7 +85,7 @@ for (i = 0; i < j; i++) {
     );
 
     url = $("#" + id[i]).attr("src");
-    wavesurfers[pk].load(url);
+    wavesurfers[pk].load(url, buildPeaks(pk));
     wavesurfers[pk].setVolume(slider.slider('value') / 100);
 } //end of main for
 

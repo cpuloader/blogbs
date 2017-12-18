@@ -15,6 +15,7 @@ class Track(models.Model):
     text = models.TextField(verbose_name=_(u'Текст описания'))
     created_date = models.DateTimeField(default=timezone.now, db_index = True, editable=False, verbose_name=_(u'Дата'))
     soundtrack = models.FileField(upload_to='audio', verbose_name=_(u'Аудиофайл'),  blank=False)
+    peaks = models.TextField(blank=True)
 
     class Meta:
         ordering = ["-created_date"]
@@ -33,7 +34,8 @@ class Track(models.Model):
             this_record = Track.objects.get(pk = self.pk)
             if this_record.soundtrack != self.soundtrack:
                 this_record.soundtrack.delete(save = False)
-        except:
+        except Exception as err:
+            #print(err)
             pass
         super(Track, self).save(*args, **kwargs)
 

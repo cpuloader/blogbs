@@ -1,4 +1,5 @@
 # coding: utf-8
+from pydub import AudioSegment
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
@@ -9,6 +10,7 @@ from django.http import HttpResponse, JsonResponse
 
 from .models import Track, TrackComment
 from .forms import TrackForm, TrackDeleteForm, CommentForm, CommentDeleteForm
+from .utils import make_peaks
 from blog.views import JavaScriptView
 
 
@@ -43,7 +45,7 @@ class TrackDetail(DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
-        return redirect(reverse("track_list"))    
+        return redirect(reverse("track_list"))
 """
 def track_create(request): 
     if request.method == 'POST':
@@ -69,7 +71,11 @@ class TrackCreate(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        peaks = make_peaks(self.request.FILES.get('soundtrack'))
+        if peaks:
+            form.instance.peaks = peaks
         return super(TrackCreate, self).form_valid(form)
+
 
 class TrackDelete(TemplateView):
     model = Track
@@ -85,6 +91,7 @@ class TrackDelete(TemplateView):
             return redirect(redirect_url)
         else:
             return redirect(reverse("login"))
+
 
 class TrackUpdate(TemplateView):
     track = None
@@ -111,6 +118,9 @@ class TrackUpdate(TemplateView):
         if self.track.author == request.user or request.user.is_superuser:
             self.form = TrackForm(request.POST, request.FILES, instance = self.track)
             if self.form.is_valid():
+                peaks = make_peaks(request.FILES.get('soundtrack'))
+                if peaks:
+                    self.track.peaks = peaks
                 self.form.save()
                 redirect_url = reverse("track_detail", kwargs={"pk" : self.track.pk})
                 return redirect(redirect_url)
@@ -118,6 +128,7 @@ class TrackUpdate(TemplateView):
                 return super(TrackUpdate, self).get(request, *args, **kwargs)
         else:
             return redirect(reverse("login"))
+
 
 class CommentCreate(TemplateView):
     template_name = "soundtrack/comment_add.html"
@@ -143,6 +154,7 @@ class CommentCreate(TemplateView):
             redirect_url = reverse("track_detail", kwargs={"pk" : self.track_pk})
             return redirect(redirect_url)
 
+
 class CommentDelete(TemplateView):
     model = TrackComment
     form_class = CommentDeleteForm
@@ -151,7 +163,7 @@ class CommentDelete(TemplateView):
 
     def post(self, request, *args, **kwargs):
         self.comment = TrackComment.objects.get(pk = self.kwargs["pk"])
-        print(self.comment.author)
+        #print(self.comment.author)
         if self.comment.author == request.user or request.user.is_superuser:
             self.comment.delete()
             redirect_url = reverse("track_detail", kwargs={"pk" : self.comment.parent_track.pk})
