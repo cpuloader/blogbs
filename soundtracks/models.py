@@ -9,6 +9,7 @@ from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
+
 class Track(models.Model):
     author = models.ForeignKey(User, editable=False)
     title = models.CharField(max_length=200, verbose_name=_(u'Заголовок'))
@@ -16,6 +17,7 @@ class Track(models.Model):
     created_date = models.DateTimeField(default=timezone.now, db_index = True, editable=False, verbose_name=_(u'Дата'))
     soundtrack = models.FileField(upload_to='audio', verbose_name=_(u'Аудиофайл'),  blank=False)
     peaks = models.TextField(blank=True)
+    duration = models.FloatField(blank=True)
 
     class Meta:
         ordering = ["-created_date"]
@@ -30,11 +32,16 @@ class Track(models.Model):
         return reverse('track_detail', kwargs = {'pk': self.pk})
 
     def save(self, *args, **kwargs):
+        #soundfile = self.soundtrack.storage.path(self.soundtrack.name)
+        #print(soundfile)
+        #peaks = make_peaks(soundfile)
+        #if peaks:
+        #    self.peaks = peaks
         try:
             this_record = Track.objects.get(pk = self.pk)
             if this_record.soundtrack != self.soundtrack:
                 this_record.soundtrack.delete(save = False)
-        except Exception as err:
+        except Track.DoesNotExist:
             #print(err)
             pass
         super(Track, self).save(*args, **kwargs)

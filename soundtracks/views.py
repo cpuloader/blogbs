@@ -1,4 +1,5 @@
 # coding: utf-8
+import os
 from pydub import AudioSegment
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
@@ -10,9 +11,8 @@ from django.http import HttpResponse, JsonResponse
 
 from .models import Track, TrackComment
 from .forms import TrackForm, TrackDeleteForm, CommentForm, CommentDeleteForm
-from .utils import make_peaks
 from blog.views import JavaScriptView
-
+from .utils import make_peaks
 
 player_script = JavaScriptView.as_view(template_name="soundtracks/player.js")
 player_comments = JavaScriptView.as_view(template_name="soundtracks/comments.js")
@@ -46,13 +46,20 @@ class TrackDetail(DetailView):
 
     def post(self, request, *args, **kwargs):
         return redirect(reverse("track_list"))
-"""
+
 def track_create(request): 
     if request.method == 'POST':
         track_form = TrackForm(request.POST, request.FILES)
         if track_form.is_valid():
-            track.form.author = request.user
-            track_form.save()
+            instance = Track(author=request.user, 
+                             title=request.POST.get('title'),
+                             text=request.POST.get('text'),
+                             soundtrack=request.FILES.get('soundtrack'))
+            peaks, duration = make_peaks(request.FILES.get('soundtrack'))
+            if peaks:
+                instance.peaks = peaks
+                instance.duration = duration
+            instance.save()
             return redirect(reverse('track_list'))
         else:
             messages.error(request, u'Что-то неправильно.')
@@ -61,7 +68,7 @@ def track_create(request):
     return render(request, 'soundtracks/track_add.html', {
         'form': track_form
     })
-"""
+
 
 class TrackCreate(CreateView): 
     model = Track
@@ -71,9 +78,10 @@ class TrackCreate(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        peaks = make_peaks(self.request.FILES.get('soundtrack'))
+        peaks, duration = make_peaks(self.request.FILES.get('soundtrack'))
         if peaks:
             form.instance.peaks = peaks
+            form.instance.duration = duration
         return super(TrackCreate, self).form_valid(form)
 
 
@@ -118,9 +126,10 @@ class TrackUpdate(TemplateView):
         if self.track.author == request.user or request.user.is_superuser:
             self.form = TrackForm(request.POST, request.FILES, instance = self.track)
             if self.form.is_valid():
-                peaks = make_peaks(request.FILES.get('soundtrack'))
+                peaks, duration = make_peaks(request.FILES.get('soundtrack'))
                 if peaks:
-                    self.track.peaks = peaks
+                    self.form.instance.peaks = peaks
+                    self.form.instance.duration = duration
                 self.form.save()
                 redirect_url = reverse("track_detail", kwargs={"pk" : self.track.pk})
                 return redirect(redirect_url)

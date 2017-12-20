@@ -9,10 +9,9 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Track, TrackComment
 
 def file_size(value):
-    limit = 5 * 1024 * 1024
-    print(value, value.size)
+    limit = 150 * 1024 * 1024
     if value.size > limit:
-        raise ValidationError(u'Размер файла превышает 5Мб.')
+        raise ValidationError(u'Размер файла превышает 150Мб.')
 
 class TrackForm(forms.ModelForm):
     soundtrack = forms.FileField(required=True, label=u'Аудиофайл', validators=[file_size])
