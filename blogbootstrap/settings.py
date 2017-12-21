@@ -64,16 +64,16 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'blogbootstrap.urls'
@@ -184,14 +184,14 @@ LOGGING = {
             'formatter': 'verbose',
             'class': 'logging.StreamHandler'
         },
-        #'file_handler': {
-        #    'filename': os.path.join(BASE_DIR, 'logs', 'telegram.log'),
-        #    'class': 'logging.handlers.RotatingFileHandler',
-        #    'encoding': 'utf-8',
-        #    'formatter': 'verbose',
-        #    'maxBytes': 1024 * 1024 * 50,
-        #    'backupCount': 50,
-        #},
+        'file_handler': {
+            'filename': os.path.join(BASE_DIR, 'telegram.log'),
+            'class': 'logging.handlers.RotatingFileHandler',
+            'encoding': 'utf-8',
+            'formatter': 'verbose',
+            'maxBytes': 1024 * 1024 * 50,
+            'backupCount': 50,
+        },
     },
     'loggers': {
         'django.request': {
@@ -199,10 +199,10 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        #'telegram.bot': {
-        #    'handlers': ['file_handler'],
-        #    'level': 'INFO',
-        #    'propagate': False,
-        #},
+        'telegram.bot': {
+            'handlers': ['file_handler'],
+            'level': 'INFO',
+            'propagate': False,
+        },
     }
 }
