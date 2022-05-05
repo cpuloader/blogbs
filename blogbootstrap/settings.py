@@ -15,7 +15,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # coding utf-8
 import os
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 BASEFILE = os.environ['BASEFILE']
@@ -63,18 +63,15 @@ INSTALLED_APPS = (
     'uprofile',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
 
 ROOT_URLCONF = 'blogbootstrap.urls'
 
@@ -145,12 +142,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = ['staticfiles/']
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+DEBUGMEDIA = False
 
 SITE_ID = 1
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #ANYMAIL = {
 #    "MAILGUN_API_KEY": os.environ['MAILGUN_API_KEY'],
@@ -184,14 +185,14 @@ LOGGING = {
             'formatter': 'verbose',
             'class': 'logging.StreamHandler'
         },
-        'file_handler': {
-            'filename': os.path.join(BASE_DIR, 'telegram.log'),
-            'class': 'logging.handlers.RotatingFileHandler',
-            'encoding': 'utf-8',
-            'formatter': 'verbose',
-            'maxBytes': 1024 * 1024 * 50,
-            'backupCount': 50,
-        },
+        #'file_handler': {
+        #    'filename': os.path.join(BASE_DIR, 'logs', 'telegram.log'),
+        #    'class': 'logging.handlers.RotatingFileHandler',
+        #    'encoding': 'utf-8',
+        #    'formatter': 'verbose',
+        #    'maxBytes': 1024 * 1024 * 50,
+        #    'backupCount': 50,
+        #},
     },
     'loggers': {
         'django.request': {
@@ -199,10 +200,10 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'telegram.bot': {
-            'handlers': ['file_handler'],
-            'level': 'INFO',
-            'propagate': False,
-        },
+        #'telegram.bot': {
+        #    'handlers': ['file_handler'],
+        #    'level': 'INFO',
+        #    'propagate': False,
+        #},
     }
 }

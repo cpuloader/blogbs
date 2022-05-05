@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('text', models.TextField(verbose_name='Текст описания')),
                 ('created_date', models.DateTimeField(verbose_name='Дата', default=django.utils.timezone.now, editable=False, db_index=True)),
                 ('soundtrack', models.FileField(verbose_name='Аудиофайл', upload_to='audio')),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, editable=False)),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, editable=False, on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['-created_date'],
@@ -34,8 +34,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
                 ('content', models.TextField(verbose_name='Текст комментария')),
                 ('datetime', models.DateTimeField(verbose_name='Опубликовано', default=datetime.datetime.now, editable=False)),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
-                ('parent_track', models.ForeignKey(to='soundtracks.Track', verbose_name='Трек', related_name='comments', editable=False)),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('parent_track', models.ForeignKey(to='soundtracks.Track', verbose_name='Трек', related_name='comments', editable=False, on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['datetime'],

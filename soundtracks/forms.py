@@ -1,10 +1,9 @@
 #coding: utf-8
-from pydub import AudioSegment
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth.forms import UserCreationForm
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .models import Track, TrackComment
 

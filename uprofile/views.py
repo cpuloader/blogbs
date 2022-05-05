@@ -1,6 +1,6 @@
 #coding: utf-8
-from django.shortcuts import redirect, render, render_to_response, get_object_or_404
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse, reverse_lazy
 from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages

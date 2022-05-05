@@ -1,8 +1,8 @@
 #coding: utf-8
 import hashlib, random
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 class TempUrl(models.Model):
     url_hash = models.CharField(default = "def" + hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:5], 

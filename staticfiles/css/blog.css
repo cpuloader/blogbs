@@ -1,0 +1,473 @@
+/* MAIN ELEMENTS*/
+
+body {
+    background-color: #20B2AA;
+    font-family:Fira Sans;
+}
+
+th {
+    font-weight:normal;
+}
+
+h2 {
+    font-family:Comfortaa;
+    letter-spacing: 1px;
+}
+
+.container-fluid {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.bottom-site {
+    width:100%;
+    height:400px;
+    display:block;
+    background-color: #888888;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .container-fluid {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}
+
+.btn-primary, .btn-primary:focus {
+    background: #20B2AA;
+    border: 1px solid #136c68;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background: #17827d !important;
+    border: 1px solid #136c68;
+}
+.btn-primary:active:hover {
+    background: #136c68 !important;
+    border: 1px solid #136c68;
+}
+
+.btn-default:focus {
+    background: white;
+    border: 1px solid #CCCCCC;
+}
+
+/* MESSAGES ELEMENTS */
+
+#messages-list .error {
+    color: red;
+}
+
+/* CAROUSEL ELEMENTS */
+
+.carousel-container {
+    /*margin-top: -20px;*/
+    background-color: white; 
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: -20px;
+    margin-bottom: 0%;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0px 0px 25px black;
+    border-radius: 0px;
+}
+
+.car-pic {
+    width: 100%;
+    margin: auto;
+}
+
+.carousel-caption {
+    padding: 0px 20px 20px 20px;
+    /*background-color: black;
+    opacity: 0.5;*/
+}
+.carousel-caption h3 {
+    font-size: 2em;
+}
+
+.carousel-caption p {
+    font-size: 1em;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .carousel-container {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    .carousel-caption {
+        padding: 0px 5px 10px 5px;
+    }
+    .carousel-caption h3 {
+        font-size: 10px;
+    }
+
+    .carousel-caption p {
+        font-size: 8px;
+    }
+}
+
+/* BLOG ELEMENTS */
+
+.blog-container {
+    background-color: white; 
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: -30px;
+    margin-bottom: 10%;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 2px;
+    box-shadow: 0px 0px 25px black;
+    border-radius: 0px;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .blog-container {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}
+
+.label {
+    background-color: #F2F2F2;
+    font-size:12px;
+}
+
+.post-title, .post-title a {
+    font-family:Comfortaa;
+}
+
+.post-title a, .post-title a:visited {
+    text-decoration: none;
+    text-decoration-color: #000000;
+    color: #404040;
+}
+
+.post-title a:hover {
+    text-decoration: none;
+    text-decoration-color: #202020;
+    color: #777777;
+}
+
+.blog-content {
+    text-indent:50px;
+}
+
+.blog-author {
+    text-align:right;
+    /*padding-right:20px;*/
+}
+
+.created-date {
+    font-style:italic;
+    font-size:12px;
+}
+
+.author {
+    font-size:14px;
+}
+.greeting {
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+.author a, .greeting a {
+    text-decoration: underline;
+    color: black;
+}
+
+.author-extra {
+    font-size:12px;
+    font-style:italic;
+}
+
+.form-field .label {
+    color:black;
+    font-weight: normal;
+}
+
+#id_title, #id_content {
+    width: 100%;
+    margin-bottom: 5px;
+}
+/*
+#id_content {
+    height: 100px;
+}
+*/
+#id_username, #id_password {
+    width: 100%;
+}
+
+.blogpost {
+    background-color: white; 
+    border-radius: 5px;
+}
+
+.blogpost-border {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.post-comments, .post-comments a {
+    margin-top: 5px;
+    font-size: 14px;
+    color:#777777;
+}
+
+.comment {
+    font-size: 12px;
+}
+.comment-content {
+    text-indent:50px;
+}
+.comment-data {
+    font-weight:normal;
+    text-align:right;
+    /*padding-right:20px;*/
+}
+.comment-created-date {
+    font-style:italic;
+}
+
+/* SOUNDTRACKS ELEMENTS */
+
+.track-content {
+    padding-top:20px;
+    text-indent:50px;
+}
+
+.track-title a, .track-title a:visited {
+    text-decoration: none;
+    text-decoration-color: #000000;
+    color: #404040;
+}
+.track-title a:hover {
+    text-decoration: none;
+    text-decoration-color: #202020;
+    color: #777777;
+}
+.track-author {
+    font-size: 12px;
+    text-align:right;
+}
+
+.track-author a {
+    text-decoration: underline;
+    color: black;
+}
+
+.comment-author a {
+    text-decoration: underline;
+    color: black;
+}
+
+.track-created-date {
+    font-style: italic;
+}
+.player-controls {
+    /*float:left;*/
+}
+
+.player-container {
+    margin-left: 61px;
+    margin-right: 10px;
+    position:relative;
+}
+
+.m-player-container {
+    margin-left: 1px;
+    position:relative;
+}
+
+.track-stats {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    z-index:100;
+}
+
+div.progress-trackload {
+    height:128px;
+    width:100%;
+    position:absolute;
+    /*top:40%;*/
+}
+
+.track-comment-table {
+    margin-left:0px;
+    margin-top:5px;
+    width:100%;
+}
+
+.track-comment-field {
+    background-color: #DDDDDD;
+    width:100%;
+    padding-right:4px;
+    padding-left:4px;
+    font-size: 12px;
+}
+
+.track-comment-button {
+    width:76px;
+    padding-right:4px;
+}
+
+.track-comment-button input {
+    /*margin:3px;
+    padding:4px;*/
+    height:28px;
+    width:70px;
+}
+
+.track-comment-control #id_content {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin-top:4px;
+    margin-bottom:4px;
+    width:100%;
+    height:20px;
+}
+
+.track-comment-control #id_content:hover,
+.track-comment-control #id_content:focus {
+    border: 1px solid #888888;
+}
+/* LOGIN ELEMENTS */
+
+.loginform {
+    width:300px;
+    height:auto;
+    padding:0px 0px 0px 0px;
+    margin:auto;
+    margin-top:50px;
+    background-color: white;
+    box-shadow: 0px 0px 25px black;
+    border-radius: 0px;
+}
+
+.loginform-inner {
+    background-color: #e9fbfa; 
+    padding:20px 10px 20px 10px;
+    border-radius: 0px;
+    
+}
+
+.logintable {
+    width:200px;
+    margin:auto;
+}
+
+.submit-button {
+    text-align:center;
+    margin-top:10px;
+}
+
+#submit-button-inner {
+    width:200px;
+}
+
+.register {
+    margin-top:5px;
+}
+
+.user-add-form {
+    width:300px;
+    height:auto;
+    padding:0px 0px 0px 0px;
+    margin:auto;
+    margin-top:50px;
+    background-color: white;
+    box-shadow: 0px 0px 25px black;
+    border-radius: 0px;
+}
+
+.user-add-form-inner {
+    background-color: #e9fbfa; 
+    padding:10px 10px 10px 10px;
+    border-radius: 0px;
+    float:left;
+}
+
+.user-add-form-inner #id_text {
+    width:100%;
+    height:50px;
+    margin-bottom:10px;
+}
+
+.error-list, .errorlist {
+    color:red;
+}
+
+.help {
+    font-size:12px;
+}
+
+.second-menu-list {
+    position:absolute;
+    top:10em;
+    margin-left:35%;
+    z-index:10;
+}
+
+.second-menu {
+    font-family:Comfortaa;
+    font-size:5em;
+}
+.second-menu a {
+    color:white;
+}
+.second-menu a:hover {
+    text-decoration:none;
+    color:#444444;
+}
+
+.user-registration {
+    width: 450px;
+}
+.user-registration .helptext {
+    font-size: 10px;
+}
+
+.user-registration #id_username,
+.user-registration #id_password1, 
+.user-registration #id_password2,
+.user-registration #id_email {
+    width: 200px;
+    margin-bottom: 5px;
+}
+.user-registration #id_text {
+    width: 300px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+.user-registration .label,
+.user-registration label {
+    font-weight: normal;
+}
+.user-registration .submit-button {
+    text-align: left;
+}
+.user-registration .help {
+    color: #AAAAAA;
+    display:none;
+}
+.user-registration #id_picture {
+    display:none;
+}
+/* SPEAKER ELEMENTS */
+
+.enter-text-to-say label {
+
+}
+
+#id_text_to_say {
+    width: 100%;
+}

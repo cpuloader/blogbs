@@ -1,6 +1,6 @@
 # coding: utf-8
-from django.shortcuts import redirect, render_to_response, render
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
 from django.core.paginator import Paginator, InvalidPage
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView

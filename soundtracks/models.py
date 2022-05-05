@@ -6,12 +6,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
-from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 
 class Track(models.Model):
-    author = models.ForeignKey(User, editable=False)
+    author = models.ForeignKey(User, editable=False, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, verbose_name=_(u'Заголовок'))
     text = models.TextField(verbose_name=_(u'Текст описания'))
     created_date = models.DateTimeField(default=timezone.now, db_index = True, editable=False, verbose_name=_(u'Дата'))
@@ -66,9 +66,9 @@ class Track(models.Model):
 
 
 class TrackComment(models.Model):
-    parent_track = models.ForeignKey(Track, related_name='comments', verbose_name = _(u'Трек'), editable=False)
+    parent_track = models.ForeignKey(Track, related_name='comments', on_delete=models.CASCADE, verbose_name = _(u'Трек'), editable=False)
     #author = models.CharField(max_length=50, verbose_name = _(u'Автор'), editable=False)
-    author = models.ForeignKey(User) 
+    author = models.ForeignKey(User, on_delete=models.CASCADE) 
     content = models.TextField(verbose_name = _(u'Текст комментария'))
     datetime = models.DateTimeField(default = datetime.now, editable=False, 
          verbose_name = _(u'Опубликовано'))

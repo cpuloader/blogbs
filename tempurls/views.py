@@ -6,11 +6,11 @@ from shutil import copyfile
 from django.utils import timezone
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.urls import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from wsgiref.util import FileWrapper as myFileWrapper
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 import blogbootstrap.settings as settings
 

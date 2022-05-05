@@ -1,0 +1,1 @@
+d:\v_env\blogbs38\scripts\activate

@@ -1,8 +1,7 @@
 # coding: utf-8
 import os
-from pydub import AudioSegment
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
@@ -12,7 +11,6 @@ from django.http import HttpResponse, JsonResponse
 from .models import Track, TrackComment
 from .forms import TrackForm, TrackDeleteForm, CommentForm, CommentDeleteForm
 from blog.views import JavaScriptView
-from .utils import make_peaks
 
 player_script = JavaScriptView.as_view(template_name="soundtracks/player.js")
 player_comments = JavaScriptView.as_view(template_name="soundtracks/comments.js")
@@ -55,10 +53,6 @@ def track_create(request):
                              title=request.POST.get('title'),
                              text=request.POST.get('text'),
                              soundtrack=request.FILES.get('soundtrack'))
-            peaks, duration = make_peaks(request.FILES.get('soundtrack'))
-            if peaks:
-                instance.peaks = peaks
-                instance.duration = duration
             instance.save()
             return redirect(reverse('track_list'))
         else:

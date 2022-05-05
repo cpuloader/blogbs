@@ -1,8 +1,8 @@
 #coding: utf-8
-from django.conf.urls import url
+from django.urls import re_path
 
 from carousel.views import CarouselView
 
 urlpatterns = [
-    url(r'^$', CarouselView.as_view(), name='carousel_name'), 
+    re_path(r'^$', CarouselView.as_view(), name='carousel_name'), 
 ]

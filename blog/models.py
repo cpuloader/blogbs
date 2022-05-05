@@ -1,13 +1,13 @@
 #coding: utf-8
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, editable=False)
+    author = models.ForeignKey(User, editable=False, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name=_(u'Заголовок')) # заголовок поста
     datetime = models.DateTimeField(default = datetime.now, db_index = True, 
            editable=False, verbose_name=_(u'Дата публикации')) # дата публикации
@@ -26,8 +26,8 @@ class Post(models.Model):
         return reverse('post_detail', kwargs = {'pk': self.pk})
 
 class Comment(models.Model):
-    parent_post = models.ForeignKey(Post, related_name='comments', verbose_name = _(u'Блог'))
-    author = models.ForeignKey(User)
+    parent_post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, verbose_name = _(u'Блог'))
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     #author = models.CharField(max_length=50, verbose_name = _(u'Автор'))
     content = models.TextField(verbose_name = _(u'Текст комментария'))
     datetime = models.DateTimeField(default = datetime.now, editable=False, 

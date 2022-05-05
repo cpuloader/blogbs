@@ -1,23 +1,24 @@
-from django.conf.urls import include, url
+from django.urls import include, re_path, path
 from django.contrib import admin
 import django.contrib.auth.views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView
 
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^blog/', include('blog.urls')),
-    url(r'', include('carousel.urls')),
-    url(r'^tempurls/', include('tempurls.urls')),
-    url(r'^soundtracks/', include('soundtracks.urls')),
-    url(r'^speaker/', include('speaker.urls')),
-    url(r'^bredbot/', include('bredbot.urls')),
-    url(r'^uprofile/', include('uprofile.urls')),
-    url(r'^accounts/login/$', django.contrib.auth.views.login, name='login'),
-    url(r'^accounts/logout/$', django.contrib.auth.views.logout, name='logout', kwargs={'next_page': '/'}),
-    url(r'^i18n/', include('django.conf.urls.i18n')),
+    path('admin/', admin.site.urls),
+    re_path(r'^blog/', include('blog.urls')),
+    re_path(r'', include('carousel.urls')),
+    re_path(r'^tempurls/', include('tempurls.urls')),
+    re_path(r'^soundtracks/', include('soundtracks.urls')),
+    re_path(r'^speaker/', include('speaker.urls')),
+    re_path(r'^bredbot/', include('bredbot.urls')),
+    re_path(r'^uprofile/', include('uprofile.urls')),
+    re_path(r'^accounts/login/$', LoginView.as_view(), name='login'),
+    re_path(r'^accounts/logout/$', LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
+    re_path(r'^i18n/', include('django.conf.urls.i18n')),
 
 ]
 

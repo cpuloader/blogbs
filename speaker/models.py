@@ -2,7 +2,7 @@
 import mimetypes, os
 from django.db import models
 from datetime import datetime
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 class TextToSay(models.Model):
     text_to_say = models.TextField(max_length=800, verbose_name=_(u'Текст'))

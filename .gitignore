@@ -1,15 +1,14 @@
 *.pyc
 __pycache__
+/static
 db.sqlite3
-run_env27.bat
+run_env.bat
 run_env35.bat
 admin.txt
 req.txt
 envvars.txt
-bin/
 media/
 _bak/
 **/*.*home
 **/*.*pcany
-real_requirements.txt
 telegram.log

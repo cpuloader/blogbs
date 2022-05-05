@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
                 ('content', models.TextField(verbose_name='Текст комментария')),
                 ('datetime', models.DateTimeField(verbose_name='Опубликовано', default=datetime.datetime.now, editable=False)),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['datetime'],
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(verbose_name='Заголовок', max_length=255)),
                 ('datetime', models.DateTimeField(verbose_name='Дата публикации', default=datetime.datetime.now, editable=False, db_index=True)),
                 ('content', models.TextField(verbose_name='Текст', max_length=10000)),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, editable=False)),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, editable=False, on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['-datetime'],
@@ -41,6 +41,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='comment',
             name='parent_post',
-            field=models.ForeignKey(to='blog.Post', verbose_name='Блог', related_name='comments'),
+            field=models.ForeignKey(to='blog.Post', verbose_name='Блог', related_name='comments', on_delete=models.CASCADE),
         ),
     ]
