@@ -3,7 +3,8 @@ from django.urls import re_path
 from django.contrib.auth.decorators import permission_required
 
 from blog.views import PostList, PostDetail, PostCreate, PostUpdate, PostDelete, \
-           CommentCreate, CommentRemove, post_list_json, posts_load_script, test_redirect
+           CommentCreate, CommentRemove, post_list_json, posts_load_script, \
+           test_redirect, test_redirect2
 
 urlpatterns = [
     re_path(r'^$', PostList.as_view(), name='list'),
@@ -16,4 +17,5 @@ urlpatterns = [
     re_path(r'^comment/(?P<pk>\d+)/remove/$', permission_required("blog.delete_comment")(CommentRemove.as_view()), name='comment_remove'),
     re_path(r'^posts_load_script.js$', posts_load_script, name='posts_load'),
     re_path(r'^test_redirect$', test_redirect, name='test_redirect'),
+    re_path(r'^test_redirect2$', test_redirect2, name='test_redirect2'),
 ]

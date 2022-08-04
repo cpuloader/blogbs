@@ -189,3 +189,8 @@ def test_redirect(request):
     content = loader.render_to_string('blog/test_redirect.html', None, request)
     response = HttpResponse(content)
     return response
+
+def test_redirect2(request):
+    content = loader.render_to_string('blog/test_redirect2.html', None, request)
+    response = HttpResponse(content)
+    return response
