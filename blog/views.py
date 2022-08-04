@@ -7,6 +7,8 @@ from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.template import loader
+from django.http import HttpResponse
 
 from .models import Post, Comment
 from .forms import PostForm, PostDeleteForm, CommentForm, CommentRemoveForm
@@ -181,3 +183,9 @@ class CommentRemove(TemplateView):
             return redirect(redirect_url)
         else:
             return redirect(reverse("login"))
+
+
+def test_redirect(request):
+    content = loader.render_to_string('blog/test_redirect.html', None, request)
+    response = HttpResponse(content)
+    return response
