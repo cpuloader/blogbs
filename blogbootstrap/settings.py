@@ -186,14 +186,14 @@ LOGGING = {
             'formatter': 'verbose',
             'class': 'logging.StreamHandler'
         },
-        #'file_handler': {
-        #    'filename': os.path.join(BASE_DIR, 'logs', 'telegram.log'),
-        #    'class': 'logging.handlers.RotatingFileHandler',
-        #    'encoding': 'utf-8',
-        #    'formatter': 'verbose',
-        #    'maxBytes': 1024 * 1024 * 50,
-        #    'backupCount': 50,
-        #},
+        'file_handler': {
+            'filename': os.path.join(BASE_DIR, 'logs', 'telegram.log'),
+            'class': 'logging.handlers.RotatingFileHandler',
+            'encoding': 'utf-8',
+            'formatter': 'verbose',
+            'maxBytes': 1024 * 1024 * 50,
+            'backupCount': 50,
+        },
     },
     'loggers': {
         'django.request': {
@@ -201,10 +201,10 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        #'telegram.bot': {
-        #    'handlers': ['file_handler'],
-        #    'level': 'INFO',
-        #    'propagate': False,
-        #},
+        'telegram.bot': {
+            'handlers': ['file_handler'],
+            'level': 'INFO',
+            'propagate': False,
+        },
     }
 }
