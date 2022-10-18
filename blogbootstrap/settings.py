@@ -187,12 +187,12 @@ LOGGING = {
             'class': 'logging.StreamHandler'
         },
         'file_handler': {
-            'filename': os.path.join(BASE_DIR, 'logs', 'telegram.log'),
+            'filename': 'telegram.log',
             'class': 'logging.handlers.RotatingFileHandler',
             'encoding': 'utf-8',
             'formatter': 'verbose',
             'maxBytes': 1024 * 1024 * 50,
-            'backupCount': 50,
+            'backupCount': 5,
         },
     },
     'loggers': {
