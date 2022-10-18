@@ -187,7 +187,7 @@ LOGGING = {
             'class': 'logging.StreamHandler'
         },
         'file_handler': {
-            'filename': 'telegram.log',
+            'filename': os.path.join(BASE_DIR, 'blogbs', 'telegram.log'),
             'class': 'logging.handlers.RotatingFileHandler',
             'encoding': 'utf-8',
             'formatter': 'verbose',
