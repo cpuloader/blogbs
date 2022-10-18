@@ -49,6 +49,7 @@ class CommandReceiveView(View):
         #print(raw)
         #sys.stderr.write(raw)
         logger.info(raw)
+        logger.info("!!!!!!!!!!!!")
 
         try:
             payload = json.loads(raw)
